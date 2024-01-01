@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63cae77cfa065c1488ff9d15039d413d, type: 3}
+  m_Name: Pistol Data
+  m_EditorClassIdentifier: 
+  Size: 9
+  StartingMagazines: 3
+  BulletTrail: {fileID: 7534414142167504715, guid: 78fa60d203d00f14099031f0bba497b4, type: 3}
+  ShootDelay: 0.5
+  weaponDamageIsRange: 1
+  DamageRange: {x: 1, y: 5}
+  Damage: 0
+  bulletSpawnIndex: 0
+  usesAmmo: 0
+  Fire: {fileID: 8300000, guid: ab202a36e7664654f97a1975cce801c1, type: 3}
+  Empty: {fileID: 8300000, guid: ff16c2371c577a941909b05984d58ce2, type: 3}
+  Reload:
+  - {fileID: 8300000, guid: b017d017c43be264abc0b787d135ffc1, type: 3}
+  - {fileID: 8300000, guid: 4318690b885b79946b2ce02206fe7e3d, type: 3}
+  audioSource: {fileID: 0}

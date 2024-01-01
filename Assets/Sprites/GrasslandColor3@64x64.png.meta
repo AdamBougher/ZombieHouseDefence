@@ -1,0 +1,6473 @@
+fileFormatVersion: 2
+guid: 2d5871579623b7f41ad87997aeadc4ea
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7733038601059969500
+    second: GrasslandColor3@64x64_0
+  - first:
+      213: -8399236191131939463
+    second: GrasslandColor3@64x64_1
+  - first:
+      213: -6309314592740842002
+    second: GrasslandColor3@64x64_2
+  - first:
+      213: 3739212459274695349
+    second: GrasslandColor3@64x64_3
+  - first:
+      213: -2114446207573785386
+    second: GrasslandColor3@64x64_4
+  - first:
+      213: -4126689852875135281
+    second: GrasslandColor3@64x64_5
+  - first:
+      213: 4885108423335881820
+    second: GrasslandColor3@64x64_6
+  - first:
+      213: 5821726041251418826
+    second: GrasslandColor3@64x64_7
+  - first:
+      213: 6702910314346643808
+    second: GrasslandColor3@64x64_8
+  - first:
+      213: 2740034134714102944
+    second: GrasslandColor3@64x64_9
+  - first:
+      213: -6494609702058157473
+    second: GrasslandColor3@64x64_10
+  - first:
+      213: -7790481796090768079
+    second: GrasslandColor3@64x64_11
+  - first:
+      213: -1626836198632770815
+    second: GrasslandColor3@64x64_12
+  - first:
+      213: 1332916851778149646
+    second: GrasslandColor3@64x64_13
+  - first:
+      213: 2299139562596874353
+    second: GrasslandColor3@64x64_14
+  - first:
+      213: -6793001619573149347
+    second: GrasslandColor3@64x64_15
+  - first:
+      213: 1470632516451446191
+    second: GrasslandColor3@64x64_16
+  - first:
+      213: -5679326055532960958
+    second: GrasslandColor3@64x64_17
+  - first:
+      213: -5450496941184108996
+    second: GrasslandColor3@64x64_18
+  - first:
+      213: 7090144322359307009
+    second: GrasslandColor3@64x64_19
+  - first:
+      213: -7815605961580622543
+    second: GrasslandColor3@64x64_20
+  - first:
+      213: 3169031925140522403
+    second: GrasslandColor3@64x64_21
+  - first:
+      213: -6345918889366090897
+    second: GrasslandColor3@64x64_22
+  - first:
+      213: 237732289607042276
+    second: GrasslandColor3@64x64_23
+  - first:
+      213: -5012839217623681122
+    second: GrasslandColor3@64x64_24
+  - first:
+      213: -5237738967745958999
+    second: GrasslandColor3@64x64_25
+  - first:
+      213: -396113513454410683
+    second: GrasslandColor3@64x64_26
+  - first:
+      213: -3215506613504327474
+    second: GrasslandColor3@64x64_27
+  - first:
+      213: 3980489420549836159
+    second: GrasslandColor3@64x64_28
+  - first:
+      213: -6064628105152198397
+    second: GrasslandColor3@64x64_29
+  - first:
+      213: -4606381929557955745
+    second: GrasslandColor3@64x64_30
+  - first:
+      213: 3960631362907044683
+    second: GrasslandColor3@64x64_31
+  - first:
+      213: -3289727246955704530
+    second: GrasslandColor3@64x64_32
+  - first:
+      213: 882865713644012233
+    second: GrasslandColor3@64x64_33
+  - first:
+      213: -236788230410527574
+    second: GrasslandColor3@64x64_34
+  - first:
+      213: 1381884561563443104
+    second: GrasslandColor3@64x64_35
+  - first:
+      213: -4747066144587352094
+    second: GrasslandColor3@64x64_36
+  - first:
+      213: 7334128253419232601
+    second: GrasslandColor3@64x64_37
+  - first:
+      213: -9041231940079786031
+    second: GrasslandColor3@64x64_38
+  - first:
+      213: 3517139759543853108
+    second: GrasslandColor3@64x64_39
+  - first:
+      213: -6006681885145689513
+    second: GrasslandColor3@64x64_40
+  - first:
+      213: -3356239518153671185
+    second: GrasslandColor3@64x64_41
+  - first:
+      213: 1913941124085835408
+    second: GrasslandColor3@64x64_42
+  - first:
+      213: 4204171153720000543
+    second: GrasslandColor3@64x64_43
+  - first:
+      213: 8074686325070263515
+    second: GrasslandColor3@64x64_44
+  - first:
+      213: 4945693757021247793
+    second: GrasslandColor3@64x64_45
+  - first:
+      213: -4034673889358456606
+    second: GrasslandColor3@64x64_46
+  - first:
+      213: 4707291071661574217
+    second: GrasslandColor3@64x64_47
+  - first:
+      213: -977777602750573659
+    second: GrasslandColor3@64x64_48
+  - first:
+      213: 4867111158656560606
+    second: GrasslandColor3@64x64_49
+  - first:
+      213: 7797467571732394694
+    second: GrasslandColor3@64x64_50
+  - first:
+      213: 7563988314649241195
+    second: GrasslandColor3@64x64_51
+  - first:
+      213: -5977440290112384645
+    second: GrasslandColor3@64x64_52
+  - first:
+      213: -7217886161554219871
+    second: GrasslandColor3@64x64_53
+  - first:
+      213: 5574196795853853126
+    second: GrasslandColor3@64x64_54
+  - first:
+      213: 3592624268152530971
+    second: GrasslandColor3@64x64_55
+  - first:
+      213: -1832344280576519560
+    second: GrasslandColor3@64x64_56
+  - first:
+      213: -6054622012767876865
+    second: GrasslandColor3@64x64_57
+  - first:
+      213: -5578904748842126032
+    second: GrasslandColor3@64x64_58
+  - first:
+      213: -5516083709546674994
+    second: GrasslandColor3@64x64_59
+  - first:
+      213: -1546883554057036058
+    second: GrasslandColor3@64x64_60
+  - first:
+      213: -4847907244187523332
+    second: GrasslandColor3@64x64_61
+  - first:
+      213: -3327527070181238062
+    second: GrasslandColor3@64x64_62
+  - first:
+      213: 8228863587163662689
+    second: GrasslandColor3@64x64_63
+  - first:
+      213: 500670932957859036
+    second: GrasslandColor3@64x64_64
+  - first:
+      213: 6260801028886864956
+    second: GrasslandColor3@64x64_65
+  - first:
+      213: -4541840589614520546
+    second: GrasslandColor3@64x64_66
+  - first:
+      213: -6057122072175563272
+    second: GrasslandColor3@64x64_67
+  - first:
+      213: 646855723711070972
+    second: GrasslandColor3@64x64_68
+  - first:
+      213: -7291254384480727069
+    second: GrasslandColor3@64x64_69
+  - first:
+      213: -6545275013053408609
+    second: GrasslandColor3@64x64_70
+  - first:
+      213: -1965931528029630037
+    second: GrasslandColor3@64x64_71
+  - first:
+      213: 5953364352693306337
+    second: GrasslandColor3@64x64_72
+  - first:
+      213: 3822996600641300558
+    second: GrasslandColor3@64x64_73
+  - first:
+      213: -8468310635286730742
+    second: GrasslandColor3@64x64_74
+  - first:
+      213: -2317435325556832467
+    second: GrasslandColor3@64x64_75
+  - first:
+      213: 1703645300459345962
+    second: GrasslandColor3@64x64_76
+  - first:
+      213: 4182609837047915955
+    second: GrasslandColor3@64x64_77
+  - first:
+      213: 5447655893726742492
+    second: GrasslandColor3@64x64_78
+  - first:
+      213: -6021943696514900528
+    second: GrasslandColor3@64x64_79
+  - first:
+      213: -6567597131507625404
+    second: GrasslandColor3@64x64_80
+  - first:
+      213: -8096620907752138781
+    second: GrasslandColor3@64x64_81
+  - first:
+      213: -734710230077946980
+    second: GrasslandColor3@64x64_82
+  - first:
+      213: -6666001459537438530
+    second: GrasslandColor3@64x64_83
+  - first:
+      213: -5461061835811996
+    second: GrasslandColor3@64x64_84
+  - first:
+      213: -14198210062460049
+    second: GrasslandColor3@64x64_85
+  - first:
+      213: -5373083941992612885
+    second: GrasslandColor3@64x64_86
+  - first:
+      213: -3228004535161325503
+    second: GrasslandColor3@64x64_87
+  - first:
+      213: -4919300185278904835
+    second: GrasslandColor3@64x64_88
+  - first:
+      213: -3990168055082159662
+    second: GrasslandColor3@64x64_89
+  - first:
+      213: 5294392334869848917
+    second: GrasslandColor3@64x64_90
+  - first:
+      213: 5099684825724842978
+    second: GrasslandColor3@64x64_91
+  - first:
+      213: -3648009370798619307
+    second: GrasslandColor3@64x64_92
+  - first:
+      213: 8170082023170505110
+    second: GrasslandColor3@64x64_93
+  - first:
+      213: 619189379197834134
+    second: GrasslandColor3@64x64_94
+  - first:
+      213: 7273139155636143432
+    second: GrasslandColor3@64x64_95
+  - first:
+      213: -509669370309998754
+    second: GrasslandColor3@64x64_96
+  - first:
+      213: -3751119283193793561
+    second: GrasslandColor3@64x64_97
+  - first:
+      213: -8155486683786261165
+    second: GrasslandColor3@64x64_98
+  - first:
+      213: 8000507948195397751
+    second: GrasslandColor3@64x64_99
+  - first:
+      213: 2893778896617577093
+    second: GrasslandColor3@64x64_100
+  - first:
+      213: -5079086892234389320
+    second: GrasslandColor3@64x64_101
+  - first:
+      213: 2798535950935090181
+    second: GrasslandColor3@64x64_102
+  - first:
+      213: 8210759988591693811
+    second: GrasslandColor3@64x64_103
+  - first:
+      213: 5200282649943404277
+    second: GrasslandColor3@64x64_104
+  - first:
+      213: 7780521656821054812
+    second: GrasslandColor3@64x64_105
+  - first:
+      213: -8804818047909614591
+    second: GrasslandColor3@64x64_106
+  - first:
+      213: -3211804857521654285
+    second: GrasslandColor3@64x64_107
+  - first:
+      213: -3475194484131669390
+    second: GrasslandColor3@64x64_108
+  - first:
+      213: -3304142251032215265
+    second: GrasslandColor3@64x64_109
+  - first:
+      213: 9086058659394005827
+    second: GrasslandColor3@64x64_110
+  - first:
+      213: 2774039203720311388
+    second: GrasslandColor3@64x64_111
+  - first:
+      213: -6785258763625611614
+    second: GrasslandColor3@64x64_112
+  - first:
+      213: -6963069857862170125
+    second: GrasslandColor3@64x64_113
+  - first:
+      213: 1454336247435963193
+    second: GrasslandColor3@64x64_114
+  - first:
+      213: -1857820739100013016
+    second: GrasslandColor3@64x64_115
+  - first:
+      213: -8192015909239139828
+    second: GrasslandColor3@64x64_116
+  - first:
+      213: 7620287217650149698
+    second: GrasslandColor3@64x64_117
+  - first:
+      213: -4178383263841171166
+    second: GrasslandColor3@64x64_118
+  - first:
+      213: -8023218368609727949
+    second: GrasslandColor3@64x64_119
+  - first:
+      213: 4373009519754176311
+    second: GrasslandColor3@64x64_120
+  - first:
+      213: 1685895153805248867
+    second: GrasslandColor3@64x64_121
+  - first:
+      213: 5542514727408369359
+    second: GrasslandColor3@64x64_122
+  - first:
+      213: -2034686689631628013
+    second: GrasslandColor3@64x64_123
+  - first:
+      213: -7503635054223432406
+    second: GrasslandColor3@64x64_124
+  - first:
+      213: -2309185702054846901
+    second: GrasslandColor3@64x64_125
+  - first:
+      213: -8669096704324383232
+    second: GrasslandColor3@64x64_126
+  - first:
+      213: 4620273769164504369
+    second: GrasslandColor3@64x64_127
+  - first:
+      213: 8574419569654331458
+    second: GrasslandColor3@64x64_128
+  - first:
+      213: 6064262116331233784
+    second: GrasslandColor3@64x64_129
+  - first:
+      213: -182120475972780342
+    second: GrasslandColor3@64x64_130
+  - first:
+      213: 8037132088665733983
+    second: GrasslandColor3@64x64_131
+  - first:
+      213: -1162658341971031316
+    second: GrasslandColor3@64x64_132
+  - first:
+      213: 6379048688124526140
+    second: GrasslandColor3@64x64_133
+  - first:
+      213: -4944839707792784708
+    second: GrasslandColor3@64x64_134
+  - first:
+      213: 7566809687804631109
+    second: GrasslandColor3@64x64_135
+  - first:
+      213: 3271379983249370869
+    second: GrasslandColor3@64x64_136
+  - first:
+      213: -5579690448849695073
+    second: GrasslandColor3@64x64_137
+  - first:
+      213: -6686463225689398219
+    second: GrasslandColor3@64x64_138
+  - first:
+      213: -8901794487403948479
+    second: GrasslandColor3@64x64_139
+  - first:
+      213: -3619725050740024589
+    second: GrasslandColor3@64x64_140
+  - first:
+      213: -5880301535922959078
+    second: GrasslandColor3@64x64_141
+  - first:
+      213: -5373485764751351048
+    second: GrasslandColor3@64x64_142
+  - first:
+      213: -298795668654844561
+    second: GrasslandColor3@64x64_143
+  - first:
+      213: 8918091752360695604
+    second: GrasslandColor3@64x64_144
+  - first:
+      213: -4779494342896113228
+    second: GrasslandColor3@64x64_145
+  - first:
+      213: -1194911814803492966
+    second: GrasslandColor3@64x64_146
+  - first:
+      213: -5827104448237357487
+    second: GrasslandColor3@64x64_147
+  - first:
+      213: 7248673342119013717
+    second: GrasslandColor3@64x64_148
+  - first:
+      213: -1791554052357885905
+    second: GrasslandColor3@64x64_149
+  - first:
+      213: 5246049412430736017
+    second: GrasslandColor3@64x64_150
+  - first:
+      213: -5291148579240311191
+    second: GrasslandColor3@64x64_151
+  - first:
+      213: 1039714790134589779
+    second: GrasslandColor3@64x64_152
+  - first:
+      213: -2381610561610088547
+    second: GrasslandColor3@64x64_153
+  - first:
+      213: -8593726733682423586
+    second: GrasslandColor3@64x64_154
+  - first:
+      213: 2536362365950622962
+    second: GrasslandColor3@64x64_155
+  - first:
+      213: 3732009754153060841
+    second: GrasslandColor3@64x64_156
+  - first:
+      213: -5448397188820699525
+    second: GrasslandColor3@64x64_157
+  - first:
+      213: 1242636626167936920
+    second: GrasslandColor3@64x64_158
+  - first:
+      213: 2042539387252024563
+    second: GrasslandColor3@64x64_159
+  - first:
+      213: -4763852752736965898
+    second: GrasslandColor3@64x64_160
+  - first:
+      213: 3204892786563909691
+    second: GrasslandColor3@64x64_161
+  - first:
+      213: 450390200408429307
+    second: GrasslandColor3@64x64_162
+  - first:
+      213: 8062173520288667346
+    second: GrasslandColor3@64x64_163
+  - first:
+      213: 1140342314050315489
+    second: GrasslandColor3@64x64_164
+  - first:
+      213: -115201163348179553
+    second: GrasslandColor3@64x64_165
+  - first:
+      213: -4351846812361893268
+    second: GrasslandColor3@64x64_166
+  - first:
+      213: 4147451205838934476
+    second: GrasslandColor3@64x64_167
+  - first:
+      213: -2921071490004520347
+    second: GrasslandColor3@64x64_168
+  - first:
+      213: 2799309339047296208
+    second: GrasslandColor3@64x64_169
+  - first:
+      213: -7769430500623833846
+    second: GrasslandColor3@64x64_170
+  - first:
+      213: 678224198539774679
+    second: GrasslandColor3@64x64_171
+  - first:
+      213: 2069147281998099018
+    second: GrasslandColor3@64x64_172
+  - first:
+      213: -8203467376538361518
+    second: GrasslandColor3@64x64_173
+  - first:
+      213: 5320861406997443881
+    second: GrasslandColor3@64x64_174
+  - first:
+      213: -1001377608712420779
+    second: GrasslandColor3@64x64_175
+  - first:
+      213: 7792625222083409105
+    second: GrasslandColor3@64x64_176
+  - first:
+      213: 2762930266144545942
+    second: GrasslandColor3@64x64_177
+  - first:
+      213: 4900295424023826526
+    second: GrasslandColor3@64x64_178
+  - first:
+      213: -6843207971733140835
+    second: GrasslandColor3@64x64_179
+  - first:
+      213: 2162143324346823357
+    second: GrasslandColor3@64x64_180
+  - first:
+      213: 5688944636305458667
+    second: GrasslandColor3@64x64_181
+  - first:
+      213: -4323349567945162203
+    second: GrasslandColor3@64x64_182
+  - first:
+      213: -1937386593781827290
+    second: GrasslandColor3@64x64_183
+  - first:
+      213: 5127409725533778669
+    second: GrasslandColor3@64x64_184
+  - first:
+      213: -3487453531854423858
+    second: GrasslandColor3@64x64_185
+  - first:
+      213: -5313785537891424256
+    second: GrasslandColor3@64x64_186
+  - first:
+      213: -3186940082124293095
+    second: GrasslandColor3@64x64_187
+  - first:
+      213: -3090803965403875027
+    second: GrasslandColor3@64x64_188
+  - first:
+      213: -8714179666665410222
+    second: GrasslandColor3@64x64_189
+  - first:
+      213: 2393004097980221588
+    second: GrasslandColor3@64x64_190
+  - first:
+      213: 8865770610879468990
+    second: GrasslandColor3@64x64_191
+  - first:
+      213: -1722752347038956660
+    second: GrasslandColor3@64x64_192
+  - first:
+      213: -4175540541223070102
+    second: GrasslandColor3@64x64_193
+  - first:
+      213: 6874473850617100848
+    second: GrasslandColor3@64x64_194
+  - first:
+      213: 6942272133560939166
+    second: GrasslandColor3@64x64_195
+  - first:
+      213: -3044613291464688576
+    second: GrasslandColor3@64x64_196
+  - first:
+      213: 3195732963517141363
+    second: GrasslandColor3@64x64_197
+  - first:
+      213: 8750499444673800958
+    second: GrasslandColor3@64x64_198
+  - first:
+      213: 473660065134766476
+    second: GrasslandColor3@64x64_199
+  - first:
+      213: 8456742879898451597
+    second: GrasslandColor3@64x64_200
+  - first:
+      213: -8011588657382417312
+    second: GrasslandColor3@64x64_201
+  - first:
+      213: -609672555439831622
+    second: GrasslandColor3@64x64_202
+  - first:
+      213: 1295945660515268817
+    second: GrasslandColor3@64x64_203
+  - first:
+      213: 4010877667161573494
+    second: GrasslandColor3@64x64_204
+  - first:
+      213: -99628602677672780
+    second: GrasslandColor3@64x64_205
+  - first:
+      213: -6796807132460762034
+    second: GrasslandColor3@64x64_206
+  - first:
+      213: 883860053749650709
+    second: GrasslandColor3@64x64_207
+  - first:
+      213: 5438381782377953100
+    second: GrasslandColor3@64x64_208
+  - first:
+      213: 3016760874150904658
+    second: GrasslandColor3@64x64_209
+  - first:
+      213: 8062478489278164007
+    second: GrasslandColor3@64x64_210
+  - first:
+      213: 6623366966041843747
+    second: GrasslandColor3@64x64_211
+  - first:
+      213: 4783469710545354008
+    second: GrasslandColor3@64x64_212
+  - first:
+      213: 7460924960159272010
+    second: GrasslandColor3@64x64_213
+  - first:
+      213: -7731306500369278555
+    second: GrasslandColor3@64x64_214
+  - first:
+      213: 1736294925178504752
+    second: GrasslandColor3@64x64_215
+  - first:
+      213: 6230563884058861187
+    second: GrasslandColor3@64x64_216
+  - first:
+      213: 1070846334435306999
+    second: GrasslandColor3@64x64_217
+  - first:
+      213: 7373722991808396808
+    second: GrasslandColor3@64x64_218
+  - first:
+      213: 7510765356100692661
+    second: GrasslandColor3@64x64_219
+  - first:
+      213: 5785179777514687428
+    second: GrasslandColor3@64x64_220
+  - first:
+      213: -5210833611343809634
+    second: GrasslandColor3@64x64_221
+  - first:
+      213: 6651706581222873210
+    second: GrasslandColor3@64x64_222
+  - first:
+      213: 5534681564635810220
+    second: GrasslandColor3@64x64_223
+  - first:
+      213: -2849988129513071974
+    second: GrasslandColor3@64x64_224
+  - first:
+      213: -445985906804668627
+    second: GrasslandColor3@64x64_225
+  - first:
+      213: -5989081065118747846
+    second: GrasslandColor3@64x64_226
+  - first:
+      213: -17769208742135696
+    second: GrasslandColor3@64x64_227
+  - first:
+      213: 3955412226213927170
+    second: GrasslandColor3@64x64_228
+  - first:
+      213: 4456374186231103108
+    second: GrasslandColor3@64x64_229
+  - first:
+      213: -9098684998775396981
+    second: GrasslandColor3@64x64_230
+  - first:
+      213: 4294636143142923009
+    second: GrasslandColor3@64x64_231
+  - first:
+      213: -4205479500730058682
+    second: GrasslandColor3@64x64_232
+  - first:
+      213: -6593076508431876128
+    second: GrasslandColor3@64x64_233
+  - first:
+      213: 290471611928389157
+    second: GrasslandColor3@64x64_234
+  - first:
+      213: 6126730296867438343
+    second: GrasslandColor3@64x64_235
+  - first:
+      213: 1195803289495315105
+    second: GrasslandColor3@64x64_236
+  - first:
+      213: -6187199138966442710
+    second: GrasslandColor3@64x64_237
+  - first:
+      213: 9151897350200735584
+    second: GrasslandColor3@64x64_238
+  - first:
+      213: -6602059286811880774
+    second: GrasslandColor3@64x64_239
+  - first:
+      213: -3480337690134200811
+    second: GrasslandColor3@64x64_240
+  - first:
+      213: 8229035272450002635
+    second: GrasslandColor3@64x64_241
+  - first:
+      213: 5993180077296280689
+    second: GrasslandColor3@64x64_242
+  - first:
+      213: 4608993345655513840
+    second: GrasslandColor3@64x64_243
+  - first:
+      213: 3449405669260637893
+    second: GrasslandColor3@64x64_244
+  - first:
+      213: 5731235114957826096
+    second: GrasslandColor3@64x64_245
+  - first:
+      213: 3240178901006113775
+    second: GrasslandColor3@64x64_246
+  - first:
+      213: -1593363527856729246
+    second: GrasslandColor3@64x64_247
+  - first:
+      213: 5455394502727176366
+    second: GrasslandColor3@64x64_248
+  - first:
+      213: 1463489759800241154
+    second: GrasslandColor3@64x64_249
+  - first:
+      213: 4632492324516670420
+    second: GrasslandColor3@64x64_250
+  - first:
+      213: 6938578613765144597
+    second: GrasslandColor3@64x64_251
+  - first:
+      213: 7950625200044311341
+    second: GrasslandColor3@64x64_252
+  - first:
+      213: 4859000853214819336
+    second: GrasslandColor3@64x64_253
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426df6d1d5abea490800000000000000
+      internalID: -7733038601059969500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97dc9fa6f2bef6b80800000000000000
+      internalID: -8399236191131939463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee56e7b5ecfc078a0800000000000000
+      internalID: -6309314592740842002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b278c6abe954e330800000000000000
+      internalID: 3739212459274695349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d484e4806af7a2e0800000000000000
+      internalID: -2114446207573785386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc62b25617d0bb6c0800000000000000
+      internalID: -4126689852875135281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5c24368a346bc340800000000000000
+      internalID: 4885108423335881820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac29e6c5dfceac050800000000000000
+      internalID: 5821726041251418826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0610fe7da65850d50800000000000000
+      internalID: 6702910314346643808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a43418378e860620800000000000000
+      internalID: 2740034134714102944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5a940ac2e28ed5a0800000000000000
+      internalID: -6494609702058157473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135dcda0516a2e390800000000000000
+      internalID: -7790481796090768079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1033fb0c8115c69e0800000000000000
+      internalID: -1626836198632770815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0d5e5980d87f7210800000000000000
+      internalID: 1332916851778149646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17832a5304f28ef10800000000000000
+      internalID: 2299139562596874353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 960
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5170b294096ab1a0800000000000000
+      internalID: -6793001619573149347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fad2a326b7cb86410800000000000000
+      internalID: 1470632516451446191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2436658fa0bfe21b0800000000000000
+      internalID: -5679326055532960958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c363e53f8e1fb54b0800000000000000
+      internalID: -5450496941184108996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_19
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10baa7c22b0456260800000000000000
+      internalID: 7090144322359307009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13dcf8b69c3698390800000000000000
+      internalID: -7815605961580622543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_21
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a58fd3eeb9aafb20800000000000000
+      internalID: 3169031925140522403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_22
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b84e96464cee7a0800000000000000
+      internalID: -6345918889366090897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_23
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e40ba102489c4300800000000000000
+      internalID: 237732289607042276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_24
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e97b46d6a41de6ab0800000000000000
+      internalID: -5012839217623681122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_25
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9abe749d820df47b0800000000000000
+      internalID: -5237738967745958999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_26
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54461d3bbd8b08af0800000000000000
+      internalID: -396113513454410683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_27
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec0c72185c93063d0800000000000000
+      internalID: -3215506613504327474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_28
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7dc218d90a8d3730800000000000000
+      internalID: 3980489420549836159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_29
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3098d81cedc16dba0800000000000000
+      internalID: -6064628105152198397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_30
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b6bec6a08d210c0800000000000000
+      internalID: -4606381929557955745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_31
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 896
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b78508d3df6f630800000000000000
+      internalID: 3960631362907044683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2f0845af7a8852d0800000000000000
+      internalID: -3289727246955704530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_33
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c28f1e50b1904c00800000000000000
+      internalID: 882865713644012233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_34
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac1367eb52c6bcf0800000000000000
+      internalID: -236788230410527574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_35
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0afd59cefa07d2310800000000000000
+      internalID: 1381884561563443104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_36
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e776961e780f1eb0800000000000000
+      internalID: -4747066144587352094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_37
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d9532e9ce08c560800000000000000
+      internalID: 7334128253419232601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_38
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d7e0a7f377178280800000000000000
+      internalID: -9041231940079786031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_39
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 430a3090af36fc030800000000000000
+      internalID: 3517139759543853108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_40
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7521e1576aaf3aca0800000000000000
+      internalID: -6006681885145689513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_41
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fed725bb0fd3c61d0800000000000000
+      internalID: -3356239518153671185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_42
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096e526df4faf8a10800000000000000
+      internalID: 1913941124085835408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_43
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f10cc60c367385a30800000000000000
+      internalID: 4204171153720000543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_44
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4748e5e6c0f0070800000000000000
+      internalID: 8074686325070263515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_45
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1395e13c442a2a440800000000000000
+      internalID: 4945693757021247793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_46
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e8de386975f108c0800000000000000
+      internalID: -4034673889358456606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_47
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 832
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94881c41a48a35140800000000000000
+      internalID: 4707291071661574217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a318b6637c3e62f0800000000000000
+      internalID: -977777602750573659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_49
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edd601ecfc37b8340800000000000000
+      internalID: 4867111158656560606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_50
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c2bcb8917b263c60800000000000000
+      internalID: 7797467571732394694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_51
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b66afd3eb4fa8f860800000000000000
+      internalID: 7563988314649241195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_52
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b715eb9d9bddb0da0800000000000000
+      internalID: -5977440290112384645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_53
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ac5a5f27cae4db90800000000000000
+      internalID: -7217886161554219871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_54
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c15df4d3768b5d40800000000000000
+      internalID: 5574196795853853126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_55
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b18eda2ccb09bd130800000000000000
+      internalID: 3592624268152530971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_56
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8729402c5943296e0800000000000000
+      internalID: -1832344280576519560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_57
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff8c5bfab59a9fba0800000000000000
+      internalID: -6054622012767876865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_58
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 035768170bfb392b0800000000000000
+      internalID: -5578904748842126032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_59
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec4c625771fe273b0800000000000000
+      internalID: -5516083709546674994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_60
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee59837a9d588ae0800000000000000
+      internalID: -1546883554057036058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_61
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6e826fb06c8bcb0800000000000000
+      internalID: -4847907244187523332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_62
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dad95972cf32d1d0800000000000000
+      internalID: -3327527070181238062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_63
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 768
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 169690a85dbc23270800000000000000
+      internalID: 8228863587163662689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc01549f8db2f600800000000000000
+      internalID: 500670932957859036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_65
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34a3385d55d2e650800000000000000
+      internalID: 6260801028886864956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_66
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1763952c0428f0c0800000000000000
+      internalID: -4541840589614520546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_67
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fd2cce3197c0fba0800000000000000
+      internalID: -6057122072175563272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_68
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf20ab08ad71af800800000000000000
+      internalID: 646855723711070972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_69
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ef440e94c240da90800000000000000
+      internalID: -7291254384480727069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_70
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9a16b1dd038a25a0800000000000000
+      internalID: -6545275013053408609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_71
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba19d03f0bb97b4e0800000000000000
+      internalID: -1965931528029630037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_72
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e302c426599e9250800000000000000
+      internalID: 5953364352693306337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_73
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4820c637230e0530800000000000000
+      internalID: 3822996600641300558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_74
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a08621028548a7a80800000000000000
+      internalID: -8468310635286730742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_75
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d274e3689d0d6dfd0800000000000000
+      internalID: -2317435325556832467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_76
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a28942ddf5094a710800000000000000
+      internalID: 1703645300459345962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_77
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b5ab438c7d9b0a30800000000000000
+      internalID: 4182609837047915955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_78
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd745242c26f99b40800000000000000
+      internalID: 5447655893726742492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_79
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dd93d71d12cd6ca0800000000000000
+      internalID: -6021943696514900528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4421d9c94353bd4a0800000000000000
+      internalID: -6567597131507625404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_81
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e7de60ae2603af80800000000000000
+      internalID: -8096620907752138781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_82
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93cb5b30f8cdc5f0800000000000000
+      internalID: -734710230077946980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_83
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb819049dfa9d73a0800000000000000
+      internalID: -6666001459537438530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_84
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4631e2571399ceff0800000000000000
+      internalID: -5461061835811996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_85
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6bd7cc9dce8dcff0800000000000000
+      internalID: -14198210062460049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_86
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebbc216f98fe65b0800000000000000
+      internalID: -5373083941992612885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_87
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 148fb5c5af2d333d0800000000000000
+      internalID: -3228004535161325503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_88
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df500f88b822bbbb0800000000000000
+      internalID: -4919300185278904835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_89
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d177b27b4310a8c0800000000000000
+      internalID: -3990168055082159662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_90
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 553e77517c5797940800000000000000
+      internalID: 5294392334869848917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_91
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e377c76458b5c640800000000000000
+      internalID: 5099684825724842978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_92
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55580442ecaaf5dc0800000000000000
+      internalID: -3648009370798619307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_93
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 699f1e82056f16170800000000000000
+      internalID: 8170082023170505110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_94
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69318c3b57dc79800800000000000000
+      internalID: 619189379197834134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_95
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8454dadf6816fe460800000000000000
+      internalID: 7273139155636143432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_96
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5786c5786a4de8f0800000000000000
+      internalID: -509669370309998754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_97
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3bd1fd2e851fbc0800000000000000
+      internalID: -3751119283193793561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_98
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35dcd7a1214e1de80800000000000000
+      internalID: -8155486683786261165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_99
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77040e22793870f60800000000000000
+      internalID: 8000507948195397751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_100
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a99671394c82820800000000000000
+      internalID: 2893778896617577093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_101
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b8c605b1657389b0800000000000000
+      internalID: -5079086892234389320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_102
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50465aebe9566d620800000000000000
+      internalID: 2798535950935090181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_103
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ff8ff705ba72f170800000000000000
+      internalID: 8210759988591693811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_104
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fee081948d1b2840800000000000000
+      internalID: 5200282649943404277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_105
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d7d025937f9fb60800000000000000
+      internalID: 7780521656821054812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_106
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10c2666a2a00fc580800000000000000
+      internalID: -8804818047909614591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_107
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f53c8bbf706d63d0800000000000000
+      internalID: -3211804857521654285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_108
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27a5fef6701a5cfc0800000000000000
+      internalID: -3475194484131669390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_109
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f118dd7f0245522d0800000000000000
+      internalID: -3304142251032215265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_110
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34baa81f53a281e70800000000000000
+      internalID: 9086058659394005827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_111
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c52b1c255fd5f7620800000000000000
+      internalID: 2774039203720311388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_112
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae3df4ba1be5d1a0800000000000000
+      internalID: -6785258763625611614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_113
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f945ef2bd43e5f90800000000000000
+      internalID: -6963069857862170125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_114
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b25649c17de2410800000000000000
+      internalID: 1454336247435963193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_115
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82e079581e1b736e0800000000000000
+      internalID: -1857820739100013016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_116
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c02d3770fec105e80800000000000000
+      internalID: -8192015909239139828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_117
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 249ac76b9d2b0c960800000000000000
+      internalID: 7620287217650149698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_118
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2294f4f3f866306c0800000000000000
+      internalID: -4178383263841171166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_119
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33ac0af076dc7a090800000000000000
+      internalID: -8023218368609727949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_120
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73769503dfc00bc30800000000000000
+      internalID: 4373009519754176311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_121
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3694d1bc5b0856710800000000000000
+      internalID: 1685895153805248867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_122
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcefb8177c7faec40800000000000000
+      internalID: 5542514727408369359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_123
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3159a4b6c3753c3e0800000000000000
+      internalID: -2034686689631628013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_124
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a25e7d49cabbdd790800000000000000
+      internalID: -7503635054223432406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_125
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4e1c9ca6df14ffd0800000000000000
+      internalID: -2309185702054846901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_126
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e4c3f6a7e21b780800000000000000
+      internalID: -8669096704324383232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_127
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13dfa1883828e1040800000000000000
+      internalID: 4620273769164504369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_128
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 248776c5b257ef670800000000000000
+      internalID: 8574419569654331458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_129
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f128c4d346982450800000000000000
+      internalID: 6064262116331233784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_130
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace315b546af87df0800000000000000
+      internalID: -182120475972780342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_131
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b70d55d01a98f60800000000000000
+      internalID: 8037132088665733983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_132
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea0ca3e5686ddfe0800000000000000
+      internalID: -1162658341971031316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_133
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e7594fbfee68850800000000000000
+      internalID: 6379048688124526140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_134
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb2c3c11c76606bb0800000000000000
+      internalID: -4944839707792784708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_135
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54854940255b20960800000000000000
+      internalID: 7566809687804631109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_136
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fee6e223c6466d20800000000000000
+      internalID: 3271379983249370869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_137
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9e8ca76915f092b0800000000000000
+      internalID: -5579690448849695073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_138
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53422156f19e433a0800000000000000
+      internalID: -6686463225689398219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_139
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146d1c2d319767480800000000000000
+      internalID: -8901794487403948479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_140
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fade069e3724cdc0800000000000000
+      internalID: -3619725050740024589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_141
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1dc02388e8f46ea0800000000000000
+      internalID: -5880301535922959078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_142
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2a06aba2b8d65b0800000000000000
+      internalID: -5373485764751351048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_143
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6517652ce67adbf0800000000000000
+      internalID: -298795668654844561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_144
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 437dccdd23d63cb70800000000000000
+      internalID: 8918091752360695604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_145
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b920bdc733dbadb0800000000000000
+      internalID: -4779494342896113228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_146
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9f68bc0902da6fe0800000000000000
+      internalID: -1194911814803492966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_147
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156b6bda067f12fa0800000000000000
+      internalID: -5827104448237357487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_148
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55de8d1eff5789460800000000000000
+      internalID: 7248673342119013717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_149
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f20fb49d41f1327e0800000000000000
+      internalID: -1791554052357885905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_150
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19aa4165526bdc840800000000000000
+      internalID: 5246049412430736017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_151
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9668190a6601296b0800000000000000
+      internalID: -5291148579240311191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_152
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35921bdc71fcd6e00800000000000000
+      internalID: 1039714790134589779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_153
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f79e100d1d2fed0800000000000000
+      internalID: -2381610561610088547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_154
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed8c4163113fcb880800000000000000
+      internalID: -8593726733682423586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_155
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fcf7243228f23320800000000000000
+      internalID: 2536362365950622962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_156
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e9069e2913cac330800000000000000
+      internalID: 3732009754153060841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_157
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b76fa15af976364b0800000000000000
+      internalID: -5448397188820699525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_158
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89731af7d6bbe3110800000000000000
+      internalID: 1242636626167936920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_159
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f4a6e830ce885c10800000000000000
+      internalID: 2042539387252024563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_160
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6faa8de492563edb0800000000000000
+      internalID: -4763852752736965898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_161
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b388a5652011a7c20800000000000000
+      internalID: 3204892786563909691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_162
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf259a1408b104600800000000000000
+      internalID: 450390200408429307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_163
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d6dd5af91892ef60800000000000000
+      internalID: 8062173520288667346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_164
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e4e057fa4f43df00800000000000000
+      internalID: 1140342314050315489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_165
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f958becf629b66ef0800000000000000
+      internalID: -115201163348179553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_166
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ad04891622b93c0800000000000000
+      internalID: -4351846812361893268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_167
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc19b47c5e4be8930800000000000000
+      internalID: 4147451205838934476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_168
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56272c2d4f44677d0800000000000000
+      internalID: -2921071490004520347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_169
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dcf852330529d620800000000000000
+      internalID: 2799309339047296208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_170
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a052b37bf107d2490800000000000000
+      internalID: -7769430500623833846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_171
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da8900b059896900800000000000000
+      internalID: 678224198539774679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_172
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42367b7d7617bc10800000000000000
+      internalID: 2069147281998099018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_173
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251ece682ed672e80800000000000000
+      internalID: -8203467376538361518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_174
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 925fa2f224f77d940800000000000000
+      internalID: 5320861406997443881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_175
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5528aa2de546a12f0800000000000000
+      internalID: -1001377608712420779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_176
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d4f7063a57f42c60800000000000000
+      internalID: 7792625222083409105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_177
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c98bc3076e75620800000000000000
+      internalID: 2762930266144545942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_178
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e50996ba9b8510440800000000000000
+      internalID: 4900295424023826526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_179
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a89b84b9a0801a0800000000000000
+      internalID: -6843207971733140835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_180
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db2bc21e5e9710e10800000000000000
+      internalID: 2162143324346823357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_181
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be5c9d1610133fe40800000000000000
+      internalID: 5688944636305458667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_182
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5224aca59706004c0800000000000000
+      internalID: -4323349567945162203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_183
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 629b70d58250d15e0800000000000000
+      internalID: -1937386593781827290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_184
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de2f25caaf7382740800000000000000
+      internalID: 5127409725533778669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_185
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec8b2277d731a9fc0800000000000000
+      internalID: -3487453531854423858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_186
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 008af59f434a146b0800000000000000
+      internalID: -5313785537891424256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_187
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91cf68461e6b5c3d0800000000000000
+      internalID: -3186940082124293095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_188
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d29bbb35b224b15d0800000000000000
+      internalID: -3090803965403875027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_189
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251f97b43c3011780800000000000000
+      internalID: -8714179666665410222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_190
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4984a266c88a53120800000000000000
+      internalID: 2393004097980221588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_191
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb59191d56b890b70800000000000000
+      internalID: 8865770610879468990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_192
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83c5ce2edd8718e0800000000000000
+      internalID: -1722752347038956660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_193
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a66182f20008d06c0800000000000000
+      internalID: -4175540541223070102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_194
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03a7ebb6b89076f50800000000000000
+      internalID: 6874473850617100848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_195
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e923ef649b7e75060800000000000000
+      internalID: 6942272133560939166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_196
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c70dba75c5fb5d0800000000000000
+      internalID: -3044613291464688576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_197
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3711277d236895c20800000000000000
+      internalID: 3195732963517141363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_198
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efae80ff1e4007970800000000000000
+      internalID: 8750499444673800958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_199
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8965a6d157c29600800000000000000
+      internalID: 473660065134766476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_200
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8e3921f7d26c5570800000000000000
+      internalID: 8456742879898451597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_201
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06c1c26309e11d090800000000000000
+      internalID: -8011588657382417312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_202
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab544bf7a020a87f0800000000000000
+      internalID: -609672555439831622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_203
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8b83746bf1cf110800000000000000
+      internalID: 1295945660515268817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_204
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67886bcdcff79a730800000000000000
+      internalID: 4010877667161573494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_205
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b4cdef405c0e9ef0800000000000000
+      internalID: -99628602677672780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_206
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4cb5de8ce3eca1a0800000000000000
+      internalID: -6796807132460762034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_207
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 515d7e6390a144c00800000000000000
+      internalID: 883860053749650709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_208
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c47f793da63097b40800000000000000
+      internalID: 5438381782377953100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_209
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 253cf041800bdd920800000000000000
+      internalID: 3016760874150904658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_210
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c27aa187da3ef60800000000000000
+      internalID: 8062478489278164007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_211
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3281bfbd92deaeb50800000000000000
+      internalID: 6623366966041843747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_212
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81d75ea9b5c426240800000000000000
+      internalID: 4783469710545354008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_213
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4c832ab8b78a8760800000000000000
+      internalID: 7460924960159272010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_214
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a912db33b1e4b490800000000000000
+      internalID: -7731306500369278555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_215
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0360490090f881810800000000000000
+      internalID: 1736294925178504752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_216
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ed4b377d8677650800000000000000
+      internalID: 6230563884058861187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_217
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fdab0d41196cde00800000000000000
+      internalID: 1070846334435306999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_218
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80ebede4ef9b45660800000000000000
+      internalID: 7373722991808396808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_219
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba21b13c499b3860800000000000000
+      internalID: 7510765356100692661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_220
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb49804b56194050800000000000000
+      internalID: 5785179777514687428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_221
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e93bf2c40766fa7b0800000000000000
+      internalID: -5210833611343809634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_222
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a78dae3b4eb9f4c50800000000000000
+      internalID: 6651706581222873210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_223
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca9450d1f832fcc40800000000000000
+      internalID: 5534681564635810220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_224
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9a1b4665eec278d0800000000000000
+      internalID: -2849988129513071974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_225
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d27c3124e2a8fc9f0800000000000000
+      internalID: -445985906804668627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_226
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a333496b08282eca0800000000000000
+      internalID: -5989081065118747846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_227
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0783cf0bffed0cff0800000000000000
+      internalID: -17769208742135696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_228
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 209d7bb867274e630800000000000000
+      internalID: 3955412226213927170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_229
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48e768426b838dd30800000000000000
+      internalID: 4456374186231103108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_230
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8521d4533afab180800000000000000
+      internalID: -9098684998775396981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_231
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b669771dc999b30800000000000000
+      internalID: 4294636143142923009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_232
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6483cc8fca223a5c0800000000000000
+      internalID: -4205479500730058682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_233
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eff1f1e8dfa084a0800000000000000
+      internalID: -6593076508431876128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_234
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526a35e5466f70400800000000000000
+      internalID: 290471611928389157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_235
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70f38638eb4860550800000000000000
+      internalID: 6126730296867438343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_236
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2ac9391c8589010800000000000000
+      internalID: 1195803289495315105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_237
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2d6d4f0a27a22aa0800000000000000
+      internalID: -6187199138966442710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_238
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 067bd83b622120f70800000000000000
+      internalID: 9151897350200735584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_239
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab2528fce06c064a0800000000000000
+      internalID: -6602059286811880774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_240
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51eb5297f4b53bfc0800000000000000
+      internalID: -3480337690134200811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_241
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bceca822bf7633270800000000000000
+      internalID: 8229035272450002635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_242
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174613ee68d0c2350800000000000000
+      internalID: 5993180077296280689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_243
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f2afe3470f66ff30800000000000000
+      internalID: 4608993345655513840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_244
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6bf723e20cedf20800000000000000
+      internalID: 3449405669260637893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_245
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0386e4fb8ff698f40800000000000000
+      internalID: 5731235114957826096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_246
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feb5f231b8d67fc20800000000000000
+      internalID: 3240178901006113775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_247
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263590c305c33e9e0800000000000000
+      internalID: -1593363527856729246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_248
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea01ca4756475bb40800000000000000
+      internalID: 5455394502727176366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_249
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ca051ce2c5f4410800000000000000
+      internalID: 1463489759800241154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_250
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db2a83a93be94040800000000000000
+      internalID: 4632492324516670420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_251
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 510089fac78ca4060800000000000000
+      internalID: 6938578613765144597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_252
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2309e6ce7b465e60800000000000000
+      internalID: 7950625200044311341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GrasslandColor3@64x64_253
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 804703b2883ae6340800000000000000
+      internalID: 4859000853214819336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GrasslandColor3@64x64_132: -1162658341971031316
+      GrasslandColor3@64x64_47: 4707291071661574217
+      GrasslandColor3@64x64_4: -2114446207573785386
+      GrasslandColor3@64x64_69: -7291254384480727069
+      GrasslandColor3@64x64_120: 4373009519754176311
+      GrasslandColor3@64x64_49: 4867111158656560606
+      GrasslandColor3@64x64_112: -6785258763625611614
+      GrasslandColor3@64x64_111: 2774039203720311388
+      GrasslandColor3@64x64_17: -5679326055532960958
+      GrasslandColor3@64x64_63: 8228863587163662689
+      GrasslandColor3@64x64_40: -6006681885145689513
+      GrasslandColor3@64x64_58: -5578904748842126032
+      GrasslandColor3@64x64_200: 8456742879898451597
+      GrasslandColor3@64x64_125: -2309185702054846901
+      GrasslandColor3@64x64_216: 6230563884058861187
+      GrasslandColor3@64x64_26: -396113513454410683
+      GrasslandColor3@64x64_81: -8096620907752138781
+      GrasslandColor3@64x64_68: 646855723711070972
+      GrasslandColor3@64x64_150: 5246049412430736017
+      GrasslandColor3@64x64_11: -7790481796090768079
+      GrasslandColor3@64x64_212: 4783469710545354008
+      GrasslandColor3@64x64_176: 7792625222083409105
+      GrasslandColor3@64x64_217: 1070846334435306999
+      GrasslandColor3@64x64_53: -7217886161554219871
+      GrasslandColor3@64x64_31: 3960631362907044683
+      GrasslandColor3@64x64_1: -8399236191131939463
+      GrasslandColor3@64x64_185: -3487453531854423858
+      GrasslandColor3@64x64_148: 7248673342119013717
+      GrasslandColor3@64x64_249: 1463489759800241154
+      GrasslandColor3@64x64_170: -7769430500623833846
+      GrasslandColor3@64x64_48: -977777602750573659
+      GrasslandColor3@64x64_21: 3169031925140522403
+      GrasslandColor3@64x64_90: 5294392334869848917
+      GrasslandColor3@64x64_118: -4178383263841171166
+      GrasslandColor3@64x64_149: -1791554052357885905
+      GrasslandColor3@64x64_203: 1295945660515268817
+      GrasslandColor3@64x64_158: 1242636626167936920
+      GrasslandColor3@64x64_233: -6593076508431876128
+      GrasslandColor3@64x64_246: 3240178901006113775
+      GrasslandColor3@64x64_210: 8062478489278164007
+      GrasslandColor3@64x64_19: 7090144322359307009
+      GrasslandColor3@64x64_101: -5079086892234389320
+      GrasslandColor3@64x64_192: -1722752347038956660
+      GrasslandColor3@64x64_173: -8203467376538361518
+      GrasslandColor3@64x64_142: -5373485764751351048
+      GrasslandColor3@64x64_184: 5127409725533778669
+      GrasslandColor3@64x64_227: -17769208742135696
+      GrasslandColor3@64x64_66: -4541840589614520546
+      GrasslandColor3@64x64_195: 6942272133560939166
+      GrasslandColor3@64x64_33: 882865713644012233
+      GrasslandColor3@64x64_236: 1195803289495315105
+      GrasslandColor3@64x64_44: 8074686325070263515
+      GrasslandColor3@64x64_76: 1703645300459345962
+      GrasslandColor3@64x64_242: 5993180077296280689
+      GrasslandColor3@64x64_230: -9098684998775396981
+      GrasslandColor3@64x64_177: 2762930266144545942
+      GrasslandColor3@64x64_209: 3016760874150904658
+      GrasslandColor3@64x64_115: -1857820739100013016
+      GrasslandColor3@64x64_163: 8062173520288667346
+      GrasslandColor3@64x64_36: -4747066144587352094
+      GrasslandColor3@64x64_190: 2393004097980221588
+      GrasslandColor3@64x64_229: 4456374186231103108
+      GrasslandColor3@64x64_129: 6064262116331233784
+      GrasslandColor3@64x64_202: -609672555439831622
+      GrasslandColor3@64x64_24: -5012839217623681122
+      GrasslandColor3@64x64_74: -8468310635286730742
+      GrasslandColor3@64x64_3: 3739212459274695349
+      GrasslandColor3@64x64_32: -3289727246955704530
+      GrasslandColor3@64x64_113: -6963069857862170125
+      GrasslandColor3@64x64_211: 6623366966041843747
+      GrasslandColor3@64x64_67: -6057122072175563272
+      GrasslandColor3@64x64_152: 1039714790134589779
+      GrasslandColor3@64x64_194: 6874473850617100848
+      GrasslandColor3@64x64_238: 9151897350200735584
+      GrasslandColor3@64x64_137: -5579690448849695073
+      GrasslandColor3@64x64_153: -2381610561610088547
+      GrasslandColor3@64x64_96: -509669370309998754
+      GrasslandColor3@64x64_207: 883860053749650709
+      GrasslandColor3@64x64_43: 4204171153720000543
+      GrasslandColor3@64x64_70: -6545275013053408609
+      GrasslandColor3@64x64_232: -4205479500730058682
+      GrasslandColor3@64x64_29: -6064628105152198397
+      GrasslandColor3@64x64_22: -6345918889366090897
+      GrasslandColor3@64x64_75: -2317435325556832467
+      GrasslandColor3@64x64_247: -1593363527856729246
+      GrasslandColor3@64x64_240: -3480337690134200811
+      GrasslandColor3@64x64_6: 4885108423335881820
+      GrasslandColor3@64x64_228: 3955412226213927170
+      GrasslandColor3@64x64_166: -4351846812361893268
+      GrasslandColor3@64x64_204: 4010877667161573494
+      GrasslandColor3@64x64_147: -5827104448237357487
+      GrasslandColor3@64x64_56: -1832344280576519560
+      GrasslandColor3@64x64_175: -1001377608712420779
+      GrasslandColor3@64x64_156: 3732009754153060841
+      GrasslandColor3@64x64_131: 8037132088665733983
+      GrasslandColor3@64x64_178: 4900295424023826526
+      GrasslandColor3@64x64_110: 9086058659394005827
+      GrasslandColor3@64x64_50: 7797467571732394694
+      GrasslandColor3@64x64_60: -1546883554057036058
+      GrasslandColor3@64x64_86: -5373083941992612885
+      GrasslandColor3@64x64_37: 7334128253419232601
+      GrasslandColor3@64x64_72: 5953364352693306337
+      GrasslandColor3@64x64_108: -3475194484131669390
+      GrasslandColor3@64x64_8: 6702910314346643808
+      GrasslandColor3@64x64_85: -14198210062460049
+      GrasslandColor3@64x64_231: 4294636143142923009
+      GrasslandColor3@64x64_235: 6126730296867438343
+      GrasslandColor3@64x64_82: -734710230077946980
+      GrasslandColor3@64x64_73: 3822996600641300558
+      GrasslandColor3@64x64_154: -8593726733682423586
+      GrasslandColor3@64x64_189: -8714179666665410222
+      GrasslandColor3@64x64_121: 1685895153805248867
+      GrasslandColor3@64x64_182: -4323349567945162203
+      GrasslandColor3@64x64_183: -1937386593781827290
+      GrasslandColor3@64x64_64: 500670932957859036
+      GrasslandColor3@64x64_18: -5450496941184108996
+      GrasslandColor3@64x64_62: -3327527070181238062
+      GrasslandColor3@64x64_34: -236788230410527574
+      GrasslandColor3@64x64_223: 5534681564635810220
+      GrasslandColor3@64x64_139: -8901794487403948479
+      GrasslandColor3@64x64_2: -6309314592740842002
+      GrasslandColor3@64x64_162: 450390200408429307
+      GrasslandColor3@64x64_244: 3449405669260637893
+      GrasslandColor3@64x64_213: 7460924960159272010
+      GrasslandColor3@64x64_106: -8804818047909614591
+      GrasslandColor3@64x64_215: 1736294925178504752
+      GrasslandColor3@64x64_13: 1332916851778149646
+      GrasslandColor3@64x64_92: -3648009370798619307
+      GrasslandColor3@64x64_239: -6602059286811880774
+      GrasslandColor3@64x64_181: 5688944636305458667
+      GrasslandColor3@64x64_122: 5542514727408369359
+      GrasslandColor3@64x64_83: -6666001459537438530
+      GrasslandColor3@64x64_126: -8669096704324383232
+      GrasslandColor3@64x64_103: 8210759988591693811
+      GrasslandColor3@64x64_23: 237732289607042276
+      GrasslandColor3@64x64_98: -8155486683786261165
+      GrasslandColor3@64x64_93: 8170082023170505110
+      GrasslandColor3@64x64_135: 7566809687804631109
+      GrasslandColor3@64x64_225: -445985906804668627
+      GrasslandColor3@64x64_172: 2069147281998099018
+      GrasslandColor3@64x64_100: 2893778896617577093
+      GrasslandColor3@64x64_171: 678224198539774679
+      GrasslandColor3@64x64_169: 2799309339047296208
+      GrasslandColor3@64x64_251: 6938578613765144597
+      GrasslandColor3@64x64_160: -4763852752736965898
+      GrasslandColor3@64x64_20: -7815605961580622543
+      GrasslandColor3@64x64_9: 2740034134714102944
+      GrasslandColor3@64x64_71: -1965931528029630037
+      GrasslandColor3@64x64_187: -3186940082124293095
+      GrasslandColor3@64x64_193: -4175540541223070102
+      GrasslandColor3@64x64_141: -5880301535922959078
+      GrasslandColor3@64x64_79: -6021943696514900528
+      GrasslandColor3@64x64_198: 8750499444673800958
+      GrasslandColor3@64x64_196: -3044613291464688576
+      GrasslandColor3@64x64_42: 1913941124085835408
+      GrasslandColor3@64x64_140: -3619725050740024589
+      GrasslandColor3@64x64_222: 6651706581222873210
+      GrasslandColor3@64x64_84: -5461061835811996
+      GrasslandColor3@64x64_28: 3980489420549836159
+      GrasslandColor3@64x64_59: -5516083709546674994
+      GrasslandColor3@64x64_77: 4182609837047915955
+      GrasslandColor3@64x64_221: -5210833611343809634
+      GrasslandColor3@64x64_188: -3090803965403875027
+      GrasslandColor3@64x64_25: -5237738967745958999
+      GrasslandColor3@64x64_191: 8865770610879468990
+      GrasslandColor3@64x64_107: -3211804857521654285
+      GrasslandColor3@64x64_7: 5821726041251418826
+      GrasslandColor3@64x64_30: -4606381929557955745
+      GrasslandColor3@64x64_104: 5200282649943404277
+      GrasslandColor3@64x64_65: 6260801028886864956
+      GrasslandColor3@64x64_133: 6379048688124526140
+      GrasslandColor3@64x64_220: 5785179777514687428
+      GrasslandColor3@64x64_145: -4779494342896113228
+      GrasslandColor3@64x64_248: 5455394502727176366
+      GrasslandColor3@64x64_12: -1626836198632770815
+      GrasslandColor3@64x64_206: -6796807132460762034
+      GrasslandColor3@64x64_102: 2798535950935090181
+      GrasslandColor3@64x64_123: -2034686689631628013
+      GrasslandColor3@64x64_155: 2536362365950622962
+      GrasslandColor3@64x64_168: -2921071490004520347
+      GrasslandColor3@64x64_130: -182120475972780342
+      GrasslandColor3@64x64_124: -7503635054223432406
+      GrasslandColor3@64x64_252: 7950625200044311341
+      GrasslandColor3@64x64_243: 4608993345655513840
+      GrasslandColor3@64x64_143: -298795668654844561
+      GrasslandColor3@64x64_94: 619189379197834134
+      GrasslandColor3@64x64_10: -6494609702058157473
+      GrasslandColor3@64x64_197: 3195732963517141363
+      GrasslandColor3@64x64_15: -6793001619573149347
+      GrasslandColor3@64x64_27: -3215506613504327474
+      GrasslandColor3@64x64_164: 1140342314050315489
+      GrasslandColor3@64x64_159: 2042539387252024563
+      GrasslandColor3@64x64_78: 5447655893726742492
+      GrasslandColor3@64x64_186: -5313785537891424256
+      GrasslandColor3@64x64_245: 5731235114957826096
+      GrasslandColor3@64x64_119: -8023218368609727949
+      GrasslandColor3@64x64_109: -3304142251032215265
+      GrasslandColor3@64x64_214: -7731306500369278555
+      GrasslandColor3@64x64_38: -9041231940079786031
+      GrasslandColor3@64x64_80: -6567597131507625404
+      GrasslandColor3@64x64_54: 5574196795853853126
+      GrasslandColor3@64x64_234: 290471611928389157
+      GrasslandColor3@64x64_205: -99628602677672780
+      GrasslandColor3@64x64_87: -3228004535161325503
+      GrasslandColor3@64x64_55: 3592624268152530971
+      GrasslandColor3@64x64_146: -1194911814803492966
+      GrasslandColor3@64x64_167: 4147451205838934476
+      GrasslandColor3@64x64_99: 8000507948195397751
+      GrasslandColor3@64x64_116: -8192015909239139828
+      GrasslandColor3@64x64_39: 3517139759543853108
+      GrasslandColor3@64x64_46: -4034673889358456606
+      GrasslandColor3@64x64_161: 3204892786563909691
+      GrasslandColor3@64x64_224: -2849988129513071974
+      GrasslandColor3@64x64_114: 1454336247435963193
+      GrasslandColor3@64x64_250: 4632492324516670420
+      GrasslandColor3@64x64_128: 8574419569654331458
+      GrasslandColor3@64x64_241: 8229035272450002635
+      GrasslandColor3@64x64_151: -5291148579240311191
+      GrasslandColor3@64x64_174: 5320861406997443881
+      GrasslandColor3@64x64_208: 5438381782377953100
+      GrasslandColor3@64x64_89: -3990168055082159662
+      GrasslandColor3@64x64_144: 8918091752360695604
+      GrasslandColor3@64x64_157: -5448397188820699525
+      GrasslandColor3@64x64_0: -7733038601059969500
+      GrasslandColor3@64x64_117: 7620287217650149698
+      GrasslandColor3@64x64_136: 3271379983249370869
+      GrasslandColor3@64x64_51: 7563988314649241195
+      GrasslandColor3@64x64_179: -6843207971733140835
+      GrasslandColor3@64x64_219: 7510765356100692661
+      GrasslandColor3@64x64_41: -3356239518153671185
+      GrasslandColor3@64x64_199: 473660065134766476
+      GrasslandColor3@64x64_35: 1381884561563443104
+      GrasslandColor3@64x64_61: -4847907244187523332
+      GrasslandColor3@64x64_134: -4944839707792784708
+      GrasslandColor3@64x64_218: 7373722991808396808
+      GrasslandColor3@64x64_16: 1470632516451446191
+      GrasslandColor3@64x64_237: -6187199138966442710
+      GrasslandColor3@64x64_91: 5099684825724842978
+      GrasslandColor3@64x64_45: 4945693757021247793
+      GrasslandColor3@64x64_14: 2299139562596874353
+      GrasslandColor3@64x64_88: -4919300185278904835
+      GrasslandColor3@64x64_127: 4620273769164504369
+      GrasslandColor3@64x64_226: -5989081065118747846
+      GrasslandColor3@64x64_165: -115201163348179553
+      GrasslandColor3@64x64_5: -4126689852875135281
+      GrasslandColor3@64x64_57: -6054622012767876865
+      GrasslandColor3@64x64_97: -3751119283193793561
+      GrasslandColor3@64x64_52: -5977440290112384645
+      GrasslandColor3@64x64_253: 4859000853214819336
+      GrasslandColor3@64x64_180: 2162143324346823357
+      GrasslandColor3@64x64_95: 7273139155636143432
+      GrasslandColor3@64x64_201: -8011588657382417312
+      GrasslandColor3@64x64_138: -6686463225689398219
+      GrasslandColor3@64x64_105: 7780521656821054812
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,6 @@
+{
+  "RoslynExtensionsOptions": {
+    "EnableAnalyzersSupport": true,
+    "LocationPaths": ["A:\_GameDev\IDE Project\unity\ZombieHouseDefence"]
+  }
+}
