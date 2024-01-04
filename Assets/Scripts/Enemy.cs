@@ -38,10 +38,6 @@ public class Enemy : Character, IHittable
         audioSource = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
 
-
-        //update game stat
-        EnemysAlive++;
-
         //setup instances varbales
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -58,16 +54,22 @@ public class Enemy : Character, IHittable
         hp.SetCurrent(Random.Range(healthRange.x, healthRange.y));
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+
+        //update game stat
+        EnemysAlive++;
+
         //play spawn sfx
-        StartCoroutine(PlaySound());
+        StartCoroutine(PlaySound(genericSFX[0]));
     }
 
-
-    void OnDestroy()
+    private void OnDisable()
     {
-        EnemysAlive  --;
+        //update game stat
+        EnemysAlive--;
     }
 
     private void FixedUpdate()
@@ -92,8 +94,7 @@ public class Enemy : Character, IHittable
     {
         base.Damage(amt);
         //play damage sound effect
-        audioSource.clip = hurtSFX[0];
-        audioSource.Play();
+        PlaySound(hurtSFX[0]);
 
         if (hp.isEmpty)
         {
@@ -113,7 +114,7 @@ public class Enemy : Character, IHittable
         transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    private IEnumerator PlaySound() 
+    private IEnumerator PlaySound(AudioClip clip) 
     {
         while (true)
         {
@@ -124,7 +125,7 @@ public class Enemy : Character, IHittable
             yield return new WaitUntil(() => GameManager.GamePaused == false);
             if (chance <= 4)
             {
-                audioSource.clip = genericSFX[0];
+                audioSource.clip = clip;
                 audioSource.Play();
 
                 yield return new WaitForSeconds(2f);
@@ -146,7 +147,8 @@ public class Enemy : Character, IHittable
         //waite while ending shit is happaening
         yield return new WaitWhile(() => audioSource.isPlaying);
 
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 
     public static void LevelUp()
@@ -160,14 +162,14 @@ public class Enemy : Character, IHittable
 
     private void OnPaused()
     {
-        //make sure agent is alive
-        if(agent != null)
+        //make sure agent is alive and active
+        if(agent != null && agent.isActiveAndEnabled)
             agent.isStopped = true;
   
     }
     private void OnResume() 
     {
-        if (agent != null)
+        if (agent != null && agent.isActiveAndEnabled)
             agent.isStopped = false;
     }
 }

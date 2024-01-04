@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class BulletPool : MonoBehaviour
+public abstract class ObjectPool : MonoBehaviour
 {
-    public static BulletPool SharedInstance;
+    public static ObjectPool SharedInstance;
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public Transform poolContainer;
     public int Amount;
 
-    private int AmountToPool
+    protected int AmountToPool
     {
         get {
             if (Amount < 2)

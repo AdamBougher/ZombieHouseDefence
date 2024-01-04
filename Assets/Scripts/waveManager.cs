@@ -7,8 +7,9 @@ public class WaveManager : MonoBehaviour
 {
     public int maxEnemys;
     public  List<GameObject> EnemyPrefabs;
-    private List<GameObject> enemyPool;
     public Transform[] SpawnPoints;
+
+    private EnemyPool enemyPool;
 
 
     public Vector2 spawnDelay = new(0.5f,2);
@@ -16,10 +17,7 @@ public class WaveManager : MonoBehaviour
 
     void Start()
     {
-        enemyPool = new List<GameObject>
-        {
-            EnemyPrefabs[0]
-        };
+        enemyPool = GetComponent<EnemyPool>();
 
         Enemy.healthRange = new Vector2Int(1,2);
 
@@ -37,12 +35,10 @@ public class WaveManager : MonoBehaviour
 
             yield return new WaitUntil(() => GameManager.GamePaused == false);
             yield return new WaitUntil(() => Enemy.EnemysAlive < maxEnemys);
+            
             //spawn new enemy
-            GameObject NewEnemy = Instantiate(
-                enemyPool[Random.Range(0,enemyPool.Count)],
-                GetRandomeSpawnPosition(),
-                Quaternion.identity
-                );
+            SpawnEnemy();
+
         }
     }
 
@@ -51,5 +47,15 @@ public class WaveManager : MonoBehaviour
         Vector3 position = SpawnPoints[Random.Range(0, SpawnPoints.Length)].transform.position;
         position.z = 1;
         return position;
+    }
+
+    private void SpawnEnemy()
+    {
+        Enemy enemy = enemyPool.GetPooledObject().GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.transform.position = GetRandomeSpawnPosition();;
+            enemy.gameObject.SetActive(true);
+        }
     }
 }

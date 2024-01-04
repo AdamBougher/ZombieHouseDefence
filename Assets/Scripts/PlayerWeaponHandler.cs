@@ -130,7 +130,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         void projectile()
         {
 
-            Bullet bullet = BulletPool.SharedInstance.GetPooledObject().GetComponent<Bullet>();
+            Bullet bullet = ObjectPool.SharedInstance.GetPooledObject().GetComponent<Bullet>();
             if (bullet != null)
             {
                 bullet.transform.position = BulletSpawnLocations[0].position;
