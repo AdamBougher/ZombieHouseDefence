@@ -3,21 +3,21 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.Pool;
 
 public class PlayerWeaponHandler : MonoBehaviour
 {
-    public List<Transform> BulletSpawnLocations = new List<Transform>();
+    public List<Transform> BulletSpawnLocations = new();
 
-
-    private Player player;
     private AudioSource audioSource;
-    private UserInterface ui
+    private UserInterface Ui
     {
         get { return UserInterface.UI;  }
     }
     private InputActionAsset actions;
 
     public GameObject BulletTrail;
+    public GameObject bulletPrefab;
     
     public AudioClip Fire, Empty;
     public AudioClip[] ReloadSFX;
@@ -28,8 +28,10 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public Damage damage;
 
+    public int bulletSpeed;
+
     private bool canFire = true;
-    private bool hasAmmo
+    private bool HasAmmo
     {
         get
         {
@@ -43,7 +45,7 @@ public class PlayerWeaponHandler : MonoBehaviour
             }
         }
     }
-    private bool isPlaying
+    private bool IsPlaying
     {
         get
         {
@@ -51,14 +53,14 @@ public class PlayerWeaponHandler : MonoBehaviour
         }
     }
 
+
+
     public void Initialize(InputActionAsset actionMap,Player p)
     {
         actions = actionMap;
         actions.FindActionMap("Player").Enable();
         actions.FindActionMap("Player").FindAction("Fire").performed += OnFire;
         actions.FindActionMap("Player").FindAction("Reload").performed += OnReload;
-
-        player = p;
 
         ammo = new(9,2);
         damage = new(2);
@@ -80,22 +82,35 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (!GameManager.GamePaused)
         {
             Primary(BulletSpawnLocations[0].position);
-            ui.UpdateAmmoDisplays(ammo.ToString());
+            Ui.UpdateAmmoDisplays(ammo.ToString());
         }
     }
 
     public void OnReload(InputAction.CallbackContext context)
     {
-        StartCoroutine(reload());
+        StartCoroutine(Reload());
     }
 
     private void Primary( Vector3 spawn)
     {
-        if (hasAmmo && canFire)
+        if (HasAmmo && canFire)
         {
             canFire = false;
             PlaySound(Fire);
             ammo.Use();
+
+            projectile();
+
+            canFire = true;
+
+        }
+        else if(!HasAmmo)
+        {
+            PlaySound(Empty);
+        }
+
+        void raycast()
+        {
 
             RaycastHit2D hit = Physics2D.Raycast(spawn, transform.right);
 
@@ -104,16 +119,27 @@ public class PlayerWeaponHandler : MonoBehaviour
                 hit.point = spawn + (transform.right * 10);
             }
 
-            var trail = GameObject.Instantiate(BulletTrail, spawn, transform.rotation);
-            transform.gameObject.GetComponent<PlayerWeaponHandler>().StartCoroutine(SpawnBullet(trail.GetComponent<TrailRenderer>(), hit));
+            var trail = Instantiate(BulletTrail, spawn, transform.rotation);
 
-            StartCoroutine(fireCooldown());
+           /* transform.gameObject.GetComponent<PlayerWeaponHandler>().
+                StartCoroutine(SpawnBullet(trail.GetComponent<TrailRenderer>(), hit));
+           */
+            StartCoroutine(FireCooldown());
         }
-        else if(!hasAmmo)
+        
+        void projectile()
         {
-            PlaySound(Empty);
-        }
 
+            Bullet bullet = BulletPool.SharedInstance.GetPooledObject().GetComponent<Bullet>();
+            if (bullet != null)
+            {
+                bullet.transform.position = BulletSpawnLocations[0].position;
+                bullet.transform.rotation = BulletSpawnLocations[0].rotation;
+                bullet.gameObject.SetActive(true);
+            }
+
+            bullet.SetVelocity(BulletSpawnLocations[0].right, bulletSpeed);
+        }
     }
 
     private void PlaySound(AudioClip clip)
@@ -122,12 +148,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         audioSource.Play();
     }
 
-    private IEnumerator reload()
-    {
-        yield return StartCoroutine(Reload());
-        ui.UpdateAmmoDisplays(ammo.ToString());
-    }
-    private IEnumerator SpawnBullet(TrailRenderer trail, RaycastHit2D hit2D)
+    /* private IEnumerator SpawnBullet(TrailRenderer trail, RaycastHit2D hit2D)
     {
         float time = 0;
         Vector2 startPos = trail.transform.position.WithAxis(Axis.z, 1);
@@ -145,23 +166,27 @@ public class PlayerWeaponHandler : MonoBehaviour
             target.Damage(damage.GetDamage());
         }
 
-        GameObject.Destroy(trail.gameObject, time);
+        Destroy(trail.gameObject, time);
     }
+    */
+    
     private IEnumerator Reload()
     {
         ammo.setReload(true);
 
         PlaySound(ReloadSFX[0]);
 
-        yield return new WaitWhile(() => isPlaying);
+        yield return new WaitWhile(() => IsPlaying);
 
         PlaySound(ReloadSFX[1]);
 
-        yield return new WaitWhile(() => isPlaying);
+        yield return new WaitWhile(() => IsPlaying);
 
         ammo.Reload();
+
+        Ui.UpdateAmmoDisplays(ammo.ToString());
     }
-    private IEnumerator fireCooldown() 
+    private IEnumerator FireCooldown() 
     {
         yield return new WaitForSeconds((float)cooldown);
         canFire = true;

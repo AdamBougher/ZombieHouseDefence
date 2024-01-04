@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
-using Game;
+using DG.Tweening;
 
 public class Player : Character
 {
@@ -13,7 +13,6 @@ public class Player : Character
     private Rigidbody2D rb;
     [HideInInspector]
     public PlayerWeaponHandler weaponHandler;
-    private UserInterface ui;
     // private field to store move action reference
     private InputAction moveAction, facing;
 
@@ -34,7 +33,6 @@ public class Player : Character
         //setup refrences
         rb = GetComponent<Rigidbody2D>();
         weaponHandler = GetComponentInChildren<PlayerWeaponHandler>();
-        ui = FindAnyObjectByType<UserInterface>();
 
         weaponHandler.Initialize(actions,this);
 
@@ -54,11 +52,29 @@ public class Player : Character
         //if game is not paused or over
         if (!GameManager.GamePaused && !GameManager.GameOver)
         {
-            Utility.LookAt(facing.ReadValue<Vector2>(), transform);
+            Transform trans = this.transform;
+            LookAt(facing.ReadValue<Vector2>(), this.transform);
 
             rb.velocity = moveAction.ReadValue<Vector2>() * (getSpeed());
         }
         
+    }
+
+    /// <summary>
+    /// rotate gameobject transform to be looking twords position
+    /// </summary>
+    /// <param name="position">position to look at</param>
+    /// <param name="transform">calling object's transform</param>
+    public void LookAt(Vector2 position, Transform transform)
+    {
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(position);
+        worldPos.z = 0f;
+
+        Vector3 direction = (worldPos - transform.position);
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public override void Damage(int amt)

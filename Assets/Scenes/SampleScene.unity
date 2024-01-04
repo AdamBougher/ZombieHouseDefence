@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 150388726}
   - component: {fileID: 150388728}
   - component: {fileID: 150388729}
+  - component: {fileID: 150388730}
   m_Layer: 2
   m_Name: arm / weapon
   m_TagString: Untagged
@@ -180,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150388725}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   BulletSpawnLocations:
   - {fileID: 398394880}
   BulletTrail: {fileID: 7534414142167504715, guid: 78fa60d203d00f14099031f0bba497b4, type: 3}
+  bulletPrefab: {fileID: 6133736812522145756, guid: 306eaa15638f36a44b98a2201ed68c9c, type: 3}
   Fire: {fileID: 8300000, guid: ab202a36e7664654f97a1975cce801c1, type: 3}
   Empty: {fileID: 8300000, guid: ff16c2371c577a941909b05984d58ce2, type: 3}
   ReloadSFX:
@@ -263,6 +265,23 @@ MonoBehaviour:
   cooldown: 0.8
   ammo:
     usesAmmo: 0
+  bulletSpeed: 50
+--- !u!114 &150388730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150388725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39d04d80f555ed49af2ebab147693b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 6133736812522145756, guid: 306eaa15638f36a44b98a2201ed68c9c, type: 3}
+  poolContainer: {fileID: 1214447762}
+  Amount: 0
 --- !u!114 &229481368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,7 +427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398394879}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.35, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -733,6 +752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 620655607}
   - component: {fileID: 620655609}
+  - component: {fileID: 620655610}
   m_Layer: 0
   m_Name: enemy spawner
   m_TagString: Untagged
@@ -767,7 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df8209c97b748d4782a6ff6dc621a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemys: 1
+  maxEnemys: 0
   EnemyPrefabs:
   - {fileID: 7784450968249503449, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
   SpawnPoints:
@@ -790,6 +810,21 @@ MonoBehaviour:
   - {fileID: 1151899601}
   - {fileID: 561768602}
   spawnDelay: {x: 0.5, y: 1.5}
+--- !u!114 &620655610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620655606}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0fe6b2b1b391d40afdf7db7f0339fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 0}
+  amountToPool: 200
 --- !u!1 &625880701
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,8 +1015,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763704992}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 4.2708282, y: 1.4436582, z: -0.1530005}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.70723015}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1516,6 +1551,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: 9c999a39c8a6d2a43ac3eed12cefe669, type: 3}
   m_ActionId: 0eb4625f-2a80-47b7-bfa4-918b890aef4e
+--- !u!1 &1214447761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1214447762}
+  m_Layer: 2
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1214447762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214447761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1586604183}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1280260927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,6 +1892,7 @@ Transform:
   - {fileID: 1104350020}
   - {fileID: 150388726}
   - {fileID: 398394880}
+  - {fileID: 1214447762}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1586604184

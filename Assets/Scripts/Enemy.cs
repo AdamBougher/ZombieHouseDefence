@@ -33,34 +33,33 @@ public class Enemy : Character, IHittable
         GameManager.ua_Pause += OnPaused;
         GameManager.ua_Unpause += OnResume;
 
-
         //setup linkages
         player = FindObjectOfType<Player>();
         audioSource = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
 
-        target = player.transform;
-    }
 
-    private void Start()
-    {
         //update game stat
         EnemysAlive++;
-        
+
         //setup instances varbales
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.speed = speed;
 
-        exp = EnemyLevel + (EnemyLevel-1);
+        target = player.transform;
+
+        exp = EnemyLevel + (EnemyLevel - 1);
         hp = new(startingHP, startingHP);
 
         healthRange.x = hp.GetMax();
         healthRange.y = healthRange.x + 1;
 
         hp.SetCurrent(Random.Range(healthRange.x, healthRange.y));
+    }
 
-        agent.speed = speed;
-
+    private void Start()
+    {
         //play spawn sfx
         StartCoroutine(PlaySound());
     }
