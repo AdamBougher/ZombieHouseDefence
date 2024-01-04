@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class GameManager : MonoBehaviour
     public static int Score;
 
     //instance variabels
-    private UserInterface userInterface;
+    private UserInterface userInterface
+    {
+        get { return UserInterface.UI; }
+    }
     private AudioSource audioSource;
     public InputActionAsset actions;
 
@@ -30,9 +34,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //Application.targetFrameRate = 240;
+
+        SceneManager.LoadScene("Ui", LoadSceneMode.Additive);
+
         //setup refrences
         Player          = FindAnyObjectByType<Player>();
-        userInterface   = FindObjectOfType<UserInterface>();
         audioSource = GetComponent<AudioSource>();
 
         //setup input actions
@@ -73,7 +80,7 @@ public class GameManager : MonoBehaviour
         time.ToggleTimeStopped();
         switch (context)
         {
-            case "Menu":  userInterface.menu.SetActive(GamePaused); break;
+            case "Menu": userInterface.menu.SetActive(GamePaused); break;
             case "Level": SetupLevelUp(); break;
             default: break;
         }
@@ -102,8 +109,13 @@ public class GameManager : MonoBehaviour
 
     public void LevelUp(Upgrade option)
     {
-        Player.LevelUP(option);
+        if(Player.LevelUP(option))
+        {
+            userInterface.imagePannel.AddToUI(option.Icon);
+        }
         userInterface.levelUpMenu.SetActive(false);
+
+        
         Pause();
     }
 

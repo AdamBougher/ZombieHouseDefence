@@ -2,7 +2,7 @@ using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     [BoxGroup("Character"),]
     public CharacterResource hp;
@@ -25,11 +25,11 @@ public class Character : MonoBehaviour
     {
         hp.DecreaseCurrent(amt);
     }
-    public void GainExperance(int amt, CharacterResource hp, UserInterface ui, GameManager gm)
+    public void GainExperance(int amt, CharacterResource hp, GameManager gm)
     {
 
         experance += amt;
-        ui.xpBar.fillAmount = GetExpPercentage();
+        UserInterface.UI.xpBar.fillAmount = GetExpPercentage();
 
         if(experance >= nextLevel)
         {
@@ -40,12 +40,12 @@ public class Character : MonoBehaviour
                 experance -= nextLevel;
                 nextLevel += nextLevel / 3;
 
-                ui.Updatelevel(level.ToString());
+                UserInterface.UI.Updatelevel(level.ToString());
 
 
                 gm.Pause("Level");
             }
-            ui.xpBar.fillAmount = 0;
+            UserInterface.UI.xpBar.fillAmount = 0;
         }
     }
 

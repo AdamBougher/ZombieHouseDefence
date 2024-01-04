@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -26,16 +25,55 @@ public class Upgrade
         Firerateup = "Firerate",
         Ammoup = "Ammo",
         Speedup = "SpeedUp",
-        Hpup = "HpUp"
-                                        ;
+        Hpup = "HpUp",
+        Damageup = "DamageUP";
 
-    private static List<Upgrade> UpgradeList = new List<Upgrade>()
+    private static readonly List<Upgrade> UpgradeList = new()
     {
         { new(Firerateup,Resources.Load<Sprite>("icons/bullet")) },
         { new(Ammoup,Resources.Load<Sprite>("icons/Ammo") )},
         { new(Speedup,Resources.Load<Sprite>("icons/speed") )},
-        { new(Hpup,Resources.Load<Sprite>("icons/hp") )}
+        { new(Hpup,Resources.Load<Sprite>("icons/hp") )},
+        { new(Damageup,Resources.Load<Sprite>("icons/damage") )}
     };
+
+    public static void ApplyUpgrade(Player player, Upgrade upgrade)
+    {
+        switch (upgrade.Name)
+        {
+            case Firerateup:
+                UpgradeFirerate();
+                break;
+            case Ammoup:
+                UpgradeMaxAmmo();
+                break;
+            case Speedup:
+                UpgradeSpeed();
+                break;
+            case Hpup:
+                UpgradeHP();
+                break;
+            case Damageup:
+                UpgradeDamage();
+                break;
+            default: break;
+
+        }
+
+        void UpgradeFirerate() => player.weaponHandler.cooldown -= FirerateUpAmt;
+
+        void UpgradeMaxAmmo() => player.weaponHandler.MagSizeUp(AmmoUpAmt);
+
+        void UpgradeSpeed() => player.speed += SpeedUpAmt;
+
+        void UpgradeDamage() => player.weaponHandler.damage.IncreaseBounsDamage(DamageUpAmt);
+
+        void UpgradeHP()
+        {
+            player.hp.IncreaseMax(HpUpAmt);
+            player.hp.SetCurrentToMax();
+        }
+    }
 
     public static Stack<Upgrade> GetUpgrades(int amtToGet)
     {
@@ -60,41 +98,4 @@ public class Upgrade
         return arr;
     }
 
-    public static void ApplyUpgrade(Player player, Upgrade upgrade)
-    {
-        switch(upgrade.Name)
-        {
-            case Firerateup: 
-                UpgradeFirerate(player);
-                break;
-            case Ammoup: 
-                UpgradeMaxAmmo(player); 
-                break;
-            case Speedup: 
-                UpgradeSpeed(player);
-                break;
-            case Hpup: 
-                UpgradeHP(player);
-                break;
-            default: break;
-
-        }
-    }
-
-    private static void UpgradeFirerate(Player player)
-    {
-        player.weaponHandler.cooldown -= FirerateUpAmt;
-    }
-
-    private static void UpgradeMaxAmmo(Player player) => player.weaponHandler.MagSizeUp(AmmoUpAmt);
-    
-    private static void UpgradeSpeed(Player player) => player.speed += SpeedUpAmt;
-
-    private static void UpgradeDamage(Player player) => player.weaponHandler.damage.IncreaseBounsDamage(DamageUpAmt);
-
-    public static void UpgradeHP(Player player)
-    {
-        player.hp.IncreaseMax(HpUpAmt);
-        player.hp.SetCurrentToMax();
-    }
 }

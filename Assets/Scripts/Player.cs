@@ -19,8 +19,7 @@ public class Player : Character
 
     public InputActionAsset actions;
 
-    private Dictionary<Upgrade, int> upgrades = new Dictionary<Upgrade, int>(8);
-
+    private readonly Dictionary<Upgrade, int> upgrades = new(8);
 
 
     private void OnEnable()
@@ -78,25 +77,30 @@ public class Player : Character
         rb.velocity = new();
     }
 
-    public void LevelUP(Upgrade option)
+    /// <summary>
+    /// Run Level Up Code
+    /// </summary>
+    /// <param name="option">what atribute to change</param>
+    /// <returns>True is level up option has not ben upgraded before</returns>
+    public bool LevelUP(Upgrade option)
     {
         Upgrade.ApplyUpgrade(this,option);
 
         if(upgrades.ContainsKey(option))
         {
             upgrades[option]++;
+            return false;
         }else{
             upgrades.Add(option, 1);
+            return true;
         }
 
-        
-       
     }
     
 
     public void GetEXP(int amt)
     {
-        GainExperance(amt,hp,ui,FindFirstObjectByType<GameManager>());
+        GainExperance(amt,hp, FindFirstObjectByType<GameManager>());
     }
 
 }

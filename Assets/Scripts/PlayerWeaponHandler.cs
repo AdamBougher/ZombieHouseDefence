@@ -11,7 +11,10 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private Player player;
     private AudioSource audioSource;
-    private UserInterface ui;
+    private UserInterface ui
+    {
+        get { return UserInterface.UI;  }
+    }
     private InputActionAsset actions;
 
     public GameObject BulletTrail;
@@ -65,7 +68,6 @@ public class PlayerWeaponHandler : MonoBehaviour
     private void OnEnable()
     {
         audioSource = GetComponentInChildren<AudioSource>();
-        ui = FindObjectOfType<UserInterface>();
     }
 
     public void MagSizeUp(int amt)

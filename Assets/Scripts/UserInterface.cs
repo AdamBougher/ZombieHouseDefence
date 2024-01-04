@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UserInterface : MonoBehaviour
 {
@@ -16,9 +17,23 @@ public class UserInterface : MonoBehaviour
 
     public UpgradeChoice[] levelUpOption;
 
-    private List<Image> uiItemicons = new List<Image>();
+    private readonly List<Image> uiItemicons = new();
 
-    private Dictionary<Upgrade, int> upgrades = new Dictionary<Upgrade, int>(8);
+    public UIItemDisplay imagePannel;
+
+    private static UserInterface _instance;
+    public static UserInterface UI
+    {
+        get {
+
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<UserInterface>();
+            }
+
+            return _instance;
+        }
+    }
 
 
 
@@ -26,8 +41,10 @@ public class UserInterface : MonoBehaviour
 
     void Start()
     {
+
         clock.SetText("00:00");
         StartCoroutine(UpdateUI());
+
         foreach (Image img in itemUI.transform.GetComponentsInChildren<Image>())
         {
             uiItemicons.Add(img);
@@ -39,7 +56,7 @@ public class UserInterface : MonoBehaviour
         ammo.SetText(str);
     }
 
-    public void UpdateClock(string time)
+    private void UpdateClock(string time)
     {
         clock.SetText(time);
     }

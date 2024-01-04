@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class waveManager : MonoBehaviour
+public class WaveManager : MonoBehaviour
 {
     public int maxEnemys;
     public  List<GameObject> EnemyPrefabs;
@@ -11,23 +11,19 @@ public class waveManager : MonoBehaviour
     public Transform[] SpawnPoints;
 
 
-    public Vector2 spawnDelay = new Vector2(0.5f,2);
+    public Vector2 spawnDelay = new(0.5f,2);
 
 
     void Start()
     {
-        enemyPool = new List<GameObject>();
-        enemyPool.Add(EnemyPrefabs[0]);
+        enemyPool = new List<GameObject>
+        {
+            EnemyPrefabs[0]
+        };
 
         Enemy.healthRange = new Vector2Int(1,2);
 
         StartCoroutine(StartWave());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private IEnumerator StartWave()
@@ -42,7 +38,6 @@ public class waveManager : MonoBehaviour
             yield return new WaitUntil(() => GameManager.GamePaused == false);
             yield return new WaitUntil(() => Enemy.EnemysAlive < maxEnemys);
             //spawn new enemy
-            Enemy enemy;
             GameObject NewEnemy = Instantiate(
                 enemyPool[Random.Range(0,enemyPool.Count)],
                 GetRandomeSpawnPosition(),

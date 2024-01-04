@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 using Sirenix.OdinInspector;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(NavMeshAgent))]   
 public class Enemy : Character, IHittable
 {
     //class variables
@@ -13,46 +13,45 @@ public class Enemy : Character, IHittable
     public static int startingHP = 1;
     public  static Vector2Int healthRange;
 
-
     //instance variables
+    [ShowInInspector]
+    private Transform target;
+    private NavMeshAgent agent = new();
+
+
     [BoxGroup("experance")]
     public  int Worth;
     private static int exp = 1;
     public  AudioClip[] genericSFX, hurtSFX, damageSFX;
 
-    private AIPath AIPath;
     private Player player;
     private AudioSource audioSource;
 
-    public override void Damage(int amt)
+    private void Awake()
     {
-        base.Damage(amt);
-        //play damage sound effect
-        audioSource.clip = hurtSFX[0];
-        audioSource.Play();
+        //subscribe pause mthods to relavent delgates
+        GameManager.ua_Pause += OnPaused;
+        GameManager.ua_Unpause += OnResume;
 
-        if(hp.isEmpty)
-        {
-            StartCoroutine(Die());
-        }
+
+        //setup linkages
+        player = FindObjectOfType<Player>();
+        audioSource = GetComponent<AudioSource>();
+        agent = GetComponent<NavMeshAgent>();
+
+        target = player.transform;
     }
 
     private void Start()
     {
-        GameManager.ua_Pause   += OnPaused;
-        GameManager.ua_Unpause += OnResume;
-
-        AIPath = GetComponent<AIPath>();
-        player = FindObjectOfType<Player>();
-        GetComponent<AIDestinationSetter>().target = player.transform;
-        audioSource = GetComponent<AudioSource>();
-
+        //update game stat
         EnemysAlive++;
-
-        AIPath.maxSpeed = (getSpeed());
+        
+        //setup instances varbales
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
 
         exp = EnemyLevel + (EnemyLevel-1);
-
         hp = new(startingHP, startingHP);
 
         healthRange.x = hp.GetMax();
@@ -60,9 +59,13 @@ public class Enemy : Character, IHittable
 
         hp.SetCurrent(Random.Range(healthRange.x, healthRange.y));
 
+        agent.speed = speed;
 
+        //play spawn sfx
         StartCoroutine(PlaySound());
     }
+
+
     void OnDestroy()
     {
         EnemysAlive  --;
@@ -77,12 +80,35 @@ public class Enemy : Character, IHittable
         
     }
 
+    private void Update()
+    {
+        if (!GameManager.GamePaused)
+        {
+            agent.SetDestination(target.position);
+        }
+        
+    }
+
+    public override void Damage(int amt)
+    {
+        base.Damage(amt);
+        //play damage sound effect
+        audioSource.clip = hurtSFX[0];
+        audioSource.Play();
+
+        if (hp.isEmpty)
+        {
+            StartCoroutine(Die());
+        }
+    }
+
     private void FacePlayer()
     {
         if (player == null)
         {
             player = FindObjectOfType<Player>();
         }
+
         Vector3 direction = (player.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, angle);
@@ -110,15 +136,18 @@ public class Enemy : Character, IHittable
     private IEnumerator Die()
     {
         GameManager.Score += Worth;
-        FindAnyObjectByType<Player>().GetEXP(exp);
-        gameObject.SetActive(false);
+        player.GetEXP(exp);
+
+        EnemysKilled++;
+        FindAnyObjectByType<UserInterface>().DisplayKills();
+
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
 
         //waite while ending shit is happaening
         yield return new WaitWhile(() => audioSource.isPlaying);
 
-        EnemysKilled++;
-        FindAnyObjectByType<UserInterface>().DisplayKills();
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     public static void LevelUp()
@@ -132,11 +161,14 @@ public class Enemy : Character, IHittable
 
     private void OnPaused()
     {
-        AIPath.canMove = false;
+        //make sure agent is alive
+        if(agent != null)
+            agent.isStopped = true;
   
     }
     private void OnResume() 
     {
-        AIPath.canMove = true;
+        if (agent != null)
+            agent.isStopped = false;
     }
 }
