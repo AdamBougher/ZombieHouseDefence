@@ -138,7 +138,7 @@ public class PlayerWeaponHandler : MonoBehaviour
                 bullet.gameObject.SetActive(true);
             }
 
-            bullet.SetVelocity(BulletSpawnLocations[0].right, bulletSpeed);
+            bullet.StartBullet(BulletSpawnLocations[0].right, bulletSpeed,damage.GetDamage());
         }
     }
 

@@ -6,7 +6,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public double DecayRate;
+
+    private int DamageAmt;
 
     private void Awake()
     {
@@ -14,25 +15,35 @@ public class Bullet : MonoBehaviour
         //StartCoroutine(Decay());
     }
 
-    public void SetVelocity(Vector2 direction, int speed)
+    public void StartBullet(Vector2 direction, int speed,int damage)
     {
         rb.AddForce(direction * speed, ForceMode2D.Impulse);
+        DamageAmt = damage;
     }
 
-    private IEnumerator Decay()
+    private IEnumerator Decay(float DecayRate)
     {
-        yield return new WaitForSeconds((float)DecayRate);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(DecayRate);
+        this.gameObject.SetActive(false);
     }
 
     private void OnBecameInvisible()
     {
         this.gameObject.SetActive(false);
-        //Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.otherCollider.name);
+        if(collision.TryGetComponent(out Enemy e))
+        {
+            Damage(e);
+        }
+        
+    }
+
+    private void Damage(Enemy target)
+    {
+        target.Damage(DamageAmt);
+        this.gameObject.SetActive(false);
     }
 }
