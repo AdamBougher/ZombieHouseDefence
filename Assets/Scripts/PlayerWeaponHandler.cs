@@ -22,6 +22,8 @@ public class PlayerWeaponHandler : MonoBehaviour
     public AudioClip Fire, Empty;
     public AudioClip[] ReloadSFX;
 
+    ObjectPool bulletpool;
+
     public double cooldown;
 
     public Ammo ammo;
@@ -55,7 +57,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
 
 
-    public void Initialize(InputActionAsset actionMap,Player p)
+    public void Initialize(InputActionAsset actionMap)
     {
         actions = actionMap;
         actions.FindActionMap("Player").Enable();
@@ -64,6 +66,8 @@ public class PlayerWeaponHandler : MonoBehaviour
 
         ammo = new(9,2);
         damage = new(2);
+
+        bulletpool = GetComponent<BulletPool>();
 
     }
 
@@ -81,7 +85,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     {
         if (!GameManager.GamePaused)
         {
-            Primary(BulletSpawnLocations[0].position);
+            Primary(BulletSpawnLocations[0]);
             Ui.UpdateAmmoDisplays(ammo.ToString());
         }
     }
@@ -91,7 +95,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         StartCoroutine(Reload());
     }
 
-    private void Primary( Vector3 spawn)
+    private void Primary(Transform spawn)
     {
         if (HasAmmo && canFire)
         {
@@ -109,36 +113,36 @@ public class PlayerWeaponHandler : MonoBehaviour
             PlaySound(Empty);
         }
 
+        #pragma warning disable CS8321 // Local function is declared but never used
         void raycast()
         {
 
-            RaycastHit2D hit = Physics2D.Raycast(spawn, transform.right);
+            RaycastHit2D hit = Physics2D.Raycast(spawn.position, spawn.right);
 
             if (hit.collider == null)
             {
-                hit.point = spawn + (transform.right * 10);
+                hit.point = spawn.position + (transform.right * 10);
             }
 
-            var trail = Instantiate(BulletTrail, spawn, transform.rotation);
+            var trail = Instantiate(BulletTrail, spawn.position, transform.rotation);
 
            /* transform.gameObject.GetComponent<PlayerWeaponHandler>().
                 StartCoroutine(SpawnBullet(trail.GetComponent<TrailRenderer>(), hit));
            */
             StartCoroutine(FireCooldown());
         }
-        
+        #pragma warning restore CS8321 // Local function is declared but never used
+
         void projectile()
         {
 
-            Bullet bullet = ObjectPool.SharedInstance.GetPooledObject().GetComponent<Bullet>();
-            if (bullet != null)
+            if (bulletpool.GetPooledObject().TryGetComponent<Bullet>(out var bullet))
             {
-                bullet.transform.position = BulletSpawnLocations[0].position;
-                bullet.transform.rotation = BulletSpawnLocations[0].rotation;
+                bullet.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
                 bullet.gameObject.SetActive(true);
             }
 
-            bullet.StartBullet(BulletSpawnLocations[0].right, bulletSpeed,damage.GetDamage());
+            bullet.StartBullet(spawn.right, bulletSpeed,damage.GetDamage());
         }
     }
 

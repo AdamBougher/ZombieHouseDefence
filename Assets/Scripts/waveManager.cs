@@ -52,6 +52,7 @@ public class WaveManager : MonoBehaviour
     private void SpawnEnemy()
     {
         Enemy enemy = enemyPool.GetPooledObject().GetComponent<Enemy>();
+
         if (enemy != null)
         {
             enemy.transform.position = GetRandomeSpawnPosition();;

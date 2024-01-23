@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]   
-public class Enemy : Character, IHittable
+public class Enemy : Character
 {
     //class variables
     public  static int EnemysAlive,EnemysKilled;
@@ -93,8 +93,9 @@ public class Enemy : Character, IHittable
     public override void Damage(int amt)
     {
         base.Damage(amt);
+
         //play damage sound effect
-        PlaySound(hurtSFX[0]);
+        StartCoroutine(PlaySound(hurtSFX[0]));
 
         if (hp.isEmpty)
         {

@@ -34,7 +34,7 @@ public class Player : Character
         rb = GetComponent<Rigidbody2D>();
         weaponHandler = GetComponentInChildren<PlayerWeaponHandler>();
 
-        weaponHandler.Initialize(actions,this);
+        weaponHandler.Initialize(actions);
 
         // find the "move" action, and keep the reference to it, for use in Update
         moveAction = actions.FindActionMap("Player").FindAction("Move");
@@ -52,10 +52,9 @@ public class Player : Character
         //if game is not paused or over
         if (!GameManager.GamePaused && !GameManager.GameOver)
         {
-            Transform trans = this.transform;
             LookAt(facing.ReadValue<Vector2>(), this.transform);
 
-            rb.velocity = moveAction.ReadValue<Vector2>() * (getSpeed());
+            rb.velocity = moveAction.ReadValue<Vector2>() * (GetSpeed());
         }
         
     }

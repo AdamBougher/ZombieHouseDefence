@@ -2,7 +2,7 @@ using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public abstract class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour , IHittable
 {
     [BoxGroup("Character"),]
     public CharacterResource hp;
@@ -16,7 +16,7 @@ public abstract class Character : MonoBehaviour
     private int experance, nextLevel;
 
 
-    public float getSpeed()
+    public float GetSpeed()
     {
         return speed + speedMod;
     }
@@ -25,6 +25,7 @@ public abstract class Character : MonoBehaviour
     {
         hp.DecreaseCurrent(amt);
     }
+
     public void GainExperance(int amt, CharacterResource hp, GameManager gm)
     {
 
