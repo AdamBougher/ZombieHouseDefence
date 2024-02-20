@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class ObjectPool : MonoBehaviour
 {
@@ -8,16 +9,16 @@ public abstract class ObjectPool : MonoBehaviour
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public Transform poolContainer;
-    public int Amount;
+    [FormerlySerializedAs("Amount")] public int amount;
 
     protected int AmountToPool
     {
         get {
-            if (Amount < 2)
+            if (amount < 2)
             {
-                Amount = 2;
+                amount = 2;
             }
-            return Amount;
+            return amount;
         }
     }
 

@@ -4,12 +4,11 @@ using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class UserInterface : MonoBehaviour
 {
     [BoxGroup("TextElements")]
-    public TMP_Text ammo, clock, kills,level;
+    public TMP_Text ammo, clock, kills,level, hp;
     [BoxGroup("ObjectElements")]
     public GameObject menu, levelUpMenu, itemUI;
 
@@ -17,38 +16,33 @@ public class UserInterface : MonoBehaviour
 
     public UpgradeChoice[] levelUpOption;
 
-    private readonly List<Image> uiItemicons = new();
+    private readonly List<Image> _uiItemImages = new();
 
-    public UIItemDisplay imagePannel;
+    public UIItemDisplay imagePanel;
 
-    private static UserInterface _instance;
-    public static UserInterface UI
+    public static UserInterface UI { get; private set; }
+    
+    
+    public delegate void UILoaded();
+
+    public static event UILoaded OnLoaded;
+
+
+    private int _index;
+
+    private void Awake()
     {
-        get {
-
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<UserInterface>();
-            }
-
-            return _instance;
-        }
-    }
-
-
-
-    private int index = 0;
-
-    void Start()
-    {
-
+        UI = this;
+        
         clock.SetText("00:00");
         StartCoroutine(UpdateUI());
 
-        foreach (Image img in itemUI.transform.GetComponentsInChildren<Image>())
+        foreach (var img in itemUI.transform.GetComponentsInChildren<Image>())
         {
-            uiItemicons.Add(img);
+            _uiItemImages.Add(img);
         }
+
+        OnLoaded?.Invoke();
     }
 
     public void UpdateAmmoDisplays(string str) 
@@ -66,7 +60,7 @@ public class UserInterface : MonoBehaviour
         while (!GameManager.GameOver)
         {
             yield return new WaitForSeconds(0.5f);
-            UpdateClock(GameManager.time.ToString());
+            UpdateClock(GameManager.Time.ToString());
         }
 
     }
@@ -86,10 +80,15 @@ public class UserInterface : MonoBehaviour
         level.SetText("Lvl: "+ lvl);
     }
 
+    public void UpdateHp(int amt)
+    {
+        hp.SetText(amt.ToString());
+    }
+    
     public void AddItemToUI(Upgrade option)
     {
-        uiItemicons[index].sprite = option.Icon;
-        index++;
+        _uiItemImages[_index].sprite = option.Icon;
+        _index++;
         
     }
 

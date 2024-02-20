@@ -4,40 +4,39 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 public class PlayerWeaponHandler : MonoBehaviour
 {
-    public List<Transform> BulletSpawnLocations = new();
+    [FormerlySerializedAs("BulletSpawnLocations")] public List<Transform> bulletSpawnLocations = new();
 
-    private AudioSource audioSource;
-    private UserInterface Ui
-    {
-        get { return UserInterface.UI;  }
-    }
-    private InputActionAsset actions;
+    private AudioSource _audioSource;
+    private static UserInterface Ui => UserInterface.UI;
+    private InputActionAsset _actions;
 
-    public GameObject BulletTrail;
+    [FormerlySerializedAs("BulletTrail")] public GameObject bulletTrail;
     public GameObject bulletPrefab;
     
-    public AudioClip Fire, Empty;
-    public AudioClip[] ReloadSFX;
+    [FormerlySerializedAs("Fire")] public AudioClip fire;
+    [FormerlySerializedAs("Empty")] public AudioClip empty;
+    [FormerlySerializedAs("ReloadSFX")] public AudioClip[] reloadSfx;
 
-    ObjectPool bulletpool;
+    ObjectPool _bulletpool;
 
     public double cooldown;
 
     public Ammo ammo;
 
-    public Damage damage;
+    public Damage Damage;
 
     public int bulletSpeed;
 
-    private bool canFire = true;
+    private bool _canFire = true;
     private bool HasAmmo
     {
         get
         {
-            if (ammo.getCurrentMag() > 0)
+            if (ammo.GetCurrentMag() > 0)
             {
                 return true;
             }
@@ -51,41 +50,46 @@ public class PlayerWeaponHandler : MonoBehaviour
     {
         get
         {
-            return audioSource.isPlaying;
+            return _audioSource.isPlaying;
         }
     }
 
-
-
     public void Initialize(InputActionAsset actionMap)
     {
-        actions = actionMap;
-        actions.FindActionMap("Player").Enable();
-        actions.FindActionMap("Player").FindAction("Fire").performed += OnFire;
-        actions.FindActionMap("Player").FindAction("Reload").performed += OnReload;
+        _actions = actionMap;
+        _actions.FindActionMap("Player").Enable();
+        _actions.FindActionMap("Player").FindAction("Fire").performed += OnFire;
+        _actions.FindActionMap("Player").FindAction("Reload").performed += OnReload;
 
-        ammo = new(9,2);
-        damage = new(2);
+        ammo = new Ammo(9,2);
+        Damage = new Damage(2);
 
-        bulletpool = GetComponent<BulletPool>();
+        _bulletpool = GetComponent<BulletPool>();
 
+        UserInterface.OnLoaded += OnUILoad;
+
+    }
+
+    private void OnUILoad()
+    {
+        UserInterface.UI.UpdateAmmoDisplays(ammo.GetCurrentMag().ToString());
     }
 
     private void OnEnable()
     {
-        audioSource = GetComponentInChildren<AudioSource>();
+        _audioSource = GetComponentInChildren<AudioSource>();
     }
 
     public void MagSizeUp(int amt)
     {
-       ammo.addToMaxAmmo(amt);
+       ammo.AddToMaxAmmo(amt);
     }
 
     private void OnFire(InputAction.CallbackContext context)
     {
         if (!GameManager.GamePaused)
         {
-            Primary(BulletSpawnLocations[0]);
+            Primary(bulletSpawnLocations[0]);
             Ui.UpdateAmmoDisplays(ammo.ToString());
         }
     }
@@ -97,24 +101,24 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private void Primary(Transform spawn)
     {
-        if (HasAmmo && canFire)
+        if (HasAmmo && _canFire)
         {
-            canFire = false;
-            PlaySound(Fire);
+            _canFire = false;
+            PlaySound(fire);
             ammo.Use();
 
-            projectile();
+            Projectile();
 
-            canFire = true;
+            _canFire = true;
 
         }
         else if(!HasAmmo)
         {
-            PlaySound(Empty);
+            PlaySound(empty);
         }
 
         #pragma warning disable CS8321 // Local function is declared but never used
-        void raycast()
+        void Raycast()
         {
 
             RaycastHit2D hit = Physics2D.Raycast(spawn.position, spawn.right);
@@ -124,7 +128,7 @@ public class PlayerWeaponHandler : MonoBehaviour
                 hit.point = spawn.position + (transform.right * 10);
             }
 
-            var trail = Instantiate(BulletTrail, spawn.position, transform.rotation);
+            var trail = Instantiate(bulletTrail, spawn.position, transform.rotation);
 
            /* transform.gameObject.GetComponent<PlayerWeaponHandler>().
                 StartCoroutine(SpawnBullet(trail.GetComponent<TrailRenderer>(), hit));
@@ -133,23 +137,23 @@ public class PlayerWeaponHandler : MonoBehaviour
         }
         #pragma warning restore CS8321 // Local function is declared but never used
 
-        void projectile()
+        void Projectile()
         {
 
-            if (bulletpool.GetPooledObject().TryGetComponent<Bullet>(out var bullet))
+            if (_bulletpool.GetPooledObject().TryGetComponent<Bullet>(out var bullet))
             {
                 bullet.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
                 bullet.gameObject.SetActive(true);
             }
 
-            bullet.StartBullet(spawn.right, bulletSpeed,damage.GetDamage());
+            bullet.StartBullet(spawn.right, bulletSpeed,Damage.GetDamage());
         }
     }
 
     private void PlaySound(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        _audioSource.clip = clip;
+        _audioSource.Play();
     }
 
     /* private IEnumerator SpawnBullet(TrailRenderer trail, RaycastHit2D hit2D)
@@ -176,13 +180,13 @@ public class PlayerWeaponHandler : MonoBehaviour
     
     private IEnumerator Reload()
     {
-        ammo.setReload(true);
+        ammo.SetReload(true);
 
-        PlaySound(ReloadSFX[0]);
+        PlaySound(reloadSfx[0]);
 
         yield return new WaitWhile(() => IsPlaying);
 
-        PlaySound(ReloadSFX[1]);
+        PlaySound(reloadSfx[1]);
 
         yield return new WaitWhile(() => IsPlaying);
 
@@ -193,7 +197,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     private IEnumerator FireCooldown() 
     {
         yield return new WaitForSeconds((float)cooldown);
-        canFire = true;
+        _canFire = true;
     }
 
 }

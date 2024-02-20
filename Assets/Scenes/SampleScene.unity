@@ -253,13 +253,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08a9c4df6a80a047b7bcc08c44e715a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpawnLocations:
+  bulletSpawnLocations:
   - {fileID: 398394880}
-  BulletTrail: {fileID: 7534414142167504715, guid: 78fa60d203d00f14099031f0bba497b4, type: 3}
+  bulletTrail: {fileID: 7534414142167504715, guid: 78fa60d203d00f14099031f0bba497b4, type: 3}
   bulletPrefab: {fileID: 6133736812522145756, guid: 306eaa15638f36a44b98a2201ed68c9c, type: 3}
-  Fire: {fileID: 8300000, guid: ab202a36e7664654f97a1975cce801c1, type: 3}
-  Empty: {fileID: 8300000, guid: ff16c2371c577a941909b05984d58ce2, type: 3}
-  ReloadSFX:
+  fire: {fileID: 8300000, guid: ab202a36e7664654f97a1975cce801c1, type: 3}
+  empty: {fileID: 8300000, guid: ff16c2371c577a941909b05984d58ce2, type: 3}
+  reloadSfx:
   - {fileID: 8300000, guid: b017d017c43be264abc0b787d135ffc1, type: 3}
   - {fileID: 8300000, guid: 4318690b885b79946b2ce02206fe7e3d, type: 3}
   cooldown: 0.8
@@ -281,7 +281,7 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 6133736812522145756, guid: 306eaa15638f36a44b98a2201ed68c9c, type: 3}
   poolContainer: {fileID: 1214447762}
-  Amount: 10
+  amount: 10
 --- !u!114 &229481368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,9 +823,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnemys: 10
-  EnemyPrefabs:
+  enemyPrefabs:
   - {fileID: 7784450968249503449, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
-  SpawnPoints:
+  spawnPoints:
   - {fileID: 653113580}
   - {fileID: 425463266}
   - {fileID: 421233606}
@@ -860,7 +860,7 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 7784450968249503449, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
   poolContainer: {fileID: 1869250652}
-  Amount: 200
+  amount: 200
 --- !u!1 &625880701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,6 +1304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1104350020}
   - component: {fileID: 1104350022}
+  - component: {fileID: 1104350023}
   m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
@@ -1378,6 +1379,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1104350023
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104350019}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.050000012, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1139044533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1887,7 @@ GameObject:
   - component: {fileID: 1586604179}
   - component: {fileID: 1586604184}
   - component: {fileID: 1586604185}
-  - component: {fileID: 1586604186}
+  - component: {fileID: 1586604187}
   m_Layer: 2
   m_Name: 'player '
   m_TagString: Untagged
@@ -2019,41 +2055,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!58 &1586604186
-CircleCollider2D:
+--- !u!114 &1586604187
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586604177}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9c999a39c8a6d2a43ac3eed12cefe669, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 1928969237}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 519420031}
 --- !u!114 &1619085518
 MonoBehaviour:
   m_ObjectHideFlags: 0

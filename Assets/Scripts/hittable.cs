@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-interface IHittable
+internal interface IHittable
 {
     void Damage(int amt);
 }

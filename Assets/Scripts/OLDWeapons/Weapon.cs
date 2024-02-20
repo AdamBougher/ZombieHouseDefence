@@ -6,59 +6,59 @@ using Sirenix.OdinInspector;
 public class Weapon {
 
     [ShowInInspector]
-    protected float weaponRange = 100f;
+    protected float WeaponRange = 100f;
 
     [ShowInInspector]
-    protected bool damageIsRange;
+    protected bool DamageIsRange;
     [ShowIf("damageIsRange"), ShowInInspector]
-    private Vector2 damageRange;
+    private Vector2 _damageRange;
     [HideIf("damageIsRange"), ShowInInspector]
-    private int damageAmount;
+    private int _damageAmount;
 
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
     protected AudioClip Fire, Empty;
-    protected AudioClip[] ReloadSFX;
+    protected AudioClip[] ReloadSfx;
 
-    public int getDamage()
+    public int GetDamage()
     {
-        if(!damageIsRange)
+        if(!DamageIsRange)
         {
-            return damageAmount;
+            return _damageAmount;
         }else{
-            return (int)Random.Range(damageRange.x,damageRange.y);
+            return (int)Random.Range(_damageRange.x,_damageRange.y);
         }
     }
 
-    public void setDamage(int amount)
+    public void SetDamage(int amount)
     {
-        damageIsRange = false;
-        damageAmount = amount;
+        DamageIsRange = false;
+        _damageAmount = amount;
     }
-    public void setDamage(Vector2 amount)
+    public void SetDamage(Vector2 amount)
     {
-        damageIsRange = true;
-        damageRange = amount;
+        DamageIsRange = true;
+        _damageRange = amount;
     }
 
 
     public void PlaySound(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        _audioSource.clip = clip;
+        _audioSource.Play();
     }
 
-    public bool isPlaying
+    public bool IsPlaying
     {
         get
         {
-            return audioSource.isPlaying;
+            return _audioSource.isPlaying;
         }
     }
 
 
-    public void setAudioSource(AudioSource aSrc)
+    public void SetAudioSource(AudioSource aSrc)
     {
-        audioSource = aSrc;
+        _audioSource = aSrc;
     }
 }

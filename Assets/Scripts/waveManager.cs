@@ -2,14 +2,15 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WaveManager : MonoBehaviour
 {
     public int maxEnemys;
-    public  List<GameObject> EnemyPrefabs;
-    public Transform[] SpawnPoints;
+    [FormerlySerializedAs("EnemyPrefabs")] public  List<GameObject> enemyPrefabs;
+    [FormerlySerializedAs("SpawnPoints")] public Transform[] spawnPoints;
 
-    private EnemyPool enemyPool;
+    private EnemyPool _enemyPool;
 
 
     public Vector2 spawnDelay = new(0.5f,2);
@@ -17,9 +18,9 @@ public class WaveManager : MonoBehaviour
 
     void Start()
     {
-        enemyPool = GetComponent<EnemyPool>();
+        _enemyPool = GetComponent<EnemyPool>();
 
-        Enemy.healthRange = new Vector2Int(1,2);
+        Enemy.HealthRange = new Vector2Int(1,2);
 
         StartCoroutine(StartWave());
     }
@@ -44,14 +45,14 @@ public class WaveManager : MonoBehaviour
 
     private Vector3 GetRandomeSpawnPosition() 
     {
-        Vector3 position = SpawnPoints[Random.Range(0, SpawnPoints.Length)].transform.position;
+        Vector3 position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
         position.z = 1;
         return position;
     }
 
     private void SpawnEnemy()
     {
-        Enemy enemy = enemyPool.GetPooledObject().GetComponent<Enemy>();
+        Enemy enemy = _enemyPool.GetPooledObject().GetComponent<Enemy>();
 
         if (enemy != null)
         {

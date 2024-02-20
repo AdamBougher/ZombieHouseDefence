@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIItemDisplay : MonoBehaviour
 {
     [ShowInInspector]
-    public Queue<Image> images = new();
+    public Queue<Image> Images = new();
 
 
     private void Start()
@@ -16,7 +16,7 @@ public class UIItemDisplay : MonoBehaviour
         {
             if(child.TryGetComponent<Image>(out Image outImg))
             {
-                images.Enqueue(outImg);
+                Images.Enqueue(outImg);
             }
         }
     }
@@ -24,7 +24,7 @@ public class UIItemDisplay : MonoBehaviour
 
     public void AddToUI(Sprite icon)
     {
-        Image item = images.Dequeue();
+        Image item = Images.Dequeue();
 
         item.sprite = icon;
         item.color = Color.white;

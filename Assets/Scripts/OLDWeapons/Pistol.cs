@@ -10,7 +10,7 @@ public class Pistol : Gun
 
     public override void Primary(Transform transform,Vector3 spawn,int damagemod)
     {
-        if(canFire)
+        if(CanFire)
         {
             PlaySound(Fire);
             ammo.Use();
@@ -22,7 +22,7 @@ public class Pistol : Gun
                 hit.point = spawn + (transform.right*10);
             }
 
-            var trail = GameObject.Instantiate(BulletTrail,spawn,transform.rotation);
+            var trail = GameObject.Instantiate(bulletTrail,spawn,transform.rotation);
             transform.gameObject.GetComponent<PlayerWeaponHandler>().StartCoroutine(SpawnBullet(trail.GetComponent<TrailRenderer>(),hit,damagemod));
 
         }else{
@@ -33,15 +33,15 @@ public class Pistol : Gun
 
     public override IEnumerator Reload()
     {
-        ammo.setReload(true);
+        ammo.SetReload(true);
         
-        PlaySound(ReloadSFX[0]);
+        PlaySound(ReloadSfx[0]);
 
-        yield return new WaitWhile(() => isPlaying);
+        yield return new WaitWhile(() => IsPlaying);
 
-        PlaySound(ReloadSFX[1]);
+        PlaySound(ReloadSfx[1]);
 
-        yield return new WaitWhile(() => isPlaying);
+        yield return new WaitWhile(() => IsPlaying);
 
         ammo.Reload();
     }
@@ -49,7 +49,7 @@ public class Pistol : Gun
     private IEnumerator SpawnBullet(TrailRenderer trail, RaycastHit2D hit2D, int damagemod)
     {
         float time = 0;
-        Vector2 startPos = trail.transform.position.WithAxis(Axis.z,1);
+        Vector2 startPos = trail.transform.position.WithAxis(Axis.Z,1);
 
         while(time < 1)
         {
@@ -61,7 +61,7 @@ public class Pistol : Gun
         //damage target
         if(hit2D.collider != null && hit2D.collider.TryGetComponent<IHittable>(out IHittable target))
         {
-            target.Damage(getDamage()+damagemod);
+            target.Damage(GetDamage()+damagemod);
         }
 
         GameObject.Destroy(trail.gameObject,time);  

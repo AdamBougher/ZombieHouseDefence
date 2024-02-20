@@ -1,49 +1,49 @@
 public class CharacterResource
 {
-    public bool isRange;
+    public bool IsRange;
 
-    private int value;
-    private int maxValue;
+    private int _value;
+    private int _maxValue;
 
-    public bool isEmpty
+    public bool IsEmpty
     {
         get
         {
-            if (value <= 0) { return true; } else { return false; }
+            if (_value <= 0) { return true; } else { return false; }
         }
     }
 
-    public CharacterResource(int _value, int _maxValue)
+    public CharacterResource(int value, int maxValue)
     {
-        value = _value;
-        maxValue = _maxValue;
+        this._value = value;
+        this._maxValue = maxValue;
     }
 
-    public int GetCurrent() { return value; }
-    public void SetCurrent(int i) { value = i; }
+    public int GetCurrent() { return _value; }
+    public void SetCurrent(int i) { _value = i; }
     public void DecreaseCurrent(int amt)
     {
-        value -= amt;
+        _value -= amt;
     }
     public bool IncreaseCurrent(int amt)
     {
-        if (value + amt <= maxValue)
+        if (_value + amt <= _maxValue)
         {
-            value += amt;
+            _value += amt;
             return true;
         }
-        else if (value < maxValue)
+        else if (_value < _maxValue)
         {
-            value = maxValue;
+            _value = _maxValue;
             return true;
         }
         return false;
     }
 
-    public void SetCurrentToMax() { value = maxValue; }
+    public void SetCurrentToMax() { _value = _maxValue; }
 
-    public int GetMax() { return maxValue; }
-    public void setMax(int i) { maxValue = i; }
-    public void DecreaseMax(int amt) { maxValue -= amt; }
-    public void IncreaseMax(int amt) { maxValue += amt; }
+    public int GetMax() { return _maxValue; }
+    public void SetMax(int i) { _maxValue = i; }
+    public void DecreaseMax(int amt) { _maxValue -= amt; }
+    public void IncreaseMax(int amt) { _maxValue += amt; }
 }

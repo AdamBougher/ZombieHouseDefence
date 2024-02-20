@@ -2,78 +2,78 @@ using UnityEngine;
 
 public class Damage
 {
-    private bool damageIsRange = false;
+    private bool _damageIsRange = false;
 
-    private Vector2Int damageValue;
+    private Vector2Int _damageValue;
 
-    private int damageBouns;
+    private int _damageBouns;
 
 
-    public Damage(int Amt)
+    public Damage(int amt)
     {
-        damageValue.x = Amt;
-        damageValue.y = -1;
+        _damageValue.x = amt;
+        _damageValue.y = -1;
     }
 
     public Damage(Vector2Int amt)
     {
-        damageIsRange = true;
-        damageValue = amt;
+        _damageIsRange = true;
+        _damageValue = amt;
     }
 
     public int GetDamage()
     {
-        if (!damageIsRange)
+        if (!_damageIsRange)
         {
-            return damageValue.x + damageBouns;
+            return _damageValue.x + _damageBouns;
         }
         else
         {
-            return (int)Random.Range(damageValue.x, damageValue.y) + damageBouns;
+            return (int)Random.Range(_damageValue.x, _damageValue.y) + _damageBouns;
         }
     }
 
     public void IncreaseBounsDamage(int amt)
     {
-        damageBouns += amt;
+        _damageBouns += amt;
     }
     public void DecreaseBounsDamage(int amt)
     {
-        damageBouns -= amt;
+        _damageBouns -= amt;
     }
     public void SetBounsDamage(int i)
-    { damageBouns = i; }
+    { _damageBouns = i; }
 
     public void SetRange(Vector2Int x)
     {
-        damageValue = x;
+        _damageValue = x;
     }
 
     public void IncreaseRangeEven(int amt)
     {
-        damageValue.x += amt;
-        damageValue.y += amt;
+        _damageValue.x += amt;
+        _damageValue.y += amt;
     }
     public void IncreaseUpperRange(int amt)
     {
-        damageValue.y += amt;
+        _damageValue.y += amt;
     }
     public void IncreaseLowerRange(int amt)
     {
-        damageValue.x += amt;
+        _damageValue.x += amt;
     }
 
     public void DecreaseRangeEven(int amt)
     {
-        damageValue.x -= amt;
-        damageValue.y -= amt;
+        _damageValue.x -= amt;
+        _damageValue.y -= amt;
     }
     public void DecreaseUpperRange(int amt)
     {
-        damageValue.y -= amt;
+        _damageValue.y -= amt;
     }
     public void DecreaseLowerRange(int amt)
     {
-        damageValue.x -= amt;
+        _damageValue.x -= amt;
     }
 }

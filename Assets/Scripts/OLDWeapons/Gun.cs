@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public abstract class Gun : Weapon
 {
     public Ammo ammo = new Ammo();
     
-    public bool canReload
+    public bool CanReload
     {
         get
         {
-            if(ammo.getTotalAmmo() > 0)
+            if(ammo.GetTotalAmmo() > 0)
             {
                 return true;
             }else{
@@ -20,10 +21,10 @@ public abstract class Gun : Weapon
             }
         }
     }
-    public bool canFire
+    public bool CanFire
     {
         get{
-            if(ammo.getCurrentMag() > 0)
+            if(ammo.GetCurrentMag() > 0)
             {
                 return true;
             }else{
@@ -32,11 +33,11 @@ public abstract class Gun : Weapon
         }
     }
 
-    public GameObject BulletTrail;
+    [FormerlySerializedAs("BulletTrail")] public GameObject bulletTrail;
 
     public int bulletSpawnIndex;
 
-    private float ShootDelay = 0.5f;
+    private float _shootDelay = 0.5f;
 
     public abstract void Primary(Transform transform,Vector3 spawn,int damageMod);
     public abstract IEnumerator Reload();
@@ -44,23 +45,23 @@ public abstract class Gun : Weapon
     public Gun(GunData data)
     {
         //create gun from gun data
-        ammo = new Ammo(data.Size,data.StartingMagazines);
+        ammo = new Ammo(data.size,data.startingMagazines);
         bulletSpawnIndex = data.bulletSpawnIndex;
-        BulletTrail = data.BulletTrail;
-        ShootDelay = data.ShootDelay;
+        bulletTrail = data.bulletTrail;
+        _shootDelay = data.shootDelay;
         if(data.weaponDamageIsRange)
         {
-            setDamage(data.DamageRange);
+            SetDamage(data.damageRange);
         }else{
-            setDamage(data.Damage);
+            SetDamage(data.damage);
         }
         ammo.usesAmmo = data.usesAmmo;
 
-        setAudioSource(data.audioSource);
+        SetAudioSource(data.audioSource);
 
-        Fire = data.Fire;
-        Empty = data.Empty;
-        ReloadSFX = data.Reload;
+        Fire = data.fire;
+        Empty = data.empty;
+        ReloadSfx = data.reload;
     }
 }
 
@@ -68,30 +69,30 @@ public abstract class Gun : Weapon
 public class Ammo
 {
     [ShowInInspector]
-    private int magazineSize;
+    private int _magazineSize;
     [ShowInInspector]
-    private int currentMagazine;
+    private int _currentMagazine;
     [ShowInInspector]
-    private int TotalAmmo;
+    private int _totalAmmo;
 
-    private bool reloading = false;
+    private bool _reloading = false;
 
     public bool usesAmmo;
 
-    public void AddAmmo(int amount) => TotalAmmo += amount;
+    public void AddAmmo(int amount) => _totalAmmo += amount;
     
     public Ammo(int magSize, int spareMags)
     {
-        magazineSize = magSize;
-        currentMagazine = magazineSize;
-        TotalAmmo = magazineSize*spareMags;
+        _magazineSize = magSize;
+        _currentMagazine = _magazineSize;
+        _totalAmmo = _magazineSize*spareMags;
     }
 
     public Ammo(){}
 
     public void Use()
     {
-        currentMagazine--; 
+        _currentMagazine--; 
     }
     
     /// <summary>
@@ -101,48 +102,48 @@ public class Ammo
     {
         if (usesAmmo)
         {
-            if (TotalAmmo >= magazineSize)
+            if (_totalAmmo >= _magazineSize)
             {   //as long as there is at least 1 magazine left reload by mag size
-                TotalAmmo -= magazineSize;
-                TotalAmmo += currentMagazine;
-                currentMagazine = magazineSize;
+                _totalAmmo -= _magazineSize;
+                _totalAmmo += _currentMagazine;
+                _currentMagazine = _magazineSize;
 
             }
-            else if (TotalAmmo > 0)
+            else if (_totalAmmo > 0)
             {
                 //if there is less then one magazine but still more the 0 add the remaining ammo
-                currentMagazine = TotalAmmo;
-                TotalAmmo = 0;
+                _currentMagazine = _totalAmmo;
+                _totalAmmo = 0;
             }
 
         }
         else{
-            currentMagazine = magazineSize;
+            _currentMagazine = _magazineSize;
         }
 
    
         
-        setReload(false);
+        SetReload(false);
     }
 
-    public int getCurrentMag() => currentMagazine;
-    public int getTotalAmmo() => TotalAmmo;
-    public void addToMaxAmmo(int amt)
+    public int GetCurrentMag() => _currentMagazine;
+    public int GetTotalAmmo() => _totalAmmo;
+    public void AddToMaxAmmo(int amt)
     {
-        magazineSize += amt;
+        _magazineSize += amt;
     }
-    public int getMagSize() => magazineSize;
-    public void setReload(bool state) => reloading = state;
+    public int GetMagSize() => _magazineSize;
+    public void SetReload(bool state) => _reloading = state;
 
     public override string ToString()
     {
         if(usesAmmo)
         {
-            return string.Format("{0}/{1}", currentMagazine, TotalAmmo);
+            return string.Format("{0}/{1}", _currentMagazine, _totalAmmo);
         }
         else
         {
-            return getCurrentMag().ToString();
+            return GetCurrentMag().ToString();
         }
         
     }

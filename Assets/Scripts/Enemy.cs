@@ -3,55 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(NavMeshAgent))]   
 public class Enemy : Character
 {
     //class variables
     public  static int EnemysAlive,EnemysKilled;
-    private static int EnemyLevel = 1;
-    public static int startingHP = 1;
-    public  static Vector2Int healthRange;
+    private static int enemyLevel = 1;
+    public static int StartingHp = 1;
+    public  static Vector2Int HealthRange;
 
     //instance variables
     [ShowInInspector]
-    private Transform target;
-    private NavMeshAgent agent = new();
+    private Transform _target;
+    private NavMeshAgent _agent = new();
 
 
-    [BoxGroup("experance")]
-    public  int Worth;
+    [FormerlySerializedAs("Worth")] [BoxGroup("experance")]
+    public  int worth;
     private static int exp = 1;
-    public  AudioClip[] genericSFX, hurtSFX, damageSFX;
+    [FormerlySerializedAs("genericSFX")] public  AudioClip[] genericSfx;
+    [FormerlySerializedAs("hurtSFX")] public  AudioClip[] hurtSfx;
+    [FormerlySerializedAs("damageSFX")] public  AudioClip[] damageSfx;
 
-    private Player player;
-    private AudioSource audioSource;
+    private Player _player;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
         //subscribe pause mthods to relavent delgates
-        GameManager.ua_Pause += OnPaused;
-        GameManager.ua_Unpause += OnResume;
+        GameManager.UaPause += OnPaused;
+        GameManager.UaUnpause += OnResume;
 
         //setup linkages
-        player = FindObjectOfType<Player>();
-        audioSource = GetComponent<AudioSource>();
-        agent = GetComponent<NavMeshAgent>();
+        _player = FindObjectOfType<Player>();
+        _audioSource = GetComponent<AudioSource>();
+        _agent = GetComponent<NavMeshAgent>();
 
         //setup instances varbales
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        agent.speed = speed;
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
+        _agent.speed = speed;
 
-        target = player.transform;
+        _target = _player.transform;
 
-        exp = EnemyLevel + (EnemyLevel - 1);
-        hp = new(startingHP, startingHP);
+        exp = enemyLevel + (enemyLevel - 1);
+        Hp = new(StartingHp, StartingHp);
 
-        healthRange.x = hp.GetMax();
-        healthRange.y = healthRange.x + 1;
+        HealthRange.x = Hp.GetMax();
+        HealthRange.y = HealthRange.x + 1;
 
-        hp.SetCurrent(Random.Range(healthRange.x, healthRange.y));
+        Hp.SetCurrent(Random.Range(HealthRange.x, HealthRange.y));
     }
 
     private void OnEnable()
@@ -63,7 +66,7 @@ public class Enemy : Character
         EnemysAlive++;
 
         //play spawn sfx
-        StartCoroutine(PlaySound(genericSFX[0]));
+        StartCoroutine(PlaySound(genericSfx[0]));
     }
 
     private void OnDisable()
@@ -85,7 +88,7 @@ public class Enemy : Character
     {
         if (!GameManager.GamePaused)
         {
-            agent.SetDestination(target.position);
+            _agent.SetDestination(_target.position);
         }
         
     }
@@ -95,9 +98,9 @@ public class Enemy : Character
         base.Damage(amt);
 
         //play damage sound effect
-        StartCoroutine(PlaySound(hurtSFX[0]));
+        StartCoroutine(PlaySound(hurtSfx[0]));
 
-        if (hp.isEmpty)
+        if (Hp.IsEmpty)
         {
             StartCoroutine(Die());
         }
@@ -105,12 +108,12 @@ public class Enemy : Character
 
     private void FacePlayer()
     {
-        if (player == null)
+        if (_player == null)
         {
-            player = FindObjectOfType<Player>();
+            _player = FindObjectOfType<Player>();
         }
 
-        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Vector3 direction = (_player.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, angle);
     }
@@ -126,8 +129,8 @@ public class Enemy : Character
             yield return new WaitUntil(() => GameManager.GamePaused == false);
             if (chance <= 4)
             {
-                audioSource.clip = clip;
-                audioSource.Play();
+                _audioSource.clip = clip;
+                _audioSource.Play();
 
                 yield return new WaitForSeconds(2f);
             }
@@ -136,8 +139,8 @@ public class Enemy : Character
     
     private IEnumerator Die()
     {
-        GameManager.Score += Worth;
-        player.GetEXP(exp);
+        GameManager.Score += worth;
+        _player.GetExp(exp);
 
         EnemysKilled++;
         FindAnyObjectByType<UserInterface>().DisplayKills();
@@ -146,7 +149,7 @@ public class Enemy : Character
         GetComponent<CircleCollider2D>().enabled = false;
 
         //waite while ending shit is happaening
-        yield return new WaitWhile(() => audioSource.isPlaying);
+        yield return new WaitWhile(() => _audioSource.isPlaying);
 
         //Destroy(this.gameObject);
         gameObject.SetActive(false);
@@ -154,23 +157,23 @@ public class Enemy : Character
 
     public static void LevelUp()
     {
-        speedMod += 0.15f;
-        healthRange.x += 5;
-        healthRange.y += 5;
-        EnemyLevel++;
-        exp = exp/2 + EnemyLevel;
+        SpeedMod += 0.15f;
+        HealthRange.x += 5;
+        HealthRange.y += 5;
+        enemyLevel++;
+        exp = exp/2 + enemyLevel;
     }
 
     private void OnPaused()
     {
         //make sure agent is alive and active
-        if(agent != null && agent.isActiveAndEnabled)
-            agent.isStopped = true;
+        if(_agent != null && _agent.isActiveAndEnabled)
+            _agent.isStopped = true;
   
     }
     private void OnResume() 
     {
-        if (agent != null && agent.isActiveAndEnabled)
-            agent.isStopped = false;
+        if (_agent != null && _agent.isActiveAndEnabled)
+            _agent.isStopped = false;
     }
 }

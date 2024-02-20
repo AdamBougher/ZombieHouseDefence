@@ -5,13 +5,15 @@ using UnityEngine.Events;
 
 public class GameTime
 {
-    private int hour, minute = 0, second = 0;
+    private int _hour, _minute = 0, _second = 0;
 
-    private int secondWorth = 1, hourWorth = 1000;
+    private int _secondWorth = 1, _hourWorth = 1000;
 
-    private bool isTimeStopped = false;
+    private bool _isTimeStopped = false;
 
-    public static UnityEvent minuteEvent;
+    public delegate void SecondTick();
+
+    public static event SecondTick OnSecTick;
 
     public IEnumerator Time()
     {
@@ -20,18 +22,19 @@ public class GameTime
             yield return new WaitForSeconds(1f);
 
             //waite while isTimeStopped is true
-            yield return new WaitUntil(() => isTimeStopped == false);
+            yield return new WaitUntil(() => _isTimeStopped == false);
 
-            second++;
-            GameManager.AddToScore(secondWorth);
+            _second++;
+            GameManager.AddToScore(_secondWorth);
+            OnSecTick?.Invoke();
 
-            if (second > 59)
+            if (_second > 59)
             {
-                second = 0;
+                _second = 0;
                 AddMinute();
             }
             //same as above, but giving code a chance to catch it before the next waite
-            yield return new WaitUntil(() => isTimeStopped == false);
+            yield return new WaitUntil(() => _isTimeStopped == false);
         }
     }
 
@@ -39,14 +42,14 @@ public class GameTime
     {
         Enemy.LevelUp();
         //Player.GetEXP((Player.Level/2) + Player.Level);
-        minute++;
+        _minute++;
 
-        if (minute > 59)
+        if (_minute > 59)
         {
-            minute = 0;
-            hour++;
-            GameManager.AddToScore(hourWorth);
-            hourWorth = hour * 1000;
+            _minute = 0;
+            _hour++;
+            GameManager.AddToScore(_hourWorth);
+            _hourWorth = _hour * 1000;
         }
     }
 
@@ -64,33 +67,33 @@ public class GameTime
 
     public void ToggleTimeStopped()
     {
-        isTimeStopped = !isTimeStopped;
-        GameManager.GamePaused = isTimeStopped;
+        _isTimeStopped = !_isTimeStopped;
+        GameManager.GamePaused = _isTimeStopped;
     }
     public int GetHour()
     {
-        return hour;
+        return _hour;
     }
     public int GetMinute()
     {
-        return minute;
+        return _minute;
     }
     
 
-    public int getSecond()
+    public int GetSecond()
     {
-        return second;
+        return _second;
     }
 
     public override string ToString()
     {
-        if (hour < 1)
+        if (_hour < 1)
         {
-            return Formatted(minute) + ":" + Formatted(second);
+            return Formatted(_minute) + ":" + Formatted(_second);
         }
         else
         {
-            return hour.ToString() + ":" + Formatted(minute) + ":" + Formatted(second);
+            return _hour.ToString() + ":" + Formatted(_minute) + ":" + Formatted(_second);
         }
 
     }

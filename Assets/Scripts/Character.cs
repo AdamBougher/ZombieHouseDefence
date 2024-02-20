@@ -5,28 +5,28 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour , IHittable
 {
     [BoxGroup("Character"),]
-    public CharacterResource hp;
+    public CharacterResource Hp;
     [BoxGroup("Character")]
     public float speed;
     [ShowInInspector, ReadOnly, BoxGroup("Character")]
-    public static float speedMod = 0;
+    public static float SpeedMod = 0;
     [BoxGroup("experance")]
     public int level = 0;
     [BoxGroup("experance"),SerializeField]
     private int experance, nextLevel;
 
 
-    public float GetSpeed()
+    protected float GetSpeed()
     {
-        return speed + speedMod;
+        return speed + SpeedMod;
     }
 
     public virtual void Damage(int amt)
     {
-        hp.DecreaseCurrent(amt);
+        Hp.DecreaseCurrent(amt);
     }
 
-    public void GainExperance(int amt, CharacterResource hp, GameManager gm)
+    protected void GainExperance(int amt, CharacterResource hp, GameManager gm)
     {
 
         experance += amt;
@@ -51,7 +51,7 @@ public abstract class Character : MonoBehaviour , IHittable
     }
 
 
-    public float GetExpPercentage()
+    private float GetExpPercentage()
     {
         return (float)experance / (float)nextLevel;
     }

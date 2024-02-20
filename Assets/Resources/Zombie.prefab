@@ -159,12 +159,12 @@ MonoBehaviour:
   level: 1
   experance: 0
   nextLevel: 0
-  Worth: 0
-  genericSFX:
+  worth: 0
+  genericSfx:
   - {fileID: 8300000, guid: ee056f9c494cf534999d574b8f83819d, type: 3}
-  hurtSFX:
+  hurtSfx:
   - {fileID: 8300000, guid: b07aa20142e640a418ffda4a75b83a79, type: 3}
-  damageSFX: []
+  damageSfx: []
 --- !u!82 &7784450968249503440
 AudioSource:
   m_ObjectHideFlags: 0
@@ -325,7 +325,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7784450968249503449}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

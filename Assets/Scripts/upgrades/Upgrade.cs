@@ -51,7 +51,7 @@ public class Upgrade
                 UpgradeSpeed();
                 break;
             case Hpup:
-                UpgradeHP();
+                UpgradeHp();
                 break;
             case Damageup:
                 UpgradeDamage();
@@ -66,12 +66,12 @@ public class Upgrade
 
         void UpgradeSpeed() => player.speed += SpeedUpAmt;
 
-        void UpgradeDamage() => player.weaponHandler.damage.IncreaseBounsDamage(DamageUpAmt);
+        void UpgradeDamage() => player.weaponHandler.Damage.IncreaseBounsDamage(DamageUpAmt);
 
-        void UpgradeHP()
+        void UpgradeHp()
         {
-            player.hp.IncreaseMax(HpUpAmt);
-            player.hp.SetCurrentToMax();
+            player.Hp.IncreaseMax(HpUpAmt);
+            player.Hp.SetCurrentToMax();
         }
     }
 

@@ -7,16 +7,16 @@ using TMPro;
 public class UpgradeChoice : MonoBehaviour
 {
 
-    private Upgrade upgrade;
+    private Upgrade _upgrade;
 
 
     public void Setup(Upgrade item)
     {
-        upgrade = item;
+        _upgrade = item;
 
         //setup options
-        transform.Find("icon").GetComponent<Image>().sprite = upgrade.Icon;
-        GetComponentInChildren<TMP_Text>().SetText(upgrade.Name);
+        transform.Find("icon").GetComponent<Image>().sprite = _upgrade.Icon;
+        GetComponentInChildren<TMP_Text>().SetText(_upgrade.Name);
         GetComponent<Button>().onClick.AddListener(ChooseOption);
     }
 
@@ -27,6 +27,6 @@ public class UpgradeChoice : MonoBehaviour
 
     private void ChooseOption()
     {
-        FindAnyObjectByType<GameManager>().GetComponent<GameManager>().LevelUp(upgrade);
+        FindAnyObjectByType<GameManager>().GetComponent<GameManager>().LevelUp(_upgrade);
     }
 }

@@ -8,23 +8,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static Player Player;
-    public static GameTime time;
-    public static UnityAction ua_Pause, ua_Unpause;
+    private static Player player;
+    public static GameTime Time;
+    public static UnityAction UaPause, UaUnpause;
 
     public static bool GameOver = false;
     public static bool GamePaused = false;
     public static int Score;
 
-    //instance variabels
-    private UserInterface userInterface
-    {
-        get { return UserInterface.UI; }
-    }
-    private AudioSource audioSource;
+    //instance variables
+    private static UserInterface UserInterface => UserInterface.UI;
+    private AudioSource _audioSource;
     public InputActionAsset actions;
 
-    //audio clipsssssssssssssssss
+    //audio clips
     public AudioClip levelUp;
 
     private void OnEnable()
@@ -32,22 +29,22 @@ public class GameManager : MonoBehaviour
         actions.FindActionMap("Game").Enable();
     }
 
-    void Start()
+    private void Start()
     {
         //Application.targetFrameRate = 240;
 
-        SceneManager.LoadScene("Ui", LoadSceneMode.Additive);
+        SceneManager.LoadScene($"Ui", LoadSceneMode.Additive);
 
         //setup refrences
-        Player          = FindAnyObjectByType<Player>();
-        audioSource = GetComponent<AudioSource>();
+        player          = FindAnyObjectByType<Player>();
+        _audioSource = GetComponent<AudioSource>();
 
         //setup input actions
         actions.FindActionMap("Game").FindAction("Menu").performed += OnPause;
 
         //create and start the game time
-        time = new();
-        StartCoroutine(time.Time());
+        Time = new GameTime();
+        StartCoroutine(Time.Time());
     }
 
     public static void AddToScore(int amt)
@@ -69,18 +66,18 @@ public class GameManager : MonoBehaviour
         if(!GamePaused)
         {
             GamePaused = true;
-            ua_Pause.Invoke();
+            UaPause.Invoke();
         }
         else
         {
             GamePaused = false;
-            ua_Unpause.Invoke();
+            UaUnpause.Invoke();
         }
         
-        time.ToggleTimeStopped();
+        Time.ToggleTimeStopped();
         switch (context)
         {
-            case "Menu": userInterface.menu.SetActive(GamePaused); break;
+            case "Menu": UserInterface.menu.SetActive(GamePaused); break;
             case "Level": SetupLevelUp(); break;
             default: break;
         }
@@ -89,33 +86,33 @@ public class GameManager : MonoBehaviour
     private void SetupLevelUp()
     {
         //play audio cue
-        audioSource.clip = levelUp;
-        audioSource.Play();
+        _audioSource.clip = levelUp;
+        _audioSource.Play();
 
         //initlize upgrades
         Stack<Upgrade> temp = Upgrade.GetUpgrades(3);
 
         Random.InitState(System.DateTime.Now.Millisecond + (int)System.DateTime.Now.Ticks + 420);
 
-        foreach (UpgradeChoice item in userInterface.levelUpOption)
+        foreach (UpgradeChoice item in UserInterface.levelUpOption)
         {
 
             item.Setup(temp.Pop());
 
         }
         //show levelup menu
-        userInterface.levelUpMenu.SetActive(true);
+        UserInterface.levelUpMenu.SetActive(true);
     }
 
     public void LevelUp(Upgrade option)
     {
-        if(Player.LevelUP(option))
+        if(player.LevelUp(option))
         {
-            userInterface.imagePannel.AddToUI(option.Icon);
+            UserInterface.UI.imagePanel.AddToUI(option.Icon);
         }
-        userInterface.levelUpMenu.SetActive(false);
+        UserInterface.levelUpMenu.SetActive(false);
 
-        
+
         Pause();
     }
 
