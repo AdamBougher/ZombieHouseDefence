@@ -1,121 +1,137 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
-using DG.Tweening;
-
 public class Player : Character
 {
+    private const int StartingHp = 10;
 
-    public static int startingHP = 10;
-
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
+    
     [HideInInspector]
     public PlayerWeaponHandler weaponHandler;
-    // private field to store move action reference
-    private InputAction moveAction, facing;
 
     public InputActionAsset actions;
 
-    private readonly Dictionary<Upgrade, int> upgrades = new(8);
+    private readonly Dictionary<Upgrade, int> _upgrades = new(8);
 
+    [SerializeField]
+    private AudioClip hurtsfx;
+
+    private AudioSource _audioSource;
 
     private void OnEnable()
     {
         actions.FindActionMap("Player").Enable();
-        hp.SetCurrent(hp.GetMax());
-        
+        Hp.SetCurrent(Hp.GetMax());
+
+        UserInterface.OnLoaded += OnUILoad;
+
     }
 
     private void Awake() 
     {
-        //setup refrences
-        rb = GetComponent<Rigidbody2D>();
+        
+        //setup references
+        _rb = GetComponent<Rigidbody2D>();
         weaponHandler = GetComponentInChildren<PlayerWeaponHandler>();
 
         weaponHandler.Initialize(actions);
+        
+        //subscribe pause to the action
+        GameManager.UaPause += OnPaused;
 
-        // find the "move" action, and keep the reference to it, for use in Update
-        moveAction = actions.FindActionMap("Player").FindAction("Move");
-        facing = actions.FindActionMap("Player").FindAction("Facing");
+        Hp = new CharacterResource(StartingHp, StartingHp);
 
-        //subscripe pause to the action
-        GameManager.ua_Pause += OnPaused;
-
-        hp = new(startingHP, startingHP);
+        _audioSource = GetComponent<AudioSource>();
 
     }
-
-    private void FixedUpdate() 
+    
+    private void OnUILoad()
+    {
+        UserInterface.UI.UpdateHp(Hp.GetCurrent());
+    }
+    
+    private void OnMove(InputValue value)
     {
         //if game is not paused or over
         if (!GameManager.GamePaused && !GameManager.GameOver)
         {
-            LookAt(facing.ReadValue<Vector2>(), this.transform);
-
-            rb.velocity = moveAction.ReadValue<Vector2>() * (GetSpeed());
+            _rb.velocity = value.Get<Vector2>() * (GetSpeed());
         }
-        
     }
 
-    /// <summary>
-    /// rotate gameobject transform to be looking twords position
-    /// </summary>
-    /// <param name="position">position to look at</param>
-    /// <param name="transform">calling object's transform</param>
-    public void LookAt(Vector2 position, Transform transform)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(position);
+        if (other.gameObject.TryGetComponent<Enemy>(out var enemy))
+        {
+            Damage(1);
+        }
+    }
+
+    private void OnFacing(InputValue value)
+    {
+        var position = value.Get<Vector2>();
+        
+        System.Diagnostics.Debug.Assert(Camera.main != null, "Camera.main != null");
+        var worldPos = Camera.main.ScreenToWorldPoint(position);
         worldPos.z = 0f;
 
-        Vector3 direction = (worldPos - transform.position);
+        var direction = (worldPos - transform.position);
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-
+    
     public override void Damage(int amt)
     {
         base.Damage(amt);
-        if(hp.isEmpty)
-        {
-            Debug.Log("You died!");
-            GameManager.GameOver = true;
-            GameManager.GamePaused = true;
-        }
+
+        if (_audioSource.clip != hurtsfx) _audioSource.clip = hurtsfx;
+        
+        
+        _audioSource.Play();
+        
+        UserInterface.UI.UpdateHp(Hp.GetCurrent());
+        
+        if (!Hp.IsEmpty) return;
+
+        gameObject.SetActive(false);
+        
+        GameManager.GameOver = true;
+        GameManager.GamePaused = true;
     }
 
-    public void OnPaused()
+    private void OnPaused()
     {
-        rb.velocity = new();
+        _rb.velocity = new();
     }
 
     /// <summary>
     /// Run Level Up Code
     /// </summary>
-    /// <param name="option">what atribute to change</param>
+    /// <param name="option">what attribute to change</param>
     /// <returns>True is level up option has not ben upgraded before</returns>
-    public bool LevelUP(Upgrade option)
+    public bool LevelUp(Upgrade option)
     {
         Upgrade.ApplyUpgrade(this,option);
 
-        if(upgrades.ContainsKey(option))
+        if(!_upgrades.TryAdd(option, 1))
         {
-            upgrades[option]++;
+            _upgrades[option]++;
             return false;
         }else{
-            upgrades.Add(option, 1);
             return true;
         }
 
     }
     
 
-    public void GetEXP(int amt)
+    public void GetExp(int amt)
     {
-        GainExperance(amt,hp, FindFirstObjectByType<GameManager>());
+        GainExperance(amt,Hp, FindFirstObjectByType<GameManager>());
     }
 
 }
