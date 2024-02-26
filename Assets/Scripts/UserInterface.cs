@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UserInterface : MonoBehaviour
@@ -72,7 +73,7 @@ public class UserInterface : MonoBehaviour
 
     public void DisplayKills()
     {
-        kills.SetText(Enemy.EnemysKilled.ToString());
+        kills.SetText(Enemy.EnemiesKilled.ToString());
     }
 
     public void Updatelevel(string lvl)
@@ -90,6 +91,29 @@ public class UserInterface : MonoBehaviour
         _uiItemImages[_index].sprite = option.Icon;
         _index++;
         
+    }
+
+    public void ReturnToMenu()
+    {
+        StartCoroutine(SceneLoading());
+        return;
+
+        IEnumerator SceneLoading()
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainMenu");
+        
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+
+            AsyncOperation asyncUnLoad = SceneManager.UnloadSceneAsync("MainMenu");
+
+            while (!asyncUnLoad.isDone)
+            {
+                yield return null;
+            }
+        }
     }
 
 }

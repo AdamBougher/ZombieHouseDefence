@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.HID;
+using UnityEngine.SceneManagement;
+
 public class Player : Character
 {
     private const int StartingHp = 10;
@@ -20,6 +24,8 @@ public class Player : Character
     private AudioClip hurtsfx;
 
     private AudioSource _audioSource;
+    
+    private bool _interactionCheck = false;
 
     private void OnEnable()
     {
@@ -61,13 +67,31 @@ public class Player : Character
             _rb.velocity = value.Get<Vector2>() * (GetSpeed());
         }
     }
+    
+    private void OnInteract(InputValue value)
+    {
 
-    private void OnTriggerEnter2D(Collider2D other)
+        _interactionCheck = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             Damage(1);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!_interactionCheck) return;
+        
+        
+        if (other.TryGetComponent<Door>(out var door))
+        {
+            door.Enter();
+        }
+        _interactionCheck = false;
     }
 
     private void OnFacing(InputValue value)
@@ -102,6 +126,15 @@ public class Player : Character
         
         GameManager.GameOver = true;
         GameManager.GamePaused = true;
+
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
+
+    private void Die()
+    {
+        
     }
 
     private void OnPaused()

@@ -1,17 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]   
 public class Enemy : Character
 {
     //class variables
-    public  static int EnemysAlive,EnemysKilled;
+    public  static int EnemiesAlive,EnemiesKilled;
     private static int enemyLevel = 1;
-    public static int StartingHp = 1;
+    private static readonly int StartingHp = 1;
+    
     public  static Vector2Int HealthRange;
 
     //instance variables
@@ -20,15 +23,18 @@ public class Enemy : Character
     private NavMeshAgent _agent = new();
 
 
-    [FormerlySerializedAs("Worth")] [BoxGroup("experance")]
+    [BoxGroup("experance")]
     public  int worth;
     private static int exp = 1;
-    [FormerlySerializedAs("genericSFX")] public  AudioClip[] genericSfx;
-    [FormerlySerializedAs("hurtSFX")] public  AudioClip[] hurtSfx;
-    [FormerlySerializedAs("damageSFX")] public  AudioClip[] damageSfx;
+    public  AudioClip[] genericSfx;
+    public  AudioClip[] hurtSfx;
+    public  AudioClip[] damageSfx;
 
     private Player _player;
     private AudioSource _audioSource;
+
+    private float _damageCoolDown = 2.00f;
+    private bool _canDamage = true;
 
     private void Awake()
     {
@@ -63,7 +69,7 @@ public class Enemy : Character
         GetComponent<CircleCollider2D>().enabled = true;
 
         //update game stat
-        EnemysAlive++;
+        EnemiesAlive++;
 
         //play spawn sfx
         StartCoroutine(PlaySound(genericSfx[0]));
@@ -72,7 +78,7 @@ public class Enemy : Character
     private void OnDisable()
     {
         //update game stat
-        EnemysAlive--;
+        EnemiesAlive--;
     }
 
     private void FixedUpdate()
@@ -142,7 +148,7 @@ public class Enemy : Character
         GameManager.Score += worth;
         _player.GetExp(exp);
 
-        EnemysKilled++;
+        EnemiesKilled++;
         FindAnyObjectByType<UserInterface>().DisplayKills();
 
         GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -175,5 +181,35 @@ public class Enemy : Character
     {
         if (_agent != null && _agent.isActiveAndEnabled)
             _agent.isStopped = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (!_canDamage) return;
+
+        if (!other.gameObject.TryGetComponent<IHittable>(out var hit)) return;
+        
+        _canDamage = false;
+        hit.Damage(1);
+        StartCoroutine(HitCoolDown());
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!_canDamage) return;
+        
+        if (!other.gameObject.CompareTag("Destructible")) return;
+
+        if (!other.TryGetComponent<Door>(out var door)) return;
+        _canDamage = false;
+        door.Damage(1);
+        StartCoroutine(HitCoolDown());
+
+    }
+
+    private IEnumerator HitCoolDown()
+    {
+        yield return new WaitForSeconds(_damageCoolDown);
+        _canDamage = true;
     }
 }

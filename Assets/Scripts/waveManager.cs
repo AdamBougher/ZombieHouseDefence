@@ -35,7 +35,7 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(spawnDelay.x,spawnDelay.y));
 
             yield return new WaitUntil(() => GameManager.GamePaused == false);
-            yield return new WaitUntil(() => Enemy.EnemysAlive < maxEnemys);
+            yield return new WaitUntil(() => Enemy.EnemiesAlive < maxEnemys);
             
             //spawn new enemy
             SpawnEnemy();

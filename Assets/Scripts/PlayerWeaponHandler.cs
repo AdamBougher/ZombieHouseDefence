@@ -23,7 +23,9 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     ObjectPool _bulletpool;
 
-    public double cooldown;
+    private bool _isReloading = false;
+
+    public double fireCooldown;
 
     public Ammo ammo;
 
@@ -87,16 +89,19 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private void OnFire(InputAction.CallbackContext context)
     {
-        if (!GameManager.GamePaused)
-        {
-            Primary(bulletSpawnLocations[0]);
-            Ui.UpdateAmmoDisplays(ammo.ToString());
-        }
+        if (GameManager.GamePaused || _isReloading) return;
+        
+        Primary(bulletSpawnLocations[0]);
+        Ui.UpdateAmmoDisplays(ammo.ToString());
     }
 
     public void OnReload(InputAction.CallbackContext context)
     {
+        if (_isReloading) return;
+        
+        _isReloading = true;
         StartCoroutine(Reload());
+
     }
 
     private void Primary(Transform spawn)
@@ -104,12 +109,8 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (HasAmmo && _canFire)
         {
             _canFire = false;
-            PlaySound(fire);
-            ammo.Use();
 
             Projectile();
-
-            _canFire = true;
 
         }
         else if(!HasAmmo)
@@ -139,6 +140,8 @@ public class PlayerWeaponHandler : MonoBehaviour
 
         void Projectile()
         {
+            PlaySound(fire);
+            ammo.Use();
 
             if (_bulletpool.GetPooledObject().TryGetComponent<Bullet>(out var bullet))
             {
@@ -147,6 +150,8 @@ public class PlayerWeaponHandler : MonoBehaviour
             }
 
             bullet.StartBullet(spawn.right, bulletSpeed,Damage.GetDamage());
+
+            StartCoroutine(FireCooldown());
         }
     }
 
@@ -190,13 +195,15 @@ public class PlayerWeaponHandler : MonoBehaviour
 
         yield return new WaitWhile(() => IsPlaying);
 
+        _isReloading = false;
+        
         ammo.Reload();
 
         Ui.UpdateAmmoDisplays(ammo.ToString());
     }
     private IEnumerator FireCooldown() 
     {
-        yield return new WaitForSeconds((float)cooldown);
+        yield return new WaitForSeconds((float)fireCooldown);
         _canFire = true;
     }
 

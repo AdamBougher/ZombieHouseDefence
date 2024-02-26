@@ -8,7 +8,8 @@ public class Upgrade
     public string Name;
     public Sprite Icon;
 
-    public static double FirerateUpAmt = 0.05;
+    private const double FirerateUp = 0.05;
+
     public static int 
         AmmoUpAmt = 3, 
         SpeedUpAmt = 1, 
@@ -60,7 +61,7 @@ public class Upgrade
 
         }
 
-        void UpgradeFirerate() => player.weaponHandler.cooldown -= FirerateUpAmt;
+        void UpgradeFirerate() => player.weaponHandler.fireCooldown -= FirerateUp;
 
         void UpgradeMaxAmmo() => player.weaponHandler.MagSizeUp(AmmoUpAmt);
 
