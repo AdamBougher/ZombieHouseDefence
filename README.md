@@ -1,5 +1,5 @@
 # ZombieHouseDefence
 ##### Towerdefence Reverse bullet hell Developed by Adamsauce
 ## Concept
-In this game your tasked with defending your house from waves of ever increasing enemys.  get powerups and fortify your defences to defend your home from the hords.
+The end has come, the hoarders are descending upon your humble home, but you will not go quietly into that sweet night, your going down swigging. in ZHD you have to survive as long as possible by building defenses, and good old fashion running-and-gunning.
 
