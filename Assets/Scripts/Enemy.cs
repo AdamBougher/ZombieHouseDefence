@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]   
@@ -39,8 +37,8 @@ public class Enemy : Character
     private void Awake()
     {
         //subscribe pause mthods to relavent delgates
-        GameManager.UaPause += OnPaused;
-        GameManager.UaUnpause += OnResume;
+        GameManager.Pause += OnPaused;
+        GameManager.Unpause += OnResume;
 
         //setup linkages
         _player = FindObjectOfType<Player>();
@@ -102,23 +100,20 @@ public class Enemy : Character
     public override void Damage(int amt)
     {
         base.Damage(amt);
-
-        //play damage sound effect
-        StartCoroutine(PlaySound(hurtSfx[0]));
-
+        
         if (Hp.IsEmpty)
         {
             StartCoroutine(Die());
+            return;
         }
+        
+        //play damage sound effect
+        StartCoroutine(PlaySound(hurtSfx[0]));
+        
     }
 
     private void FacePlayer()
     {
-        if (_player == null)
-        {
-            _player = FindObjectOfType<Player>();
-        }
-
         Vector3 direction = (_player.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, angle);
@@ -126,21 +121,11 @@ public class Enemy : Character
 
     private IEnumerator PlaySound(AudioClip clip) 
     {
-        while (true)
-        {
-            yield return new WaitUntil(() => GameManager.GamePaused == false);
-
-            yield return new WaitForSeconds(2f);
-            float chance = Random.Range(0, 20);
-            yield return new WaitUntil(() => GameManager.GamePaused == false);
-            if (chance <= 4)
-            {
-                _audioSource.clip = clip;
-                _audioSource.Play();
-
-                yield return new WaitForSeconds(2f);
-            }
-        }
+         _audioSource.clip = clip;
+         _audioSource.Play();
+         
+        yield return new WaitWhile(() => _audioSource.isPlaying);
+        
     }
     
     private IEnumerator Die()
@@ -150,14 +135,14 @@ public class Enemy : Character
 
         EnemiesKilled++;
         FindAnyObjectByType<UserInterface>().DisplayKills();
-
-        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        
         GetComponent<CircleCollider2D>().enabled = false;
 
+        StartCoroutine(PlaySound(hurtSfx[0]));
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
         //waite while ending shit is happaening
         yield return new WaitWhile(() => _audioSource.isPlaying);
 
-        //Destroy(this.gameObject);
         gameObject.SetActive(false);
     }
 
