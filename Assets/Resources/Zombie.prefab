@@ -164,7 +164,7 @@ MonoBehaviour:
   genericSfx:
   - {fileID: 8300000, guid: ee056f9c494cf534999d574b8f83819d, type: 3}
   hurtSfx:
-  - {fileID: 8300000, guid: b07aa20142e640a418ffda4a75b83a79, type: 3}
+  - {fileID: 8300000, guid: 5e550693a9ba62048858a2f5d7e835fa, type: 3}
   damageSfx: []
 --- !u!82 &7784450968249503440
 AudioSource:
