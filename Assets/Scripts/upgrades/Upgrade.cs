@@ -2,79 +2,70 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Upgrade
 {
-    public string Name;
-    public Sprite Icon;
+    public readonly string Name;
+    public readonly Sprite Icon;
 
-    private const double FirerateUp = 0.05;
+    private const double RateOdFireUp = 0.05;
 
     public static int 
         AmmoUpAmt = 3, 
         SpeedUpAmt = 1, 
         HpUpAmt = 5, 
-        DamageUpAmt = 3;
+        DamageUpAmt = 3,
+        ProjectileSpeedUpAmt = 5,
+        HpRegenUpAmt = 1,
+        LuckUpAmt = 1;
 
-    public Upgrade(string name, Sprite icon)
+    private Upgrade(string name, Sprite icon)
     {
         Name = name;
         Icon = icon;
     }
 
     private const string 
-        Firerateup = "Firerate",
-        Ammoup = "Ammo",
+        RateOfFireUp = "Firerate",
+        AmmoUp = "Ammo",
         Speedup = "SpeedUp",
-        Hpup = "HpUp",
-        Damageup = "DamageUP";
+        HpUp = "HpUp",
+        DamageUp = "DamageUP",
+        ProjectileSpeedUp = "ProjectileSpdUp",
+        HpRegen = "RegenUp",
+        Luck = "LuckUp",
+        MultiShotUp = "MultiShotUp";
 
     private static readonly List<Upgrade> UpgradeList = new()
     {
-        { new(Firerateup,Resources.Load<Sprite>("icons/bullet")) },
-        { new(Ammoup,Resources.Load<Sprite>("icons/Ammo") )},
-        { new(Speedup,Resources.Load<Sprite>("icons/speed") )},
-        { new(Hpup,Resources.Load<Sprite>("icons/hp") )},
-        { new(Damageup,Resources.Load<Sprite>("icons/damage") )}
+        { new Upgrade(RateOfFireUp, Resources.Load<Sprite>("icons/bullet")) },
+        { new Upgrade(AmmoUp, Resources.Load<Sprite>("icons/Ammo")) },
+        { new Upgrade(Speedup, Resources.Load<Sprite>("icons/speed")) },
+        { new Upgrade(HpUp, Resources.Load<Sprite>("icons/hp")) },
+        { new Upgrade(DamageUp, Resources.Load<Sprite>("icons/damage")) },
+        { new Upgrade(ProjectileSpeedUp, Resources.Load<Sprite>("icons/bullet")) },
+        { new Upgrade(HpRegen, Resources.Load<Sprite>("icons/hp") )},
+        { new Upgrade(Luck, Resources.Load<Sprite>("icons/luck"))},
+        { new Upgrade(MultiShotUp, Resources.Load<Sprite>("icons/bullet") )}
     };
-
-    public static void ApplyUpgrade(Player player, Upgrade upgrade)
+    
+    public static readonly Dictionary<string, Action<Player>> UpgradeActions = new()
     {
-        switch (upgrade.Name)
-        {
-            case Firerateup:
-                UpgradeFirerate();
-                break;
-            case Ammoup:
-                UpgradeMaxAmmo();
-                break;
-            case Speedup:
-                UpgradeSpeed();
-                break;
-            case Hpup:
-                UpgradeHp();
-                break;
-            case Damageup:
-                UpgradeDamage();
-                break;
-            default: break;
-
-        }
-
-        void UpgradeFirerate() => player.weaponHandler.fireCooldown -= FirerateUp;
-
-        void UpgradeMaxAmmo() => player.weaponHandler.MagSizeUp(AmmoUpAmt);
-
-        void UpgradeSpeed() => player.speed += SpeedUpAmt;
-
-        void UpgradeDamage() => player.weaponHandler.Damage.IncreaseBounsDamage(DamageUpAmt);
-
-        void UpgradeHp()
-        {
-            player.Hp.IncreaseMax(HpUpAmt);
-            player.Hp.SetCurrentToMax();
-        }
-    }
+        { RateOfFireUp, (player) => player.weaponHandler.fireCooldown -= RateOdFireUp },
+        { AmmoUp, (player) => player.weaponHandler.MagSizeUp(AmmoUpAmt) },
+        { Speedup, (player) => player.speed += SpeedUpAmt },
+        { HpUp, (player) => 
+            {
+                player.Hp.IncreaseMax(HpUpAmt);
+                player.Hp.SetCurrentToMax();
+                UserInterface.UI.UpdateHp(player.Hp.GetCurrent());
+            }
+        },
+        { DamageUp, (player) => player.weaponHandler.Damage.IncreaseBounsDamage(DamageUpAmt) },
+        { ProjectileSpeedUp, (player) => player.weaponHandler.bulletSpeed += ProjectileSpeedUpAmt },
+        { HpRegen, (player) => player.hpRegenAmt += HpRegenUpAmt },
+        { Luck, (player) => player.luck += LuckUpAmt },
+        { MultiShotUp, (player) => player.weaponHandler.Shots += 1 }
+    };
 
     public static Stack<Upgrade> GetUpgrades(int amtToGet)
     {
