@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
 {
     private static Player player;
     public static GameTime Time;
-    public static UnityAction UaPause, UaUnpause;
+    public static UnityAction Pause, Unpause;
 
-    public static bool GameOver = false;
-    public static bool GamePaused = false;
+    [ShowInInspector]
+    public static bool GameOver = false, GamePaused = false;
     public static int Score;
 
     //instance variables
@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
         //create and start the game time
         Time = new GameTime();
         StartCoroutine(Time.Time());
+        
+        GamePaused = false;
+        GameOver = false;
     }
 
     public static void AddToScore(int amt)
@@ -54,24 +57,24 @@ public class GameManager : MonoBehaviour
 
     private void OnPause(InputAction.CallbackContext context)
     {
-        Pause(context.action.name);
+        PauseGame(context.action.name);
     }
 
     /// <summary>
     /// Toggle wether the game is puaseed or not
     /// </summary>
     /// <param name="context">string of menu to activate</param>
-    public void Pause(string context = "")
+    public void PauseGame(string context = "")
     {
         if(!GamePaused)
         {
             GamePaused = true;
-            UaPause.Invoke();
+            Pause.Invoke();
         }
         else
         {
             GamePaused = false;
-            UaUnpause.Invoke();
+            Unpause.Invoke();
         }
         
         Time.ToggleTimeStopped();
@@ -106,14 +109,9 @@ public class GameManager : MonoBehaviour
 
     public void LevelUp(Upgrade option)
     {
-        if(player.LevelUp(option))
-        {
-            UserInterface.UI.imagePanel.AddToUI(option.Icon);
-        }
+        player.LevelUp(option);
         UserInterface.levelUpMenu.SetActive(false);
-
-
-        Pause();
+        PauseGame();
     }
 
     
