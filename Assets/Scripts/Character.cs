@@ -46,7 +46,7 @@ public abstract class Character : MonoBehaviour , IHittable
                 UserInterface.UI.Updatelevel(level.ToString());
 
 
-                gm.Pause("Level");
+                gm.PauseGame("Level");
             }
             UserInterface.UI.xpBar.fillAmount = 0;
         }
