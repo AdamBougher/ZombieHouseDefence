@@ -31,7 +31,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public int bulletSpeed;
 
-    private bool _canFire = true;
+    private bool _canFire = true, hasDisplayed = false;
     private bool HasAmmo
     {
         get
@@ -160,6 +160,13 @@ public class PlayerWeaponHandler : MonoBehaviour
 
         IEnumerator EmptyReload()
         {
+            if (!hasDisplayed)
+            {
+                hasDisplayed = false;
+                UserInterface.UI.Jumbotron("Out of Ammo! Reloading...");
+            }
+            
+            
             PlaySound(empty);
             yield return new WaitWhile(() => _audioSource.isPlaying);
             
