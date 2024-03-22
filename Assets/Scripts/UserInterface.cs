@@ -9,27 +9,20 @@ using UnityEngine.UI;
 public class UserInterface : MonoBehaviour
 {
     [BoxGroup("TextElements")]
-    public TMP_Text ammo, clock, kills,level, hp;
+    public TMP_Text ammo, clock, kills,level, hp, jumbotron;
     [BoxGroup("ObjectElements")]
     public GameObject menu, levelUpMenu, itemUI;
-
     public Image xpBar;
-
     public UpgradeChoice[] levelUpOption;
-
     private readonly List<Image> _uiItemImages = new();
-
     public UIItemDisplay imagePanel;
-
     public static UserInterface UI { get; private set; }
-    
-    
     public delegate void UILoaded();
-
     public static event UILoaded OnLoaded;
-
-
     private int _index;
+
+    private const int JumbotronOnScreenTime = 3;
+    private float _jumbotronFadeAmt = 0.1f;
 
     private void Awake()
     {
@@ -44,8 +37,16 @@ public class UserInterface : MonoBehaviour
         }
 
         OnLoaded?.Invoke();
+
+        StartCoroutine(Tutorial());
     }
 
+    private IEnumerator Tutorial()
+    {
+        Jumbotron("Use W,A,S and D to move around");
+        yield return new WaitForSeconds(6.5f);
+        Jumbotron("Aim with the Mouse!");
+    }
     public void UpdateAmmoDisplays(string str) 
     {
         ammo.SetText(str);
@@ -116,4 +117,31 @@ public class UserInterface : MonoBehaviour
         }
     }
 
+    public void Jumbotron(string text)
+    {
+        var color = jumbotron.color;
+        
+        jumbotron.SetText(text);
+        
+        StartCoroutine(FadeIn());
+        return;
+        
+        IEnumerator FadeIn()
+        {
+            while (jumbotron.alpha < 1)
+            {
+                yield return new WaitForSeconds(0.1f);
+                jumbotron.color = new (color.r,color.g,color.b, color.a += _jumbotronFadeAmt);
+            }
+
+            yield return new WaitForSeconds(JumbotronOnScreenTime);
+
+            while (jumbotron.alpha > 0)
+            {
+                yield return new WaitForSeconds(0.1f);
+                jumbotron.color = new (color.r,color.g,color.b, color.a -= _jumbotronFadeAmt);
+            }
+        }
+    }
+    
 }
