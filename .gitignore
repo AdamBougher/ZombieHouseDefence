@@ -74,3 +74,13 @@ crashlytics-build.properties
 .idea/.idea.ZombieHouseDefence/.idea/vcs.xml
 .idea/.idea.ZombieHouseDefence/.idea/indexLayout.xml
 .idea/.idea.ZombieHouseDefence/.idea/encodings.xml
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/settings.json
+Assets/Plugins/Borodar/RainbowFolders/Editor/Source/RainbowFolders.src.unitypackage.meta
+Assets/Plugins/ConsolePro/Remote/LiteNetLib/LiteNetLib.csproj.meta
+.gitignore
+Assets/Plugins/Sirenix/Demos/Custom Drawers.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Sample - RPG Editor.unitypackage.meta
+.vscode/settings.json
