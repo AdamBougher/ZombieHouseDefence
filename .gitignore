@@ -74,3 +74,8 @@ crashlytics-build.properties
 .idea/.idea.ZombieHouseDefence/.idea/vcs.xml
 .idea/.idea.ZombieHouseDefence/.idea/indexLayout.xml
 .idea/.idea.ZombieHouseDefence/.idea/encodings.xml
+Assets/Plugins/Borodar/RainbowFolders/Editor/Source/RainbowFolders.src.unitypackage.meta
+Assets/Plugins/ConsolePro/Remote/LiteNetLib/LiteNetLib.csproj.meta
+.gitignore
+Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta
+.gitignore
