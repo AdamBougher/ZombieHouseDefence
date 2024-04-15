@@ -102,7 +102,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (HasAmmo && _canFire)
         {
             _canFire = false;
-            StartCoroutine(fireGun());
+            StartCoroutine(FireGun());
 
 
         }
@@ -146,7 +146,7 @@ public class PlayerWeaponHandler : MonoBehaviour
             
         }
 
-        IEnumerator fireGun()
+        IEnumerator FireGun()
         {
             for (var i = 0; i < Shots; i++)
             {

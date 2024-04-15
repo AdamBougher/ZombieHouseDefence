@@ -11,8 +11,9 @@ public class Enemy : Character
     //class variables
     public  static int EnemiesAlive,EnemiesKilled;
     private static int enemyLevel = 1;
-    private static readonly int StartingHp = 1;
-    
+    private const int StartingHp = 1;
+    public  static int XpMod = 0;
+
     public  static Vector2Int HealthRange;
 
     //instance variables
@@ -51,14 +52,8 @@ public class Enemy : Character
         _agent.speed = speed;
 
         _target = _player.transform;
-
-        exp = enemyLevel + (enemyLevel - 1);
+        
         Hp = new(StartingHp, StartingHp);
-
-        HealthRange.x = Hp.GetMax();
-        HealthRange.y = HealthRange.x + 1;
-
-        Hp.SetCurrent(Random.Range(HealthRange.x, HealthRange.y));
     }
 
     private void OnEnable()
@@ -71,6 +66,13 @@ public class Enemy : Character
 
         //play spawn sfx
         StartCoroutine(PlaySound(genericSfx[0]));
+
+        HealthRange.x = Hp.GetMax();
+        HealthRange.y = HealthRange.x + 1;
+        
+        Hp.IncreaseMax(enemyLevel);
+
+        Hp.SetCurrent(Random.Range(HealthRange.x, HealthRange.y));
     }
 
     private void OnDisable()
@@ -146,13 +148,13 @@ public class Enemy : Character
         gameObject.SetActive(false);
     }
 
-    public static void LevelUp()
+    public void LevelUp()
     {
-        SpeedMod += 0.15f;
+        SpeedMod += 0.5f;
         HealthRange.x += 5;
         HealthRange.y += 5;
         enemyLevel++;
-        exp = exp/2 + enemyLevel;
+        exp += 1;
     }
 
     private void OnPaused()

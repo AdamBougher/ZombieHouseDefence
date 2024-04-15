@@ -40,17 +40,19 @@ public class GameTime
 
     private void AddMinute()
     {
-        Enemy.LevelUp();
-        //Player.GetEXP((Player.Level/2) + Player.Level);
+        foreach (var enemy in Object.FindObjectsOfType<Enemy>())
+        {
+            enemy.LevelUp();
+        }
+        
         _minute++;
 
-        if (_minute > 59)
-        {
-            _minute = 0;
-            _hour++;
-            GameManager.AddToScore(_hourWorth);
-            _hourWorth = _hour * 1000;
-        }
+        if (_minute < 60) return;
+        
+        _minute = 0;
+        _hour++;
+        GameManager.AddToScore(_hourWorth);
+        _hourWorth = _hour * 1000;
     }
 
     private string Formatted(int x)
