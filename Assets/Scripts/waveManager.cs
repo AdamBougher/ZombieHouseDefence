@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class WaveManager : MonoBehaviour
 {
-    public int maxEnemys;
+    public int maxEnemies;
     [FormerlySerializedAs("EnemyPrefabs")] public  List<GameObject> enemyPrefabs;
     [FormerlySerializedAs("SpawnPoints")] public Transform[] spawnPoints;
 
@@ -16,13 +16,15 @@ public class WaveManager : MonoBehaviour
     public Vector2 spawnDelay = new(0.5f,2);
 
 
-    void Start()
+    private void Start()
     {
         _enemyPool = GetComponent<EnemyPool>();
 
         Enemy.HealthRange = new Vector2Int(1,2);
 
         StartCoroutine(StartWave());
+        
+        Enemy.OnLevelUp?.AddListener(OnLevelUp);
     }
 
     private IEnumerator StartWave()
@@ -35,7 +37,7 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(spawnDelay.x,spawnDelay.y));
 
             yield return new WaitUntil(() => GameManager.GamePaused == false);
-            yield return new WaitUntil(() => Enemy.EnemiesAlive < maxEnemys);
+            yield return new WaitUntil(() => Enemy.EnemiesAlive < maxEnemies);
             
             //spawn new enemy
             SpawnEnemy();
@@ -43,7 +45,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private Vector3 GetRandomeSpawnPosition() 
+    private Vector3 GetRandomSpawnPosition() 
     {
         Vector3 position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
         position.z = 1;
@@ -56,8 +58,14 @@ public class WaveManager : MonoBehaviour
 
         if (enemy != null)
         {
-            enemy.transform.position = GetRandomeSpawnPosition();;
+            enemy.transform.position = GetRandomSpawnPosition();;
             enemy.gameObject.SetActive(true);
         }
     }
+
+    private void OnLevelUp()
+    {
+        maxEnemies += 8;
+    }
+    
 }

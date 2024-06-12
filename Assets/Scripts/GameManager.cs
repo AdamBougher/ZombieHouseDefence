@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,11 +14,12 @@ public class GameManager : MonoBehaviour
     public static UnityAction Pause, Unpause;
 
     [ShowInInspector]
-    public static bool GameOver = false, GamePaused = false;
+    public static bool GameOver = false, GamePaused = false, CanLevelUp = true;
     public static int Score;
 
     //instance variables
-    private static UserInterface UserInterface => UserInterface.UI;
+    public static UserInterface UserInterface => UserInterface.UI;
+    public UpgradeManager upgradeManager;
     private AudioSource _audioSource;
     public InputActionAsset actions;
 
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene($"Ui", LoadSceneMode.Additive);
 
         //setup refrences
-        player          = FindAnyObjectByType<Player>();
+        player       = FindAnyObjectByType<Player>();
         _audioSource = GetComponent<AudioSource>();
 
         //setup input actions
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
         //create and start the game time
         Time = new GameTime();
         StartCoroutine(Time.Time());
+        
+        upgradeManager = FindObjectOfType<UpgradeManager>();
         
         GamePaused = false;
         GameOver = false;
@@ -55,65 +59,51 @@ public class GameManager : MonoBehaviour
         Score += amt;
     }
 
-    private void OnPause(InputAction.CallbackContext context)
+    private static void OnPause(InputAction.CallbackContext context)
     {
-        PauseGame(context.action.name);
+        PauseGame();
+        if(context.action.name == "Menu")
+        {
+            UserInterface.menu.SetActive(GamePaused);
+        }
     }
 
     /// <summary>
-    /// Toggle wether the game is puaseed or not
+    /// Toggle weather the game is paused or not
     /// </summary>
-    /// <param name="context">string of menu to activate</param>
-    public void PauseGame(string context = "")
+    /// <param upgradeName="context">string of menu to activate</param>
+    /// <param name="context"></param>
+    private static void PauseGame(string context = "")
     {
         if(!GamePaused)
         {
             GamePaused = true;
             Pause.Invoke();
-        }
-        else
-        {
+        }else {
             GamePaused = false;
             Unpause.Invoke();
         }
         
         Time.ToggleTimeStopped();
-        switch (context)
-        {
-            case "Menu": UserInterface.menu.SetActive(GamePaused); break;
-            case "Level": SetupLevelUp(); break;
-            default: break;
-        }
     }
 
-    private void SetupLevelUp()
+    public void SetupLevelUp()
     {
+        PauseGame();
         //play audio cue
         _audioSource.clip = levelUp;
         _audioSource.Play();
-
-        //initlize upgrades
-        Stack<Upgrade> temp = Upgrade.GetUpgrades(3);
-
-        Random.InitState(System.DateTime.Now.Millisecond + (int)System.DateTime.Now.Ticks + 420);
-
-        foreach (UpgradeChoice item in UserInterface.levelUpOption)
-        {
-
-            item.Setup(temp.Pop());
-
-        }
-        //show levelup menu
-        UserInterface.levelUpMenu.SetActive(true);
+        
+        upgradeManager.LevelUpMenuSetup(UserInterface.UI);
+       
     }
 
-    public void LevelUp(Upgrade option)
+    public static void EndLevelUp()
     {
-        player.LevelUp(option);
         UserInterface.levelUpMenu.SetActive(false);
         PauseGame();
+        player.levelingUp = false;
     }
-
     
-
+    
 }

@@ -1,22 +1,19 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class Player : Character
 {
     private const int StartingHp = 10;
 
-    public int hpRegenAmt = 0;
+    public int hpRegenAmt = 0, luck = 0, armor = 0;
+    private bool _interactionCheck = false, _isDead = false;
+    public bool levelingUp = false;
     public float hpRegenCooldown = 3f;
-    public int luck = 0;
-    public int armor = 0;
+    [BoxGroup("experance")]
+    private float ExpPercentage => (float)experance / (float)nextLevel;
         
     private Rigidbody2D _rb;
     
@@ -25,19 +22,21 @@ public class Player : Character
 
     public InputActionAsset actions;
 
-    private readonly Dictionary<Upgrade, int> _upgrades = new(8);
-
     private AudioClip _hurtSfx;
-
-    private AudioSource _audioSource;
-    
-    private bool _interactionCheck = false;
-
-    private bool _isDead = false;
+    private Vector2 _lastInput;
 
     private void OnEnable()
     {
         actions.FindActionMap("Player").Enable();
+        
+        //subscribe pause to the action
+        GameManager.Pause += OnPaused;
+
+        Hp = new CharacterResource(StartingHp, StartingHp);
+        
+        Hp.SetCurrent(Hp.GetMax());
+
+        StartCoroutine(HpRegen());
         
         SceneManager.sceneLoaded += OnSceneLoaded;
         
@@ -49,28 +48,14 @@ public class Player : Character
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
-    private void Start() 
-    {
-        //subscribe pause to the action
-        GameManager.Pause += OnPaused;
-
-        Hp = new CharacterResource(StartingHp, StartingHp);
-        
-        Hp.SetCurrent(Hp.GetMax());
-
-        StartCoroutine(HpRegen());
-
-    }
-
-
+    
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         _rb = GetComponent<Rigidbody2D>();
         weaponHandler = GetComponentInChildren<PlayerWeaponHandler>();
-        _audioSource = GetComponent<AudioSource>();
+        AudioSource = GetComponent<AudioSource>();
         
-        weaponHandler.Initialize(actions, _audioSource);
+        weaponHandler.Initialize(actions, AudioSource);
     }
     
     private void OnUILoad()
@@ -117,15 +102,31 @@ public class Player : Character
     private void OnFacing(InputValue value)
     {
         if(GameManager.GamePaused) return;
-        
+
         var position = value.Get<Vector2>();
-        
-        System.Diagnostics.Debug.Assert(Camera.main != null, "Camera.main != null");
-        var worldPos = Camera.main.ScreenToWorldPoint(position);
-        worldPos.z = 0f;
 
-        var direction = (worldPos - transform.position);
+        switch (position.magnitude)
+        {
+            // Check if the input is likely a mouse position
+            case > 1:
+            {
+                // Convert from screen space to world space
+                var worldPos = Camera.main.ScreenToWorldPoint(position);
+                worldPos.z = 0f;
+                position = (worldPos - transform.position).normalized;
+                break;
+            }
+            case > 0:
+                // If the joystick is being moved, store the input
+                _lastInput = position;
+                break;
+            default:
+                // If the joystick is released, use the last non-zero input
+                position = _lastInput;
+                break;
+        }
 
+        var direction = position;
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -137,10 +138,10 @@ public class Player : Character
         
         base.Damage(amt);
 
-        if (_audioSource.clip != _hurtSfx) _audioSource.clip = _hurtSfx;
+        if (AudioSource.clip != _hurtSfx) AudioSource.clip = _hurtSfx;
         
         
-        _audioSource.Play();
+        AudioSource.Play();
         
         UserInterface.UI.UpdateHp(Hp.GetCurrent());
         
@@ -153,11 +154,11 @@ public class Player : Character
     {
         _isDead = true;
         
-        _audioSource.clip = Resources.Load<AudioClip>("Sound/erl");
+        AudioSource.clip = Resources.Load<AudioClip>("Sound/erl");
         
-        _audioSource.Play();
+        AudioSource.Play();
 
-        while (_audioSource.isPlaying)
+        while (AudioSource.isPlaying)
         {
             yield return null;
         }
@@ -174,30 +175,40 @@ public class Player : Character
     {
         _rb.velocity = new Vector2();
     }
-
-    /// <summary>
-    /// Run Level Up Code
-    /// </summary>
-    /// <param name="option">what attribute to change</param>
-    /// <returns>True is level up option has not ben upgraded before</returns>
-    public void LevelUp(Upgrade option)
-    {
-        //Apply the upgrade by it's name
-        Upgrade.UpgradeActions[option.Name](this);
-
-        if (!_upgrades.TryAdd(option, 1))
-        {
-            _upgrades[option]++;
-        }
-
-
-        UserInterface.UI.imagePanel.AddToUI(option,_upgrades[option]);
-
-    }
     
     public void GetExp(int amt)
     {
-        GainExperance(amt,Hp, FindFirstObjectByType<GameManager>());
+        GainExperance(amt);
+    }
+
+    private void GainExperance(int amt)
+    {
+        experance += amt;
+        UserInterface.UI.xpBar.fillAmount = ExpPercentage;
+        
+        if (experance >= nextLevel)
+        {
+            StartCoroutine(LevelUp());
+        }
+    }
+
+    private IEnumerator LevelUp()
+    {
+        
+        Hp.SetCurrentToMax();
+        while (experance >= nextLevel)
+        {
+            level++;
+            experance -= nextLevel;
+            nextLevel += 3;
+            levelingUp = true;
+            
+            FindFirstObjectByType<GameManager>().SetupLevelUp();
+            
+            yield return new WaitWhile( () => levelingUp);
+        }
+        UserInterface.UI.Updatelevel(level.ToString());
+        UserInterface.UI.xpBar.fillAmount = ExpPercentage;
     }
 
     private IEnumerator HpRegen()

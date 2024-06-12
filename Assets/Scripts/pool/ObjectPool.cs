@@ -20,14 +20,15 @@ public abstract class ObjectPool : MonoBehaviour
             }
             return amount;
         }
+        set => amount = value;
     }
 
-    void Awake()
+    private void Awake()
     {
         SharedInstance = this;
     }
 
-    void Start()
+    private void Start()
     {
         pooledObjects = new List<GameObject>();
         GameObject tmp;
