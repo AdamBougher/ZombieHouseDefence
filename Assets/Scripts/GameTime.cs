@@ -7,12 +7,11 @@ public class GameTime
 {
     private int _hour, _minute = 0, _second = 0;
 
-    private int _secondWorth = 1, _hourWorth = 1000;
-
+    private const int SecondWorth = 1;
+    private int _hourWorth = 1000;
     private bool _isTimeStopped = false;
 
     public delegate void SecondTick();
-
     public static event SecondTick OnSecTick;
 
     public IEnumerator Time()
@@ -25,7 +24,7 @@ public class GameTime
             yield return new WaitUntil(() => _isTimeStopped == false);
 
             _second++;
-            GameManager.AddToScore(_secondWorth);
+            GameManager.AddToScore(SecondWorth);
             OnSecTick?.Invoke();
 
             if (_second > 59)
@@ -40,17 +39,17 @@ public class GameTime
 
     private void AddMinute()
     {
-        Enemy.LevelUp();
-        //Player.GetEXP((Player.Level/2) + Player.Level);
+        Enemy.OnLevelUp?.Invoke();
+       
+        
         _minute++;
 
-        if (_minute > 59)
-        {
-            _minute = 0;
-            _hour++;
-            GameManager.AddToScore(_hourWorth);
-            _hourWorth = _hour * 1000;
-        }
+        if (_minute < 60) return;
+        
+        _minute = 0;
+        _hour++;
+        GameManager.AddToScore(_hourWorth);
+        _hourWorth = _hour * 1000;
     }
 
     private string Formatted(int x)

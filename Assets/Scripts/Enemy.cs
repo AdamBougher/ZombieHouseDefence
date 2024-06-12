@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]   
@@ -10,10 +10,9 @@ public class Enemy : Character
 {
     //class variables
     public  static int EnemiesAlive,EnemiesKilled;
-    private static int enemyLevel = 1;
-    private static readonly int StartingHp = 1;
-    
-    public  static Vector2Int HealthRange;
+    public  static int XpMod = 0;
+
+    public  static Vector2Int HealthRange = new(1, 1);
 
     //instance variables
     [ShowInInspector]
@@ -23,16 +22,17 @@ public class Enemy : Character
 
     [BoxGroup("experance")]
     public  int worth;
-    private static int exp = 1;
+    
     public  AudioClip[] genericSfx;
     public  AudioClip[] hurtSfx;
     public  AudioClip[] damageSfx;
-
+    
     private Player _player;
-    private AudioSource _audioSource;
 
     private float _damageCoolDown = 2.00f;
     private bool _canDamage = true;
+    
+    public static UnityEvent OnLevelUp = new UnityEvent();
 
     private void Awake()
     {
@@ -42,7 +42,7 @@ public class Enemy : Character
 
         //setup linkages
         _player = FindObjectOfType<Player>();
-        _audioSource = GetComponent<AudioSource>();
+        AudioSource = GetComponent<AudioSource>();
         _agent = GetComponent<NavMeshAgent>();
 
         //setup instances varbales
@@ -51,14 +51,10 @@ public class Enemy : Character
         _agent.speed = speed;
 
         _target = _player.transform;
+        
+        Hp = new(1, 1);
+        experance += 1;
 
-        exp = enemyLevel + (enemyLevel - 1);
-        Hp = new(StartingHp, StartingHp);
-
-        HealthRange.x = Hp.GetMax();
-        HealthRange.y = HealthRange.x + 1;
-
-        Hp.SetCurrent(Random.Range(HealthRange.x, HealthRange.y));
     }
 
     private void OnEnable()
@@ -71,12 +67,21 @@ public class Enemy : Character
 
         //play spawn sfx
         StartCoroutine(PlaySound(genericSfx[0]));
+
+        HealthRange.x = Hp.GetMax();
+        HealthRange.y = HealthRange.x + 1;
+
+        Hp.SetCurrent(Random.Range(HealthRange.x, HealthRange.y));
+        
+         OnLevelUp.AddListener(LevelUp);
     }
 
     private void OnDisable()
     {
         //update game stat
         EnemiesAlive--;
+        OnLevelUp.RemoveListener(LevelUp);
+        
     }
 
     private void FixedUpdate()
@@ -118,20 +123,11 @@ public class Enemy : Character
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, angle);
     }
-
-    private IEnumerator PlaySound(AudioClip clip) 
-    {
-         _audioSource.clip = clip;
-         _audioSource.Play();
-         
-        yield return new WaitWhile(() => _audioSource.isPlaying);
-        
-    }
     
     private IEnumerator Die()
     {
         GameManager.Score += worth;
-        _player.GetExp(exp);
+        _player.GetExp(experance);
 
         EnemiesKilled++;
         FindAnyObjectByType<UserInterface>().DisplayKills();
@@ -141,18 +137,20 @@ public class Enemy : Character
         StartCoroutine(PlaySound(hurtSfx[0]));
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         //waite while ending shit is happaening
-        yield return new WaitWhile(() => _audioSource.isPlaying);
+        yield return new WaitWhile(() => AudioSource.isPlaying);
 
         gameObject.SetActive(false);
     }
 
-    public static void LevelUp()
+    private void LevelUp()
     {
-        SpeedMod += 0.15f;
-        HealthRange.x += 5;
-        HealthRange.y += 5;
-        enemyLevel++;
-        exp = exp/2 + enemyLevel;
+        level++;
+        experance += 1;
+        
+        HealthRange.x += 1;
+        HealthRange.y += 1;
+        
+        speedMod += 0.5f;
     }
 
     private void OnPaused()

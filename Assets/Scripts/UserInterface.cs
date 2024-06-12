@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UserInterface : MonoBehaviour
@@ -13,8 +14,8 @@ public class UserInterface : MonoBehaviour
     [BoxGroup("ObjectElements")]
     public GameObject menu, levelUpMenu, itemUI;
     public Image xpBar;
-    public UpgradeChoice[] levelUpOption;
-    private readonly List<Image> _uiItemImages = new();
+    public List<UpgradeChoice> levelUpOption;
+    
     public UIItemDisplay imagePanel;
     public static UserInterface UI { get; private set; }
     public delegate void UILoaded();
@@ -22,7 +23,7 @@ public class UserInterface : MonoBehaviour
     private int _index;
 
     private const int JumbotronOnScreenTime = 3;
-    private float _jumbotronFadeAmt = 0.1f;
+    private const float JumbotronFadeAmt = 0.1f;
 
     private void Awake()
     {
@@ -30,11 +31,6 @@ public class UserInterface : MonoBehaviour
         
         clock.SetText("00:00");
         StartCoroutine(UpdateUI());
-
-        foreach (var img in itemUI.transform.GetComponentsInChildren<Image>())
-        {
-            _uiItemImages.Add(img);
-        }
 
         OnLoaded?.Invoke();
 
@@ -87,13 +83,6 @@ public class UserInterface : MonoBehaviour
         hp.SetText(amt.ToString());
     }
     
-    public void AddItemToUI(Upgrade option)
-    {
-        _uiItemImages[_index].sprite = option.Icon;
-        _index++;
-        
-    }
-
     public void ReturnToMenu()
     {
         StartCoroutine(SceneLoading());
@@ -131,7 +120,7 @@ public class UserInterface : MonoBehaviour
             while (jumbotron.alpha < 1)
             {
                 yield return new WaitForSeconds(0.1f);
-                jumbotron.color = new (color.r,color.g,color.b, color.a += _jumbotronFadeAmt);
+                jumbotron.color = new (color.r,color.g,color.b, color.a += JumbotronFadeAmt);
             }
 
             yield return new WaitForSeconds(JumbotronOnScreenTime);
@@ -139,7 +128,7 @@ public class UserInterface : MonoBehaviour
             while (jumbotron.alpha > 0)
             {
                 yield return new WaitForSeconds(0.1f);
-                jumbotron.color = new (color.r,color.g,color.b, color.a -= _jumbotronFadeAmt);
+                jumbotron.color = new (color.r,color.g,color.b, color.a -= JumbotronFadeAmt);
             }
         }
     }

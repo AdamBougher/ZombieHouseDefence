@@ -5,43 +5,48 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIItemDisplay : MonoBehaviour
 {
-    [ShowInInspector]
-    public Queue<Image> Images = new();
     
-    public Dictionary<string, Tuple<Image,TMP_Text>> Upgrades = new();
-
-    private void Start()
+    [SerializeField] private List<UpgradeUiIcon> icons = new();
+    
+    
+    private IEnumerator Start()
     {
-        foreach(Transform child in transform)
+        // Now all children have initialized
+        icons = new List<UpgradeUiIcon>(GetComponentsInChildren<UpgradeUiIcon>());
+        while (icons == null)
         {
-            if(child.TryGetComponent<Image>(out Image outImg))
-            {
-                Images.Enqueue(outImg);
-            }
+            // Wait for one frame
+            yield return null;
+            // Now all children have initialized
+            icons = new List<UpgradeUiIcon>(GetComponentsInChildren<UpgradeUiIcon>());
         }
-    }
 
+    }
     
-    public void AddToUI(Upgrade upgrade, int amt)
+    public void AddToUI(Upgrade upgrade)
     {
-        //first check to see if item is displayed
-        if (Upgrades.TryGetValue(upgrade.Name, out var tile))
+        var icon = FindUpgradeUiIconByName(upgrade.Name);
+        
+        //initiaial search
+        if (icon.upgradeName != "Empty")
         {
-            tile.Item2.text = amt.ToString();
+            icon.AddOne();
             return;
         }
         
-        
-        //if not then add it to the list
-        var item = Images.Dequeue();
-
-        item.sprite = upgrade.Icon;
-        item.color = Color.white; 
-        
-        Upgrades.Add(upgrade.Name, new(item, item.GetComponentInChildren<TMP_Text>()));
+        icon.SetItem(upgrade);
     }
+
+    private UpgradeUiIcon FindUpgradeUiIconByName(string name)
+    {
+        return icons.Find(icon => icon.upgradeName == name) 
+            ? icons.Find(icon => icon.upgradeName == name) 
+            : icons.Find(icon => icon.upgradeName == "Empty");
+    }
+    
 }

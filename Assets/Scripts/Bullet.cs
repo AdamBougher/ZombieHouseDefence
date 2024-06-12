@@ -13,13 +13,10 @@ public class Bullet : MonoBehaviour
     
     private Vector2 _pausedVelocity;
 
-    private void Awake()
-    {
+    private void OnEnable() {
         _rb = GetComponent<Rigidbody2D>();
         GameManager.Pause += OnPaused;
         GameManager.Unpause += OnResume;
-        
-        //StartCoroutine(Decay());
     }
     
     private void OnDestroy()
@@ -43,17 +40,6 @@ public class Bullet : MonoBehaviour
     {
         _rb.AddForce(direction * speed, ForceMode2D.Impulse);
         _damageAmt = damage;
-    }
-
-    private IEnumerator Decay(float decayRate)
-    {
-        yield return new WaitForSeconds(decayRate);
-        this.gameObject.SetActive(false);
-    }
-
-    private void OnBecameInvisible()
-    {
-        this.gameObject.SetActive(false);
     }
     
 

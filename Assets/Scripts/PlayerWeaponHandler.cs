@@ -32,20 +32,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     public int bulletSpeed;
 
     private bool _canFire = true, hasDisplayed = false;
-    private bool HasAmmo
-    {
-        get
-        {
-            if (ammo.GetCurrentMag() > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
+    private bool HasAmmo => ammo.GetCurrentMag() > 0;
     private bool IsPlaying => _audioSource.isPlaying;
 
     public int Shots = 1;
@@ -88,11 +75,13 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public void OnReload(InputAction.CallbackContext context)
     {
-        if (_isReloading || GameManager.GamePaused) return;
+        // ReSharper disable once InvertIf
+        if (!_isReloading || GameManager.GamePaused)
+        {
+            _isReloading = true;
+            StartCoroutine(Reload());
+        }
         
-        _isReloading = true;
-        StartCoroutine(Reload());
-
     }
 
     private void Primary(Transform spawn)
@@ -102,17 +91,16 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (HasAmmo && _canFire)
         {
             _canFire = false;
-            StartCoroutine(fireGun());
+            StartCoroutine(FireGun());
 
 
-        }
-        else if(!HasAmmo)
-        {
+        }else if(!HasAmmo && !_isReloading){
+            _isReloading = true;
             StartCoroutine(EmptyReload());
         }
 
         return;
-
+        
         void Raycast()
         {
 
@@ -146,13 +134,16 @@ public class PlayerWeaponHandler : MonoBehaviour
             
         }
 
-        IEnumerator fireGun()
+        IEnumerator FireGun()
         {
             for (var i = 0; i < Shots; i++)
             {
+                yield return new WaitWhile(() => GameManager.GamePaused);
                 ammo.Use();
                 Projectile();
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitWhile(() => GameManager.GamePaused);
+                
+                yield return new WaitForSeconds((float)fireCooldown*0.45f);
             }
             
             StartCoroutine(FireCooldown());
@@ -170,7 +161,6 @@ public class PlayerWeaponHandler : MonoBehaviour
             PlaySound(empty);
             yield return new WaitWhile(() => _audioSource.isPlaying);
             
-            _isReloading = true;
             StartCoroutine(Reload());
         }
     }

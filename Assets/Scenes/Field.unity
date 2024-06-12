@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 334197168}
   - component: {fileID: 334197167}
   m_Layer: 0
-  m_Name: NavMehs
+  m_Name: NavMesh+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,7 +513,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 0}
+  m_LocalScale: {x: 1000, y: 1000, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 305286962}
@@ -586,6 +586,50 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &389285137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 389285138}
+  - component: {fileID: 389285139}
+  m_Layer: 0
+  m_Name: upgrade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &389285138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389285137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 562580068}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &389285139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389285137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fdee20b21830942a65b7080aaacbab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &398394879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,7 +1045,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 3.04, y: -0.05, z: -9.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1105,6 +1149,7 @@ Transform:
   - {fileID: 2096175393}
   - {fileID: 620655607}
   - {fileID: 1928969236}
+  - {fileID: 389285138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620655606
@@ -1152,9 +1197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df8209c97b748d4782a6ff6dc621a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemys: 20
+  maxEnemies: 8
   enemyPrefabs:
   - {fileID: 7784450968249503449, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+  - {fileID: 2629392306362158114, guid: 7887add9bf7de7f44aaa3b7297a33142, type: 3}
   spawnPoints:
   - {fileID: 653113580}
   - {fileID: 425463266}
@@ -3621,13 +3667,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  speedMod: 0
   level: 0
   experance: 0
-  nextLevel: 3
+  nextLevel: 9
   hpRegenAmt: 0
-  hpRegenCooldown: 3
   luck: 0
   armor: 0
+  levelingUp: 0
+  hpRegenCooldown: 3
   weaponHandler: {fileID: 0}
   actions: {fileID: -944628639613478452, guid: 9c999a39c8a6d2a43ac3eed12cefe669, type: 3}
 --- !u!4 &1586604183
@@ -3638,8 +3686,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586604177}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7075881, w: 0.7066253}
+  m_LocalPosition: {x: 3.04, y: -0.05, z: 0.16999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3648,7 +3696,7 @@ Transform:
   - {fileID: 398394880}
   - {fileID: 1214447762}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.078}
 --- !u!50 &1586604184
 Rigidbody2D:
   serializedVersion: 4
@@ -3696,7 +3744,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.966846
   MaxDistance: 19.53061
   Pan2D: 0
   rolloffMode: 0
@@ -3798,7 +3846,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 519420031}
@@ -4694,7 +4742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1869250652}
   m_Layer: 0
-  m_Name: EnemtPool
+  m_Name: Enemypool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4838,6 +4886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b446368382cc4a3448db3ee9aded179f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeManager: {fileID: 0}
   actions: {fileID: -944628639613478452, guid: 9c999a39c8a6d2a43ac3eed12cefe669, type: 3}
   levelUp: {fileID: 8300000, guid: 4b8c9612824d95a499a304f784c4b7fb, type: 3}
 --- !u!82 &2096175395
@@ -4944,7 +4993,7 @@ SceneRoots:
   - {fileID: 562580068}
   - {fileID: 1586604183}
   - {fileID: 305286962}
-  - {fileID: 1869250652}
   - {fileID: 466492421}
-  - {fileID: 334197166}
   - {fileID: 1433630080}
+  - {fileID: 1869250652}
+  - {fileID: 334197166}
