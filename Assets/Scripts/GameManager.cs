@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public static UnityAction Pause, Unpause;
 
     [ShowInInspector]
-    public static bool GameOver = false, GamePaused = false, CanLevelUp = true;
+    public static bool GameOver, GamePaused, CanLevelUp = true;
     public static int Score;
 
     //instance variables

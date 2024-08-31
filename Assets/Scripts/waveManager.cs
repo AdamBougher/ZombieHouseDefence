@@ -1,37 +1,34 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour
 {
     public int maxEnemies;
-    [FormerlySerializedAs("EnemyPrefabs")] public  List<GameObject> enemyPrefabs;
-    [FormerlySerializedAs("SpawnPoints")] public Transform[] spawnPoints;
+    public Transform[] spawnPoints;
 
-    private EnemyPool _enemyPool;
-
-
+    public ObjectPool<Enemy> enemyPool;
+    public List<Enemy> bosses = new();
     public Vector2 spawnDelay = new(0.5f,2);
 
 
-    private void Start()
-    {
-        _enemyPool = GetComponent<EnemyPool>();
-
-        Enemy.HealthRange = new Vector2Int(1,2);
-
+    private void Start() {
+        enemyPool = EnemyPool.SharedInstance;
         StartCoroutine(StartWave());
         
-        Enemy.OnLevelUp?.AddListener(OnLevelUp);
+        //GameTime.OnFifthMinuteTick += SpawnBoss;
+        GameTime.OnFifthMinuteTick += SpawnBoss;
+        GameTime.OnMinuetTick += OnLevelUp;
     }
+    
 
-    private IEnumerator StartWave()
-    {
-        
-        while(true)
-        {
+    private IEnumerator StartWave() {
+        while(true) {
             yield return new WaitUntil(() => GameManager.GamePaused == false);
 
             yield return new WaitForSeconds(Random.Range(spawnDelay.x,spawnDelay.y));
@@ -43,27 +40,37 @@ public class WaveManager : MonoBehaviour
             SpawnEnemy();
 
         }
+        // ReSharper disable once IteratorNeverReturns
     }
 
-    private Vector3 GetRandomSpawnPosition() 
-    {
-        Vector3 position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+    private Vector3 GetRandomSpawnPosition() {
+        Vector3 position;
+        do {
+            position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+        } while (Physics2D.OverlapPoint(position, LayerMask.GetMask("nospawn")) is not null);
+
         position.z = 1;
         return position;
     }
 
     private void SpawnEnemy()
     {
-        Enemy enemy = _enemyPool.GetPooledObject().GetComponent<Enemy>();
+        var enemy = enemyPool.GetPooledObject();
 
-        if (enemy != null)
-        {
-            enemy.transform.position = GetRandomSpawnPosition();;
-            enemy.gameObject.SetActive(true);
-        }
+        if (enemy is null) 
+            return;
+        
+        enemy.transform.position = GetRandomSpawnPosition();
+        enemy.gameObject.SetActive(true);
     }
 
-    private void OnLevelUp()
+    private void SpawnBoss(object sender, EventArgs e) {
+        var bossPrefab = bosses[Random.Range(0, bosses.Count)];
+        var boss = Instantiate(bossPrefab, GetRandomSpawnPosition(), Quaternion.identity, transform.root.root);
+        boss.gameObject.SetActive(true);
+    }
+    
+    private void OnLevelUp(object sender, EventArgs e)
     {
         maxEnemies += 8;
     }

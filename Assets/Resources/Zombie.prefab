@@ -115,12 +115,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7784450968249503450}
-  - component: {fileID: 7784450968249503446}
   - component: {fileID: 7784450968249503440}
   - component: {fileID: 3633139708567213004}
   - component: {fileID: 1605299012557922842}
   - component: {fileID: 2886933532567383882}
   - component: {fileID: 3898825691933802089}
+  - component: {fileID: -7430087975684045224}
   m_Layer: 6
   m_Name: Zombie
   m_TagString: Untagged
@@ -144,28 +144,6 @@ Transform:
   - {fileID: 7784450967793199699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &7784450968249503446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7784450968249503449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af1dba811e3af4a409a969154f40ab4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  level: 1
-  experance: 0
-  nextLevel: 0
-  worth: 0
-  genericSfx:
-  - {fileID: 8300000, guid: ee056f9c494cf534999d574b8f83819d, type: 3}
-  hurtSfx:
-  - {fileID: 8300000, guid: 5e550693a9ba62048858a2f5d7e835fa, type: 3}
-  damageSfx: []
 --- !u!82 &7784450968249503440
 AudioSource:
   m_ObjectHideFlags: 0
@@ -381,3 +359,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7430087975684045224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7784450968249503449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9c235d7c20168429ce8786ed536890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  speedMod: 0
+  level: 1
+  worth: 0
+  genericSfx:
+  - {fileID: 8300000, guid: ee056f9c494cf534999d574b8f83819d, type: 3}
+  hurtSfx:
+  - {fileID: 8300000, guid: 5e550693a9ba62048858a2f5d7e835fa, type: 3}
+  damageSfx: []

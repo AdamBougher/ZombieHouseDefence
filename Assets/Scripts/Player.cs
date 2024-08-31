@@ -8,7 +8,9 @@ public class Player : Character
 {
     private const int StartingHp = 10;
 
-    public int hpRegenAmt = 0, luck = 0, armor = 0;
+    public int hpRegenAmt = 0, 
+        luck = 0,
+        armor = 0;
     private bool _interactionCheck = false, _isDead = false;
     public bool levelingUp = false;
     public float hpRegenCooldown = 3f;
@@ -24,7 +26,12 @@ public class Player : Character
 
     private AudioClip _hurtSfx;
     private Vector2 _lastInput;
-
+    
+    private System.Random random = new();
+    
+    [BoxGroup("experance"),SerializeField]
+    protected int experance, nextLevel;
+    
     private void OnEnable()
     {
         actions.FindActionMap("Player").Enable();
@@ -135,11 +142,16 @@ public class Player : Character
     public override void Damage(int amt)
     {
         if (_isDead) return;
+        var randomNumber = random.Next(1, 100);
+        
+        if(randomNumber <= luck)
+        {
+            return;
+        }
         
         base.Damage(amt);
 
         if (AudioSource.clip != _hurtSfx) AudioSource.clip = _hurtSfx;
-        
         
         AudioSource.Play();
         

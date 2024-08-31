@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
@@ -11,15 +8,23 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D _rb;
     private int _damageAmt;
     
-    private Vector2 _pausedVelocity;
+    [SerializeField]
+    private Vector2 velocity;
+    private const int TilemapLayer = 7;
+    private const float lifeSpan = 2f;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     private void OnEnable() {
-        _rb = GetComponent<Rigidbody2D>();
         GameManager.Pause += OnPaused;
         GameManager.Unpause += OnResume;
+        StartCoroutine(Lifespan());
     }
     
-    private void OnDestroy()
+    private void OnDisable()
     {
         GameManager.Pause -= OnPaused;
         GameManager.Unpause -= OnResume;
@@ -27,28 +32,42 @@ public class Bullet : MonoBehaviour
     
     private void OnPaused()
     {
-        _pausedVelocity = _rb.velocity;
+        if (_rb is null) return;
+        
         _rb.velocity = Vector2.zero;
     }
     
+    private IEnumerator ResumeAfterOneFrame()
+    {
+        yield return null; // Wait for one frame
+        if (_rb != null)
+        {
+            _rb.AddForce(velocity, ForceMode2D.Impulse);
+        }
+    }
+
     private void OnResume()
     {
-        _rb.velocity = _pausedVelocity;
+        if (!isActiveAndEnabled) return;
+        
+        StartCoroutine(ResumeAfterOneFrame());
     }
 
     public void StartBullet(Vector2 direction, int speed,int damage)
     {
-        _rb.AddForce(direction * speed, ForceMode2D.Impulse);
+        velocity = direction * speed;
+        
+        _rb.AddForce(velocity, ForceMode2D.Impulse);
         _damageAmt = damage;
     }
     
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) return;
+        if (collision.CompareTag("Player")) return;
         
         // if we hit a tile map
-        if (collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == TilemapLayer)
         {
             gameObject.SetActive(false);
         }
@@ -63,4 +82,11 @@ public class Bullet : MonoBehaviour
         target.Damage(_damageAmt);
         gameObject.SetActive(false);
     }
+    
+    private IEnumerator Lifespan()
+    {
+        yield return new WaitForSeconds(lifeSpan);
+        gameObject.SetActive(false);
+    }
+    
 }

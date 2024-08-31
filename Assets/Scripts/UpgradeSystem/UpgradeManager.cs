@@ -21,15 +21,15 @@ public class UpgradeManager : MonoBehaviour
 
         upgradeList = new List<Upgrade>()
         {
-            new LuckUpgrade(Resources.Load<Sprite>("icons/luck"), 10),
+            new LuckUpgrade(Resources.Load<Sprite>("icons/clover"), 10),
             new DamageUpgrade(Resources.Load<Sprite>("icons/damage"), 10),
             new FirerateUpgrade(Resources.Load<Sprite>("icons/bullet"), 10),
             new HpUpgrade(Resources.Load<Sprite>("icons/hp"), 10),
             new SpeedUpgrade(Resources.Load<Sprite>("icons/speed"), 10),
             new AmmoUpgrade(Resources.Load<Sprite>("icons/ammo"), 10),
             new HpRegenUpgrade(Resources.Load<Sprite>("icons/hp"), 10),
-            new ProjectileSpeedUpgrade(Resources.Load<Sprite>("icons/bullet"), 10),
-            new MultishotUpgrade(Resources.Load<Sprite>("icons/bullet"), 10)
+            new ProjectileSpeedUpgrade(Resources.Load<Sprite>("icons/firerate"), 10),
+            new MultishotUpgrade(Resources.Load<Sprite>("icons/multishot"), 10)
         };
     }
 

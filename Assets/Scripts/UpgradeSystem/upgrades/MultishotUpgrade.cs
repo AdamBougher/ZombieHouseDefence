@@ -11,7 +11,7 @@ public class MultishotUpgrade : Upgrade
 
     public override void ApplyUpgrade(Player player)
     {
-        player.weaponHandler.Shots += 1;
+        player.weaponHandler.shots += 1;
         base.ApplyUpgrade(player);
     }
 }   
