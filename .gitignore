@@ -62,10 +62,6 @@ sysinfo.txt
 *.unitypackage
 *.app
 
-# Unity folders
-Assets/Plugins/*
-/[Aa]ssets/AddressableAssetsData/*
-
 # Crashlytics generated file
 crashlytics-build.properties
 
@@ -75,15 +71,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-.idea/.idea.ZombieHouseDefence/.idea/vcs.xml
-.idea/.idea.ZombieHouseDefence/.idea/indexLayout.xml
-.idea/.idea.ZombieHouseDefence/.idea/encodings.xml
+
+# Custome ignore list 
+.idea/*
 .vscode
-Assets/Plugins/Borodar/RainbowFolders/Editor/Source/RainbowFolders.src.unitypackage.meta
-Assets/Plugins/ConsolePro/Remote/LiteNetLib/LiteNetLib.csproj.meta
+Assets/Plugins/*
 .gitignore
-Assets/Plugins/Sirenix/Demos/Custom Drawers.unitypackage.meta
-Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta
-Assets/Plugins/Sirenix/Demos/Sample - RPG Editor.unitypackage.meta
-.vscode/settings.json
-Assets/Plugins/Borodar/RainbowFolders/Editor/Source/RainbowFolders.src.unitypackage.meta
