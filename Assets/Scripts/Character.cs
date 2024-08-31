@@ -11,14 +11,11 @@ public abstract class Character : MonoBehaviour , IHittable
     public CharacterResource Hp;
     [BoxGroup("Character")]
     public float speed;
-    [FormerlySerializedAs("SpeedMod")] [ShowInInspector, ReadOnly, BoxGroup("Character")]
+    [ShowInInspector, ReadOnly, BoxGroup("Character")]
     public float speedMod = 0;
     [BoxGroup("experance")]
     public int level = 1;
-    [BoxGroup("experance"),SerializeField]
-    protected int experance, nextLevel;
-
-
+    
     protected AudioSource AudioSource;
     
     protected float GetSpeed()

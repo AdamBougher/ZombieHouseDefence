@@ -30,7 +30,6 @@ public class Door : MonoBehaviour, IHittable
             isOpen = true;
             gameObject.transform.Rotate(0,0,-90);
         }
-
         
         _surface2D.UpdateNavMesh(_surface2D.navMeshData);
 
@@ -40,7 +39,8 @@ public class Door : MonoBehaviour, IHittable
     {
         hp -= amt;
         
-        if (hp > 0) return;
+        if (hp > 0) 
+            return;
         
         GetComponent<BoxCollider2D>().enabled = false;
         foreach (var boxCollider2D in gameObject.GetComponents<BoxCollider2D>())
