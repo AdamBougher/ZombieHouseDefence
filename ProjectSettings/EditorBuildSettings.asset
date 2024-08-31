@@ -15,4 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/UI.unity
     guid: a6b114337af2bc64ab2a6ef69245eab6
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 0afdb284134b95a479a18de98462893c, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 91ce1b6990f1a4d4d937f8e65751d488, type: 2}
