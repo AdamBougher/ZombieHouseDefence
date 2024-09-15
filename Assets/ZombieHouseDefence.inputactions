@@ -49,6 +49,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "switchHeld",
+                    "type": "PassThrough",
+                    "id": "bc5230a9-ced8-481c-a06f-a27f714e04bd",
+                    "expectedControlType": "Delta",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwapBuild",
+                    "type": "Button",
+                    "id": "baf96034-90a5-4dfd-b07a-006a1420fb0a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -357,6 +375,72 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "Facing",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "67d456ee-4033-4376-8f1d-544aa3779b74",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "switchHeld",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "249cda0a-1d00-42f3-9ea6-829dcf46e78a",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "Clamp(max=1)",
+                    "groups": "",
+                    "action": "switchHeld",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "cfc74018-d574-4dfb-9678-e4f0e7942541",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "Clamp(min=-1)",
+                    "groups": "",
+                    "action": "switchHeld",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "51784877-df6f-448f-a2b9-902b7e032cef",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapBuild",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "ae7ad652-8a0d-4b32-a937-8954956526be",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapBuild",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "7ed39374-8621-4d0c-9bed-29a660df6d01",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapBuild",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
