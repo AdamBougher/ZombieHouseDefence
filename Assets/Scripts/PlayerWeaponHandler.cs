@@ -6,7 +6,8 @@ using UnityEngine.Serialization;
 
 public class PlayerWeaponHandler : MonoBehaviour
 {
-    [FormerlySerializedAs("BulletSpawnLocations")] public List<Transform> bulletSpawnLocations = new();
+    [FormerlySerializedAs("BulletSpawnLocations")] 
+    public List<Transform> bulletSpawnLocations = new();
 
     private AudioSource _audioSource;
     private static UserInterface Ui => UserInterface.UI;
@@ -19,7 +20,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     [FormerlySerializedAs("Empty")] public AudioClip empty;
     [FormerlySerializedAs("ReloadSFX")] public AudioClip[] reloadSfx;
 
-    private ObjectPool _bulletPool;
+    private ObjectPool<Bullet> _bulletPool;
 
     private bool _isReloading;
 
@@ -36,7 +37,8 @@ public class PlayerWeaponHandler : MonoBehaviour
     private bool IsPlaying => _audioSource.isPlaying;
 
     public int Shots = 1;
-
+    
+    public Player Player => transform.parent.GetComponent<Player>();
     public void Initialize(InputActionAsset actionMap, AudioSource audio)
     {
         _actions = actionMap;
@@ -67,7 +69,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private void OnFire(InputAction.CallbackContext context)
     {
-        if (GameManager.GamePaused || _isReloading) return;
+        if (GameManager.GamePaused || _isReloading || Player.heldItem == 1) return;
         
         Primary(bulletSpawnLocations[0]);
         Ui.UpdateAmmoDisplays(ammo.ToString());
@@ -76,7 +78,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     public void OnReload(InputAction.CallbackContext context)
     {
         // ReSharper disable once InvertIf
-        if (!_isReloading || GameManager.GamePaused)
+        if (!_isReloading || GameManager.GamePaused || Player.heldItem == 0)
         {
             _isReloading = true;
             StartCoroutine(Reload());
