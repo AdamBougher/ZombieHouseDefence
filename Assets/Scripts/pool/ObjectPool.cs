@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public abstract class ObjectPool : MonoBehaviour
+public abstract class ObjectPool<T> : MonoBehaviour
 {
-    public static ObjectPool SharedInstance;
+    public static ObjectPool<T> SharedInstance;
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public Transform poolContainer;
@@ -43,7 +43,7 @@ public abstract class ObjectPool : MonoBehaviour
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < AmountToPool; i++)
+        for (var i = 0; i < AmountToPool; i++)
         {
             if (!pooledObjects[i].activeInHierarchy)
             {
@@ -51,5 +51,10 @@ public abstract class ObjectPool : MonoBehaviour
             }
         }
         return null;
+    }
+    
+    public void ReturnToPool(GameObject obj)
+    {
+        obj.SetActive(false);
     }
 }
