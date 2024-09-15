@@ -1,8 +1,9 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using static UnityEngine.Mathf;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(NavMeshAgent))]   
@@ -119,9 +120,9 @@ public class Enemy : Character
 
     private void FacePlayer()
     {
-        Vector3 direction = (_player.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.eulerAngles = new Vector3(0, 0, angle);
+        var direction = (_player.transform.position - transform.position).normalized;
+        var angle = Atan2(direction.y, direction.x) * Rad2Deg;
+        transform.eulerAngles = new (0, 0, angle);
     }
     
     private IEnumerator Die()
@@ -162,7 +163,7 @@ public class Enemy : Character
     }
     private void OnResume() 
     {
-        if (_agent != null && _agent.isActiveAndEnabled)
+        if (_agent && _agent.isActiveAndEnabled)
             _agent.isStopped = false;
     }
 
