@@ -45,7 +45,7 @@ public class Enemy : Character
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _collider = GetComponent<CircleCollider2D>();
 
-        //setup instances varbales
+        //setup instances variables
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _agent.speed = speed;
