@@ -279,10 +279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39d04d80f555ed49af2ebab147693b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObjects: []
-  objectToPool: {fileID: 6133736812522145756, guid: 306eaa15638f36a44b98a2201ed68c9c, type: 3}
-  poolContainer: {fileID: 1214447762}
+  objectToPool: {fileID: 2955913687065796553, guid: 306eaa15638f36a44b98a2201ed68c9c, type: 3}
   amount: 10
+  pooledObjects: []
 --- !u!114 &229481368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1197,7 +1196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df8209c97b748d4782a6ff6dc621a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemies: 8
+  maxEnemies: 0
   enemyPrefabs:
   - {fileID: 7784450968249503449, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
   - {fileID: 2629392306362158114, guid: 7887add9bf7de7f44aaa3b7297a33142, type: 3}
@@ -1233,10 +1232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c465b96797df0ef47a66dfae5368d42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObjects: []
-  objectToPool: {fileID: 7784450968249503449, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
-  poolContainer: {fileID: 1869250652}
+  objectToPool: {fileID: 7784450968249503446, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
   amount: 200
+  pooledObjects: []
 --- !u!1 &625880701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3674,10 +3672,14 @@ MonoBehaviour:
   hpRegenAmt: 0
   luck: 0
   armor: 0
+  heldItem: 0
   levelingUp: 0
   hpRegenCooldown: 3
   weaponHandler: {fileID: 0}
   actions: {fileID: -944628639613478452, guid: 9c999a39c8a6d2a43ac3eed12cefe669, type: 3}
+  armSprites:
+  - {fileID: -1208414492, guid: cf9e22048a1aec84d8a0c5a4e8a8d0fd, type: 3}
+  - {fileID: 21300000, guid: 661c203273ca3e041a64b137b4b2473e, type: 3}
 --- !u!4 &1586604183
 Transform:
   m_ObjectHideFlags: 0
