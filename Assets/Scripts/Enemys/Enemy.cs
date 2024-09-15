@@ -163,7 +163,7 @@ public class Enemy : Character
         //waite while ending shit is happening
         yield return new WaitWhile(() => AudioSource.isPlaying);
         
-        EnemyPool.SharedInstance.ReturnToPool(this);
+        EnemyPool.SharedInstance.ReturnToPool(this.gameObject);
     }
 
     private void LevelUp(object sender, EventArgs e)
