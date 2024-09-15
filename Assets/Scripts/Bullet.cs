@@ -19,12 +19,6 @@ public class Bullet : MonoBehaviour
         GameManager.Unpause += OnResume;
     }
     
-    private void OnDestroy()
-    {
-        GameManager.Pause -= OnPaused;
-        GameManager.Unpause -= OnResume;
-    }
-    
     private void OnPaused()
     {
         _pausedVelocity = _rb.velocity;
