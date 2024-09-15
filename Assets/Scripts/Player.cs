@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
@@ -8,7 +9,7 @@ public class Player : Character
 {
     private const int StartingHp = 10;
 
-    public int hpRegenAmt = 0, luck = 0, armor = 0;
+    public int hpRegenAmt = 0, luck = 0, armor = 0, heldItem = 0;
     private bool _interactionCheck = false, _isDead = false;
     public bool levelingUp = false;
     public float hpRegenCooldown = 3f;
@@ -24,6 +25,12 @@ public class Player : Character
 
     private AudioClip _hurtSfx;
     private Vector2 _lastInput;
+    
+    public List<Sprite> armSprites = new();
+    private Sprite Arms {
+        get => weaponHandler.GetComponent<SpriteRenderer>().sprite;
+        set => weaponHandler.GetComponent<SpriteRenderer>().sprite = value;
+    }
 
     private void OnEnable()
     {
@@ -70,6 +77,21 @@ public class Player : Character
         {
             _rb.velocity = value.Get<Vector2>() * (GetSpeed());
         }
+    }
+    
+    private void OnScrollWheel(InputValue value) {
+        var dir = value.Get<Vector2>().y;
+        switch (dir) {
+            case > 0:
+                heldItem++;
+                if (heldItem > 1) heldItem = 0;
+                break;
+            case < 0:
+                heldItem--;
+                if (heldItem < 0) heldItem = 1;
+                break;
+        }
+        Arms = armSprites[heldItem];
     }
     
     private void OnInteract(InputValue value)
