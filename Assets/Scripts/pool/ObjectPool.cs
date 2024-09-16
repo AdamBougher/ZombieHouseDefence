@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public abstract class ObjectPool<T> : MonoBehaviour where T : Component
@@ -97,5 +98,10 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : Component
     public void ReturnToPool(T objectToReturn)
     {
         objectToReturn.gameObject.SetActive(false);
+    }
+
+    public void OnSwapBuild(InputValue value) {
+        var input = value.Get<float>();
+        Debug.Log(input);
     }
 }

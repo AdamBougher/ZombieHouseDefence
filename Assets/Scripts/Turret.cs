@@ -36,7 +36,7 @@ public class Turret : MonoBehaviour
     
     private AudioSource AudioSource => GetComponent<AudioSource>();
     
-    private static bulletPool BulletPool => (bulletPool)bulletPool.SharedInstance;
+    private static ObjectPool<Bullet> BulletPool => global::BulletPool.SharedInstance;
     
     public AudioClip fire;
    
