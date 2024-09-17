@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using JetBrains.Annotations;
 using UnityEngine.Serialization;
 public class PlayerWeaponHandler : MonoBehaviour
 {
@@ -38,15 +39,10 @@ public class PlayerWeaponHandler : MonoBehaviour
     private bool IsPlaying => _audioSource.isPlaying;
 
     public int shots = 1;
-    public bool weaponHeld = true;
     
     public Sprite weaponSprite;
     public void Initialize(InputActionAsset actionMap, AudioSource audio)
     {
-        _actions = actionMap;
-        _actions.FindActionMap("Player").Enable();
-        _actions.FindActionMap("Player").FindAction("Fire").performed += OnFire;
-        _actions.FindActionMap("Player").FindAction("Reload").performed += OnReload;
 
         ammo = new Ammo(9,2);
         Damage = new Damage(2);
@@ -69,46 +65,41 @@ public class PlayerWeaponHandler : MonoBehaviour
        ammo.AddToMaxAmmo(amt);
     }
 
-    private void OnFire(InputAction.CallbackContext context)
-    {
-        if (GameManager.GamePaused || _isReloading) return;
+    public void Primary([CanBeNull] Transform spawn = null)
+    {   
+        spawn = bulletSpawnLocations[0];
         
-        Primary(bulletSpawnLocations[0]);
-        Ui.UpdateAmmoDisplays(ammo.ToString());
-    }
-
-    public void OnReload(InputAction.CallbackContext context)
-    {
-        // ReSharper disable once InvertIf
-        if (!_isReloading || GameManager.GamePaused || weaponHeld == false)
-        {
-            _isReloading = true;
-            StartCoroutine(Reload());
-        }
-        {
-            _isReloading = true;
-            StartCoroutine(Reload());
-        }
+        if (_isReloading) return;
         
-    }
-
-    private void Primary(Transform spawn)
-    {
-        if (_isReloading || weaponHeld == false) return;
-
         if (HasAmmo && _canFire)
         {
             _canFire = false;
             Projectile(spawn);
             StartCoroutine(FireCooldown());
+            StartCoroutine(FireCooldown());
         }
         else if (!HasAmmo && !_isReloading)
         {
             _isReloading = true;
-            StartCoroutine(Reload());
+            StartCoroutine(IReload());
         }
+        
+        Ui.UpdateAmmoDisplays(ammo.ToString());
     }
 
+    public void Reload() {
+        // ReSharper disable once InvertIf
+        if (!_isReloading || GameManager.GamePaused)
+        {
+            _isReloading = true;
+            StartCoroutine(IReload());
+        }
+        {
+            _isReloading = true;
+            StartCoroutine(IReload());
+        }
+    }
+    
     private void Raycast(Transform spawn)
     {
         var hit = Physics2D.Raycast(spawn.position, spawn.right);
@@ -134,7 +125,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         bullet.StartBullet(spawn.right, bulletSpeed, Damage.GetDamage());
     }
     
-    private IEnumerator Reload()
+    private IEnumerator IReload()
     {
         ammo.SetReload(true);
 
