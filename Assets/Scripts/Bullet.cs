@@ -1,28 +1,40 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.Tilemaps;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
+    [SerializeField]
     private Rigidbody2D _rb;
     private int _damageAmt;
+    private float bulletLifespan = 3;
     
     private Vector2 _pausedVelocity;
+    
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnBecameInvisible() {
+        if (gameObject.activeSelf) {
+            StartCoroutine(Timer());
+        }
+    }
 
     private void OnEnable() {
-        _rb = GetComponent<Rigidbody2D>();
         GameManager.Pause += OnPaused;
         GameManager.Unpause += OnResume;
     }
     
-    private void OnPaused()
-    {
+    private void OnPaused() {
+        _rb ??= GetComponent<Rigidbody2D>();
+        
         _pausedVelocity = _rb.velocity;
         _rb.velocity = Vector2.zero;
+
     }
     
     private void OnResume()
@@ -55,6 +67,14 @@ public class Bullet : MonoBehaviour
     private void Damage(IHittable target)
     {
         target.Damage(_damageAmt);
+        //if Timer is running stop it
+        StopAllCoroutines();
+        gameObject.SetActive(false);
+    }
+    
+    private IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
     }
 }
