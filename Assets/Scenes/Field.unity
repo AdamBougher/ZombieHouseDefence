@@ -266,7 +266,6 @@ MonoBehaviour:
     usesAmmo: 0
   bulletSpeed: 50
   shots: 1
-  weaponHeld: 1
   weaponSprite: {fileID: -1208414492, guid: cf9e22048a1aec84d8a0c5a4e8a8d0fd, type: 3}
 --- !u!114 &150388730
 MonoBehaviour:
@@ -280,12 +279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09cf71d2f28a9141a47065adacfb993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildModeEnabled: 0
   grid: {fileID: 1765286601}
   Tool: {fileID: 21300000, guid: 661c203273ca3e041a64b137b4b2473e, type: 3}
   fenceTile: {fileID: 11400000, guid: d59a8d4e6c3a18e4bbc4c77773a69be2, type: 2}
   turret: {fileID: 4876079360022708160, guid: 690639234067a5346860acc2d2eac533, type: 3}
-  currentItem: 0
+  buildSound: {fileID: 8300000, guid: 7aad1175681eb134a85261c6e500eb90, type: 3}
   currentPlacement: {fileID: 1992092159}
 --- !u!114 &229481368
 MonoBehaviour:
@@ -3480,10 +3478,11 @@ MonoBehaviour:
   hpRegenAmt: 0
   luck: 0
   armor: 0
-  HeldItems: 0
+  buildMode: 0
   levelingUp: 0
   hpRegenCooldown: 3
   weaponHandler: {fileID: 0}
+  buildingHandler: {fileID: 0}
   actions: {fileID: -944628639613478452, guid: 9c999a39c8a6d2a43ac3eed12cefe669, type: 3}
   experance: 0
   nextLevel: 9
