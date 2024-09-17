@@ -107,7 +107,7 @@ public class Player : Character
             case > 1:
             {
                 // Convert from screen space to world space
-                var worldPos = Camera.main.ScreenToWorldPoint(position);
+                var worldPos = Camera.main!.ScreenToWorldPoint(position);
                 worldPos.z = 0f;
                 position = (worldPos - transform.position).normalized;
                 break;
@@ -163,7 +163,7 @@ public class Player : Character
     }
     
     private void OnSwapBuild(InputValue value) {
-        Debug.Log(value.Get<float>() + "Was pressed");
+        buildingHandler.ChangeItem(value.Get<float>());
     }
     
     private void OnCollisionEnter2D(Collision2D other)
