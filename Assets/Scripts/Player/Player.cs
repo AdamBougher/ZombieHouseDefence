@@ -12,8 +12,9 @@ public class Player : Character
     public int hpRegenAmt = 0,
         luck = 0,
         armor = 0;
-
-    public int HeldItems = 0;
+    [SerializeField]
+    private bool buildMode = false;
+    
     private bool _interactionCheck = false, _isDead = false;
     public bool levelingUp = false;
     public float hpRegenCooldown = 3f;
@@ -24,6 +25,7 @@ public class Player : Character
     
     [HideInInspector]
     public PlayerWeaponHandler weaponHandler;
+    public playerBuilding buildingHandler;
 
     public InputActionAsset actions;
 
@@ -66,6 +68,7 @@ public class Player : Character
     {
         _rb = GetComponent<Rigidbody2D>();
         weaponHandler = GetComponentInChildren<PlayerWeaponHandler>();
+        buildingHandler = GetComponentInChildren<playerBuilding>();
         AudioSource = GetComponent<AudioSource>();
         
         weaponHandler.Initialize(actions, AudioSource);
@@ -92,57 +95,6 @@ public class Player : Character
         _interactionCheck = true;
     }
     
-    private void OnSwitchHeld(InputValue value)
-    {
-        var dir = value.Get<float>();
-        switch (dir) {
-            case > 0: 
-                HeldItems++;
-                if (HeldItems > 1) {
-                    HeldItems = 0;
-                }
-                
-                break;
-            case < 0: 
-                HeldItems--;
-                if (HeldItems < 0) {
-                    HeldItems = 1;
-                }
-                break;
-        }
-
-        switch (HeldItems) {
-            case 1 : 
-                GetComponentInChildren<playerBuilding>().SetArms();
-                break;
-            case 0 : weaponHandler.SetArms();
-                break;
-        }
-        
-        weaponHandler.weaponHeld = HeldItems == 0;
-        GetComponentInChildren<playerBuilding>().buildModeEnabled = !GetComponentInChildren<playerBuilding>().buildModeEnabled;
-    }
-    
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.TryGetComponent<Enemy>(out var enemy))
-        {
-            Damage(1);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (!_interactionCheck) return;
-        
-        
-        if (other.TryGetComponent<Door>(out var door))
-        {
-            door.Enter();
-        }
-        _interactionCheck = false;
-    }
-
     private void OnFacing(InputValue value)
     {
         if(GameManager.GamePaused) return;
@@ -174,6 +126,64 @@ public class Player : Character
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    private void OnFire(InputValue value)
+    {
+        if (GameManager.GamePaused) return;
+        switch (buildMode) {
+            case false : weaponHandler.Primary();
+                break;
+            case true : buildingHandler.Place();
+                break;
+        }
+    }
+    
+    public void OnReload(InputValue value)
+    {
+        weaponHandler.Reload();
+        
+    }
+    
+    private void OnSwitchHeld(InputValue value)
+    {
+        var dir = value.Get<float>();
+        buildMode = !buildMode;
+
+        switch (buildMode) {
+            case true : 
+                buildingHandler.SetArms();
+                buildingHandler.currentPlacement.gameObject.SetActive(true);
+                break;
+            case false : 
+                weaponHandler.SetArms();
+                buildingHandler.currentPlacement.gameObject.SetActive(false);
+                break;
+        }
+    }
+    
+    private void OnSwapBuild(InputValue value) {
+        Debug.Log(value.Get<float>() + "Was pressed");
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.TryGetComponent<Enemy>(out var enemy))
+        {
+            Damage(1);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!_interactionCheck) return;
+        
+        
+        if (other.TryGetComponent<Door>(out var door))
+        {
+            door.Enter();
+        }
+        _interactionCheck = false;
     }
     
     public override void Damage(int amt)
