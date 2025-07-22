@@ -17,7 +17,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        _player = FindObjectOfType<Player>();
+        _player = FindFirstObjectByType<Player>();
 
         upgradeList = new List<Upgrade>()
         {

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c9b21267e5120654d8f214727fea0225
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 60072b568d64c40a485e0fc55012dc9f, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/ShaderGraphs/Cond_SimpleNoise.shadersubgraph
+  uploadId: 634015

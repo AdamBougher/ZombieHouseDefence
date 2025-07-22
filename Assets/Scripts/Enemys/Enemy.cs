@@ -39,7 +39,7 @@ public class Enemy : Character
         GameManager.Unpause += OnResume;
 
         //setup linkages
-        _player = FindObjectOfType<Player>();
+        _player = FindFirstObjectByType<Player>();
         AudioSource = GetComponent<AudioSource>();
         _agent = GetComponent<NavMeshAgent>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -48,7 +48,7 @@ public class Enemy : Character
         //setup instances variables
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-        _agent.speed = speed;
+        _agent.speed = GetSpeed();
 
         _target = _player.transform;
         
@@ -75,9 +75,8 @@ public class Enemy : Character
     }
     protected virtual void OnDisable()
     {
-        //update game stat
-        EnemiesAlive--;
-        
+        GameManager.Pause -= OnPaused;
+        GameManager.Unpause -= OnResume;
     }
 
     private void Update() {
@@ -115,10 +114,10 @@ public class Enemy : Character
     
     private void OnPaused()
     {
-        //make sure agent is alive and active
-        if(_agent is not null && _agent.isActiveAndEnabled)
-            _agent.isStopped = true;
-  
+        // Ensure the Enemy object and NavMeshAgent are valid before accessing
+        if (this == null || _agent == null || !_agent.isActiveAndEnabled) return;
+
+        _agent.isStopped = true;
     }
     private void OnResume() 
     {

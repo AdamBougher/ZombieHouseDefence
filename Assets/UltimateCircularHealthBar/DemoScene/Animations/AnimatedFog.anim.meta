@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f10caf4259c3a3341903d58a4a2f0181
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/DemoScene/Animations/AnimatedFog.anim
+  uploadId: 634015

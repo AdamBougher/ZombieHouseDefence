@@ -14,4 +14,4 @@ public class MultishotUpgrade : Upgrade
         player.weaponHandler.shots += 1;
         base.ApplyUpgrade(player);
     }
-}   
+}

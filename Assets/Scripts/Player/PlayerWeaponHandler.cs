@@ -1,162 +1,140 @@
-using System.Collections.Generic;
-using System;
-using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Collections;
-using JetBrains.Annotations;
-using UnityEngine.Serialization;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(AudioSource))]
 public class PlayerWeaponHandler : MonoBehaviour
 {
-    private Player Player => this.transform.parent.GetComponent<Player>();
+    [Header("References")]
+    [SerializeField] private List<Transform> bulletSpawnLocations = new();
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Sprite weaponSprite;
 
-    public List<Transform> bulletSpawnLocations = new();
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip fireClip;
+    [SerializeField] private AudioClip emptyClip;
+    [SerializeField] private AudioClip[] reloadClips;
 
-    private AudioSource _audioSource;
-    private static UserInterface Ui => UserInterface.UI;
-    private InputActionAsset _actions;
+    [Header("Stats")]
+    [SerializeField] public int magazineSize       = 9;
+    [SerializeField] public int spareMagazines     = 2;
+    [SerializeField] public int bulletSpeed        = 15;
+    [SerializeField] public float fireCooldownTime = 0.5f;
+    [SerializeField] private int damageAmount       = 2;
 
-    [FormerlySerializedAs("BulletTrail")] public GameObject bulletTrail;
-    public GameObject bulletPrefab;
-    
-    [FormerlySerializedAs("Fire")] public AudioClip fire;
-    [FormerlySerializedAs("Empty")] public AudioClip empty;
-    [FormerlySerializedAs("ReloadSFX")] public AudioClip[] reloadSfx;
+    [Header("Upgrades")]
+    [Tooltip("How many bullets to fire per trigger pull")]
+    [SerializeField] public int shots = 1;
 
-    private ObjectPool<Bullet> _bulletPool;
+    private Ammo                ammo;
+    public  Damage              damage;
+    private AudioSource         audioSrc;
+    private ObjectPool<Bullet>  bulletPool;
+    private bool                isReloading;
+    private bool                canFire = true;
 
-    private bool _isReloading;
+    private UserInterface Ui => UserInterface.UI;
 
-    public double fireCooldown;
-
-    public Ammo ammo;
-
-    public Damage Damage;
-
-    public int bulletSpeed;
-
-    private bool _canFire = true;
-    private bool HasAmmo => ammo.GetCurrentMag() > 0;
-    private bool IsPlaying => _audioSource.isPlaying;
-
-    public int shots = 1;
-    
-    public Sprite weaponSprite;
-    public void Initialize(InputActionAsset actionMap, AudioSource audio)
+    private void Awake()
     {
+        // this will never return null now
+        audioSrc    = GetComponent<AudioSource>();
 
-        ammo = new Ammo(9,2);
-        Damage = new Damage(2);
-
-        _bulletPool = ObjectPool<Bullet>.SharedInstance;
-
-        UserInterface.OnLoaded += OnUILoad;
-
-        _audioSource = audio;
-
+        ammo        = new Ammo(magazineSize, spareMagazines);
+        damage      = new Damage(damageAmount);
+        bulletPool  = ObjectPool<Bullet>.SharedInstance;
     }
 
-    private void OnUILoad()
+    /// <summary>
+    /// Called by input system to fire primary weapon.
+    /// </summary>
+    public void Primary()
     {
-        UserInterface.UI.UpdateAmmoDisplays(ammo.GetCurrentMag().ToString());
-    }
+        if (isReloading) return;
 
-    public void MagSizeUp(int amt)
-    {
-       ammo.AddToMaxAmmo(amt);
-    }
-
-    public void Primary([CanBeNull] Transform spawn = null)
-    {   
-        spawn = bulletSpawnLocations[0];
-        
-        if (_isReloading) return;
-        
-        if (HasAmmo && _canFire)
+        if (ammo.GetCurrentMag() > 0 && canFire)
         {
-            _canFire = false;
-            Projectile(spawn);
-            StartCoroutine(FireCooldown());
-            StartCoroutine(FireCooldown());
+            Fire();
         }
-        else if (!HasAmmo && !_isReloading)
+        else if (ammo.GetCurrentMag() == 0)
         {
-            _isReloading = true;
-            StartCoroutine(IReload());
+            StartReload();
         }
-        
+    }
+
+    private void Fire()
+    {
+        canFire = false;
+        PlaySound(fireClip);
+
+        // fire `shots` bullets
+        for (int i = 0; i < shots; i++)
+        {
+            // pick a spawn point or default to [0]
+            var spawn = bulletSpawnLocations.Count > 1
+                ? bulletSpawnLocations[i % bulletSpawnLocations.Count]
+                : bulletSpawnLocations[0];
+
+            if (bulletPool.GetPooledObject().TryGetComponent<Bullet>(out var b))
+            {
+                // optional simple spread:
+                float spreadAngle = (i - (shots-1) * 0.5f) * 5f;
+                b.transform.SetPositionAndRotation(
+                    spawn.position,
+                    spawn.rotation * Quaternion.Euler(0,0, spreadAngle)
+                );
+
+                b.gameObject.SetActive(true);
+                b.StartBullet(b.transform.right, bulletSpeed, damage.GetDamage());
+            }
+        }
+
+        // consume one bullet per shot?
+        for (int i = 0; i < shots; i++)
+            ammo.Use();
+
         Ui.UpdateAmmoDisplays(ammo.ToString());
-    }
-
-    public void Reload() {
-        // ReSharper disable once InvertIf
-        if (!_isReloading || GameManager.GamePaused)
-        {
-            _isReloading = true;
-            StartCoroutine(IReload());
-        }
-        {
-            _isReloading = true;
-            StartCoroutine(IReload());
-        }
-    }
-    
-    private void Raycast(Transform spawn)
-    {
-        var hit = Physics2D.Raycast(spawn.position, spawn.right);
-
-        if (hit.collider == null)
-        {
-            hit.point = spawn.position + (transform.right * 10);
-        }
-
         StartCoroutine(FireCooldown());
     }
 
-    private void Projectile(Transform spawn)
+    private IEnumerator FireCooldown()
     {
-        _audioSource.PlaySound(fire);
+        yield return new WaitForSeconds(fireCooldownTime);
+        yield return new WaitWhile(() => GameManager.GamePaused);
+        canFire = true;
+    }
 
-        if (_bulletPool.GetPooledObject().TryGetComponent<Bullet>(out var bullet))
+    public void StartReload()
+    {
+        if (isReloading || ammo.GetTotalAmmo() == 0) return;
+        StartCoroutine(ReloadRoutine());
+    }
+
+    private IEnumerator ReloadRoutine()
+    {
+        isReloading = true;
+
+        // play each reload clip in sequence, respecting pause
+        foreach (var clip in reloadClips)
         {
-            bullet.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
-            bullet.gameObject.SetActive(true);
+            PlaySound(clip);
+            yield return new WaitForSeconds(clip.length);
+            yield return new WaitWhile(() => GameManager.GamePaused);
         }
 
-        bullet.StartBullet(spawn.right, bulletSpeed, Damage.GetDamage());
-    }
-    
-    private IEnumerator IReload()
-    {
-        ammo.SetReload(true);
-
-        yield return PlaySoundAndWait(reloadSfx[0]);
-        yield return PlaySoundAndWait(reloadSfx[1]);
-
-        _isReloading = false;
-        
         ammo.Reload();
-
         Ui.UpdateAmmoDisplays(ammo.ToString());
+        isReloading = false;
     }
 
-    private IEnumerator PlaySoundAndWait(AudioClip clip)
+    private void PlaySound(AudioClip clip)
     {
-        _audioSource.PlaySound(clip);
-        yield return new WaitForSeconds(clip.length);
-        
-        while (GameManager.GamePaused)
-        {
-            yield return null;
-        }
+        if (audioSrc != null && clip != null)
+            audioSrc.PlayOneShot(clip);
     }
-    
-    private IEnumerator FireCooldown() 
+
+    public void SetArms()
     {
-        yield return new WaitForSeconds((float)fireCooldown);
-        _canFire = true;
-    }
-    
-    public void SetArms() {
         GetComponent<SpriteRenderer>().sprite = weaponSprite;
     }
 }

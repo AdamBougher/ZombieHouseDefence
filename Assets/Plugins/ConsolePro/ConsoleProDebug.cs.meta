@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11889
+  packageName: Editor Console Pro
+  packageVersion: 3.977
+  assetPath: Assets/Plugins/ConsolePro/ConsoleProDebug.cs
+  uploadId: 708146

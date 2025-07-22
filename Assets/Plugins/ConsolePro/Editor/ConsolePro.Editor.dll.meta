@@ -27,4 +27,11 @@ PluginImporter:
         CPU: AnyCPU
   userData: 
   assetBundleName: 
-  assetBundleVariant:
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11889
+  packageName: Editor Console Pro
+  packageVersion: 3.977
+  assetPath: Assets/Plugins/ConsolePro/Editor/ConsolePro.Editor.dll
+  uploadId: 708146

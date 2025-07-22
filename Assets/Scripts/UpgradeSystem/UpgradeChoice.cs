@@ -11,7 +11,7 @@ public class UpgradeChoice : MonoBehaviour
     public Image iconImage;
     public TMP_Text textComponent;
     public Button buttonComponent;
-    private static GameManager  Gm => FindObjectOfType<GameManager>();
+    private static GameManager  Gm => FindFirstObjectByType<GameManager>();
     
     [RuntimeInitializeOnLoadMethod]
     private void Awake()

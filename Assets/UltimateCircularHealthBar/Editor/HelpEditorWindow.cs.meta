@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4a04758f8f974994ea383e06810c8f26
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/Editor/HelpEditorWindow.cs
+  uploadId: 634015

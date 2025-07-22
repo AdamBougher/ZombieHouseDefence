@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2edbce31a095cfd438f2ea3c052fd2b5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/DemoScene/Scripts/DemoHealthController.cs
+  uploadId: 634015

@@ -31,3 +31,10 @@ PluginImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143526
+  packageName: Rainbow Folders 2
+  packageVersion: 2.4.1
+  assetPath: Assets/Plugins/Borodar/RainbowFolders/Editor/Assemblies/RainbowFolders.dll
+  uploadId: 600109

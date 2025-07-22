@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private Rigidbody2D _rb;
     private int _damageAmt;
-    private float bulletLifespan = 3;
+    //private float bulletLifespan = 3;
     
     private Vector2 _pausedVelocity;
     
@@ -30,16 +30,16 @@ public class Bullet : MonoBehaviour
     }
     
     private void OnPaused() {
-        _rb ??= GetComponent<Rigidbody2D>();
+        if (!this.isActiveAndEnabled) return;
         
-        _pausedVelocity = _rb.velocity;
-        _rb.velocity = Vector2.zero;
+        _pausedVelocity = _rb.linearVelocity;
+        _rb.linearVelocity = Vector2.zero;
 
     }
     
     private void OnResume()
     {
-        _rb.velocity = _pausedVelocity;
+        _rb.linearVelocity = _pausedVelocity;
     }
 
     public void StartBullet(Vector2 direction, int speed,int damage)
@@ -48,7 +48,6 @@ public class Bullet : MonoBehaviour
         _damageAmt = damage;
     }
     
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) return;
@@ -76,5 +75,13 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe so destroyed/inactive bullets don't receive pause/unpause
+        GameManager.Pause   -= OnPaused;
+        GameManager.Unpause -= OnResume;
+        StopAllCoroutines();
     }
 }

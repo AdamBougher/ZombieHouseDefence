@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 879442357e366434199abf2a870837a0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/DemoScene/Animations/RadialSegmentedHealthbarSprite.controller
+  uploadId: 634015

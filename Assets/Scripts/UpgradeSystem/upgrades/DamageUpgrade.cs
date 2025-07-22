@@ -17,6 +17,6 @@ public class DamageUpgrade : Upgrade
 
     public override void ApplyUpgrade(Player player)
     {
-        player.weaponHandler.Damage.IncreaseBounsDamage(DamageUpAmt);
+        player.weaponHandler.damage.IncreaseBounsDamage(DamageUpAmt);
     }
 }

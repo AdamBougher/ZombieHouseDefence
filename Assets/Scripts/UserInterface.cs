@@ -1,66 +1,57 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UserInterface : MonoBehaviour
 {
     [BoxGroup("TextElements")]
-    public TMP_Text ammo, clock, kills,level, hp, jumbotron;
+    public TMP_Text ammo, clock, kills, level, hp, jumbotron;
     [BoxGroup("ObjectElements")]
     public GameObject menu, levelUpMenu, itemUI;
     public Image xpBar;
     public List<UpgradeChoice> levelUpOption;
-    
     public UIItemDisplay imagePanel;
-    public static UserInterface UI { get; private set; }
-    public delegate void UILoaded();
-    public static event UILoaded OnLoaded;
-    private int _index;
 
-    private const int JumbotronOnScreenTime = 3;
-    private const float JumbotronFadeAmt = 0.1f;
+    public static UserInterface UI { get; private set; }
+    public static event Action OnLoaded;
+
+    private const int   JumbotronOnScreenTime = 3;
+    private const float JumbotronFadeSpeed    = 2f; // alpha units per second
+    private const float ClockUpdateInterval   = 0.5f;
 
     private void Awake()
     {
         UI = this;
-        
         clock.SetText("00:00");
-        StartCoroutine(UpdateUI());
-
+        StartCoroutine(UpdateClockLoop());
         OnLoaded?.Invoke();
-
-        StartCoroutine(Tutorial());
+        StartCoroutine(TutorialRoutine());
     }
 
-    private IEnumerator Tutorial()
+    private IEnumerator TutorialRoutine()
     {
-        Jumbotron("Use W,A,S and D to move around");
+        ShowJumbotron("Use W,A,S and D to move around");
         yield return new WaitForSeconds(6.5f);
-        Jumbotron("Aim with the Mouse!");
-    }
-    public void UpdateAmmoDisplays(string str) 
-    {
-        ammo.SetText(str);
+        ShowJumbotron("Aim with the Mouse!");
     }
 
-    private void UpdateClock(string time)
-    {
-        clock.SetText(time);
-    }
-
-    private IEnumerator UpdateUI()
+    private IEnumerator UpdateClockLoop()
     {
         while (!GameManager.GameOver)
         {
-            yield return new WaitForSeconds(0.5f);
-            UpdateClock(GameManager.Time.ToString());
+            yield return new WaitForSeconds(ClockUpdateInterval);
+            clock.SetText(GameManager.Time.ToString());
         }
+    }
 
+    public void UpdateAmmoDisplays(string str)
+    {
+        ammo.SetText(str);
     }
 
     public void UpdateXpBar(float xpAmt)
@@ -73,64 +64,56 @@ public class UserInterface : MonoBehaviour
         kills.SetText(Enemy.EnemiesKilled.ToString());
     }
 
-    public void Updatelevel(string lvl)
+    public void UpdateLevel(string lvl)
     {
-        level.SetText("Lvl: "+ lvl);
+        level.SetText($"Lvl: {lvl}");
     }
 
     public void UpdateHp(int amt)
     {
         hp.SetText(amt.ToString());
     }
-    
+
     public void ReturnToMenu()
     {
-        StartCoroutine(SceneLoading());
-        return;
-
-        IEnumerator SceneLoading()
-        {
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainMenu");
-        
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
-
-            AsyncOperation asyncUnLoad = SceneManager.UnloadSceneAsync("MainMenu");
-
-            while (!asyncUnLoad.isDone)
-            {
-                yield return null;
-            }
-        }
+        StartCoroutine(SceneLoadingRoutine());
     }
 
-    public void Jumbotron(string text)
+    private IEnumerator SceneLoadingRoutine()
     {
-        var color = jumbotron.color;
-        
+        var loadOp = SceneManager.LoadSceneAsync("MainMenu");
+        yield return new WaitUntil(() => loadOp.isDone);
+
+        var unloadOp = SceneManager.UnloadSceneAsync("MainMenu");
+        yield return new WaitUntil(() => unloadOp.isDone);
+    }
+
+    public void ShowJumbotron(string text)
+    {
+        StartCoroutine(JumbotronRoutine(text));
+    }
+
+    private IEnumerator JumbotronRoutine(string text)
+    {
         jumbotron.SetText(text);
-        
-        StartCoroutine(FadeIn());
-        return;
-        
-        IEnumerator FadeIn()
+        var col = jumbotron.color;
+
+        // Fade in
+        while (jumbotron.color.a < 1f)
         {
-            while (jumbotron.alpha < 1)
-            {
-                yield return new WaitForSeconds(0.1f);
-                jumbotron.color = new (color.r,color.g,color.b, color.a += JumbotronFadeAmt);
-            }
+            col.a = Mathf.Min(1f, col.a + JumbotronFadeSpeed * Time.deltaTime);
+            jumbotron.color = col;
+            yield return null;
+        }
 
-            yield return new WaitForSeconds(JumbotronOnScreenTime);
+        yield return new WaitForSeconds(JumbotronOnScreenTime);
 
-            while (jumbotron.alpha > 0)
-            {
-                yield return new WaitForSeconds(0.1f);
-                jumbotron.color = new (color.r,color.g,color.b, color.a -= JumbotronFadeAmt);
-            }
+        // Fade out
+        while (jumbotron.color.a > 0f)
+        {
+            col.a = Mathf.Max(0f, col.a - JumbotronFadeSpeed * Time.deltaTime);
+            jumbotron.color = col;
+            yield return null;
         }
     }
-    
 }

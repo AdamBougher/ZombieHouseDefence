@@ -19,13 +19,13 @@ public class Player : Character
     public bool levelingUp = false;
     public float hpRegenCooldown = 3f;
     [BoxGroup("experance")]
-    private float ExpPercentage => (float)experance / (float)nextLevel;
+    private float ExpPercentage => experance / (float)nextLevel;
         
     private Rigidbody2D _rb;
     
     [HideInInspector]
     public PlayerWeaponHandler weaponHandler;
-    public playerBuilding buildingHandler;
+    public PlayerBuilding buildingHandler;
 
     public InputActionAsset actions;
 
@@ -68,10 +68,8 @@ public class Player : Character
     {
         _rb = GetComponent<Rigidbody2D>();
         weaponHandler = GetComponentInChildren<PlayerWeaponHandler>();
-        buildingHandler = GetComponentInChildren<playerBuilding>();
+        buildingHandler = GetComponentInChildren<PlayerBuilding>();
         AudioSource = GetComponent<AudioSource>();
-        
-        weaponHandler.Initialize(actions, AudioSource);
     }
     
     private void OnUILoad()
@@ -84,7 +82,7 @@ public class Player : Character
         //if game is not paused or over
         if (!GameManager.GamePaused && !GameManager.GameOver && !_isDead)
         {
-            _rb.velocity = value.Get<Vector2>() * (GetSpeed());
+            _rb.linearVelocity = value.Get<Vector2>() * (GetSpeed());
         }
     }
     
@@ -141,8 +139,10 @@ public class Player : Character
     
     public void OnReload(InputValue value)
     {
-        weaponHandler.Reload();
-        
+        // don’t reload while in build mode
+        if (buildMode) return;
+    
+        weaponHandler.StartReload();
     }
     
     private void OnSwitchHeld(InputValue value)
@@ -152,7 +152,7 @@ public class Player : Character
 
         switch (buildMode) {
             case true : 
-                buildingHandler.SetArms();
+                buildingHandler.SetToolSprite();
                 buildingHandler.currentPlacement.gameObject.SetActive(true);
                 break;
             case false : 
@@ -232,9 +232,12 @@ public class Player : Character
 
     private void OnPaused()
     {
-        _rb.velocity = new Vector2();
+        // Ensure the Player object and Rigidbody2D are valid before accessing
+        if (this == null || _rb == null) return;
+
+        _rb.linearVelocity = Vector2.zero;
     }
-    
+
     public void GetExp(int amt)
     {
         GainExperance(amt);
@@ -266,10 +269,9 @@ public class Player : Character
             
             yield return new WaitWhile( () => levelingUp);
         }
-        UserInterface.UI.Updatelevel(level.ToString());
+        UserInterface.UI.UpdateLevel(level.ToString());
         UserInterface.UI.xpBar.fillAmount = ExpPercentage;
     }
-
     private IEnumerator HpRegen()
     {
         while(true)

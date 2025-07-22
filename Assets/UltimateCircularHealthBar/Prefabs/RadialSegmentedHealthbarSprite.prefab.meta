@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 41dd36208627fdc4095d4e1097d98437
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/Prefabs/RadialSegmentedHealthbarSprite.prefab
+  uploadId: 634015

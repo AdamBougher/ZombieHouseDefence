@@ -1,5 +1,5 @@
 {
-    "name": "TestPad",
+    "name": "GenericPadInput",
     "maps": [
         {
             "name": "default",
@@ -11,7 +11,8 @@
                     "id": "32d17852-f87b-4271-b662-24543b1a6c31",
                     "expectedControlType": "Stick",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "RightStick",
@@ -19,7 +20,8 @@
                     "id": "0e609f63-5590-4e65-a8fe-88f4d445998e",
                     "expectedControlType": "Stick",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Submit",
@@ -27,7 +29,8 @@
                     "id": "6b223b2b-9657-486e-b5c6-90d4b50a177f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Cancel",
@@ -35,7 +38,8 @@
                     "id": "3aa084b3-45c1-4c47-ad40-5df94eecc530",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

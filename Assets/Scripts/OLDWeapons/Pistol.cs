@@ -22,7 +22,7 @@ public class Pistol : Gun
                 hit.point = spawn + (transform.right*10);
             }
 
-            var trail = GameObject.Instantiate(bulletTrail,spawn,transform.rotation);
+            var trail = GameObject.Instantiate(bulletTrailPrefab,spawn,transform.rotation);
             transform.gameObject.GetComponent<PlayerWeaponHandler>().StartCoroutine(SpawnBullet(trail.GetComponent<TrailRenderer>(),hit,damagemod));
 
         }else{
@@ -33,15 +33,13 @@ public class Pistol : Gun
 
     public override IEnumerator Reload()
     {
-        ammo.SetReload(true);
-        
-        PlaySound(ReloadSfx[0]);
-
-        yield return new WaitWhile(() => IsPlaying);
-
-        PlaySound(ReloadSfx[1]);
-
-        yield return new WaitWhile(() => IsPlaying);
+        // Play each reload clip in sequence, respecting GamePaused
+        foreach (var clip in reloadClips)
+        {
+            PlaySound(clip);
+            yield return new WaitForSeconds(clip.length);
+            yield return new WaitWhile(() => GameManager.GamePaused);
+        }
 
         ammo.Reload();
     }

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8c1c16c036f247348a868d39ac6146ac
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/Editor/RadialSegmentedHealthBarEditor.cs
+  uploadId: 634015

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7dcf9b28704d9c048a0ccaf9d3755884
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/DemoScene/Animations/HealthController.controller
+  uploadId: 634015

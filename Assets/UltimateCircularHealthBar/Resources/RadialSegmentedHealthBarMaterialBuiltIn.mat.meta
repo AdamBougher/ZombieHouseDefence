@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c50156e6eb469424297d214dd8507ac7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/Resources/RadialSegmentedHealthBarMaterialBuiltIn.mat
+  uploadId: 634015

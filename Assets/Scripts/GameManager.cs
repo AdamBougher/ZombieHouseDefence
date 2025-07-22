@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene($"Ui", LoadSceneMode.Additive);
 
-        //setup refrences
+        //setup references
         player       = FindAnyObjectByType<Player>();
         _audioSource = GetComponent<AudioSource>();
 
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         Time = new GameTime();
         StartCoroutine(Time.Time());
         
-        upgradeManager = FindObjectOfType<UpgradeManager>();
+        upgradeManager = FindFirstObjectByType<UpgradeManager>();
         
         GamePaused = false;
         GameOver = false;
@@ -75,15 +75,39 @@ public class GameManager : MonoBehaviour
     /// <param name="context"></param>
     private static void PauseGame(string context = "")
     {
-        if(!GamePaused)
+        if (!GamePaused)
         {
             GamePaused = true;
-            Pause.Invoke();
-        }else {
-            GamePaused = false;
-            Unpause.Invoke();
+
+            // Clean up invalid subscriptions before invoking Pause
+            if (Pause != null)
+            {
+                foreach (var d in Pause.GetInvocationList())
+                {
+                    if (d.Target == null)
+                        Pause -= (UnityAction)d;
+                }
+
+                Pause.Invoke();
+            }
         }
-        
+        else
+        {
+            GamePaused = false;
+
+            // Clean up invalid subscriptions before invoking Unpause
+            if (Unpause != null)
+            {
+                foreach (var d in Unpause.GetInvocationList())
+                {
+                    if (d.Target == null)
+                        Unpause -= (UnityAction)d;
+                }
+
+                Unpause.Invoke();
+            }
+        }
+
         Time.ToggleTimeStopped();
     }
 
@@ -103,7 +127,21 @@ public class GameManager : MonoBehaviour
         UserInterface.levelUpMenu.SetActive(false);
         PauseGame();
         player.levelingUp = false;
+    }  
+
+    private void OnDisable()
+    {
+        GameManager.Pause -= OnPaused;
+        GameManager.Unpause -= OnResume;
     }
-    
-    
+
+    private void OnPaused()
+    {
+
+    }
+
+    private void OnResume()
+    {
+        // Handle resume logic here
+    }
 }

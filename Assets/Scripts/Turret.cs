@@ -1,199 +1,156 @@
 using System;
 using System.Collections;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Turret : MonoBehaviour
 {
-    private turretWeapon _turretWeapon;
-    private GameObject WeaponObject => transform.childCount > 0 ? transform.GetChild(0).gameObject : null;
-    
-    [ShowInInspector]
-    private Enemy _target;
-    
-    private Coroutine _fireAtTargetCoroutine;
+    [Header("Optional Visual Overrides")]
+    [Tooltip("Sprite for the weapon arm (optional)")]
+    [SerializeField] private Sprite weaponSprite;
 
-    private bool _isFiring;
+    // you can leave these null in the Inspector to auto‐find:
+    [SerializeField] private SpriteRenderer weaponRenderer;
 
-    private Enemy Target {
-        get => _target;
-        set {
-            _target = value;
-            if (_target is null)
-            {
-                state = State.Searching;
-                _isFiring = false;
-            }else{
-                Debug.Log("Firing at " + value.name);
-                state = State.Targeting;
-                _isFiring = true;
-                _fireAtTargetCoroutine ??= StartCoroutine(FireAtTarget());
-            }
-        }
-    }
-    
-    private LineRenderer _lineRenderer;
-    
-    private AudioSource AudioSource => GetComponent<AudioSource>();
-    
-    private static ObjectPool<Bullet> BulletPool => global::BulletPool.SharedInstance;
-    
-    public AudioClip fire;
-   
-    [SerializeField]
+    [Header("Turret Settings")]
+    [SerializeField] private float rayDistance = 10f;
+    [SerializeField] private float fireRate   = 0.75f;
+    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private int   maxAngle   = 45;
+    [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private AudioClip fireSound;
+
+    private enum State { Searching, Targeting }
+
     private State state;
-    
-    public int rotationDegree;
-    
-    private void Start() {
-        SetWeapon();
-        
-        StartCoroutine(HandleRotation());
-        state=State.Searching;
+    private Enemy currentTarget;
+    private Coroutine fireRoutine;
+
+    private Transform weaponTf;
+    private AudioSource audioSrc;
+
+    private void Awake()
+    {
+        // 1) cache AudioSource
+        audioSrc = GetComponent<AudioSource>();
+
+        // 2) find your weapon child by name
+        var w = transform.Find("weapon");
+        weaponTf = w != null ? w : transform;
+
+        // 4) weapon sprite swap
+        if (weaponRenderer == null)
+            weaponRenderer = weaponTf.GetComponent<SpriteRenderer>();
+        if (weaponRenderer != null && weaponSprite != null)
+            weaponRenderer.sprite = weaponSprite;
+
+        // 5) initial state
+        state = State.Searching;
     }
 
-    private void SetWeapon(turretWeapon turretWeapon = null) {
-        if (turretWeapon is null) {
-            _turretWeapon = new(
-                10,
-                10, 
-                0.75f,            
-                Resources.Load<Sprite>("icons/ak47"),
-                fire
-            );
-        }
-        else
-        {
-            _turretWeapon = turretWeapon;
-        }
-        
-        WeaponObject.GetComponent<SpriteRenderer>().sprite = _turretWeapon.WeaponSprite;
-        
+    private void Start()
+    {
+        StartCoroutine(RotateLoop());
     }
 
-    private void Update() {
-        HandleHitResult(PerformRaycast());
-        
-        if (!IsTargetActive()){
-            Target = null;
-        }
-        
+    private void Update()
+    {
+        var hitEnemy = TryScanForEnemy();
+        if (hitEnemy != null && currentTarget == null)
+            SetTarget(hitEnemy);
+
+        if (!IsTargetValid())
+            ClearTarget();
     }
 
-    private RaycastHit2D PerformRaycast() {
-        return Physics2D.Raycast(
-            WeaponObject.transform.position,
-            WeaponObject.transform.right,
-            _turretWeapon.RayDistance
+    private Enemy TryScanForEnemy()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            weaponTf.position,
+            weaponTf.right,
+            rayDistance,
+            enemyMask
         );
+        return hit.collider?.GetComponent<Enemy>();
     }
 
-    private void HandleHitResult(RaycastHit2D hit) {
-        var hitCollider = hit.collider;
-
-        if (hitCollider is null ||
-            _target is not null ||
-            !hitCollider.TryGetComponent<Enemy>(out var enemy)
-            ) 
-            return;
-            
-        Target = enemy;
+    private void SetTarget(Enemy e)
+    {
+        currentTarget = e;
+        state = State.Targeting;
+        fireRoutine = StartCoroutine(FireLoop());
     }
 
-    private void Projectile(Transform spawn) {
-        AudioSource.PlaySound(_turretWeapon.WeaponSound);
-
-        if (BulletPool.GetPooledObject().TryGetComponent<Bullet>(out var bullet))
+    private void ClearTarget()
+    {
+        if (currentTarget == null) return;
+        currentTarget = null;
+        state = State.Searching;
+        if (fireRoutine != null)
         {
-            bullet.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
-            bullet.gameObject.SetActive(true);
+            StopCoroutine(fireRoutine);
+            fireRoutine = null;
         }
-
-        bullet.StartBullet(spawn.right, 50, 1);
     }
-    
-    private IEnumerator HandleRotation() {
-        float time = 0;
-        float doubleRotationDegree = rotationDegree * 2;
+
+    private bool IsTargetValid()
+    {
+        if (currentTarget == null) return false;
+        if (!currentTarget.gameObject.activeInHierarchy) return false;
+
+        // Check if still within firing arc
+        Vector3 dir = (currentTarget.transform.position - weaponTf.position).normalized;
+        float angle = Vector3.Angle(weaponTf.right, dir);
+        return angle <= maxAngle;
+    }
+
+    private IEnumerator RotateLoop()
+    {
+        float sweepTime = 0f;
+        float twoAngle  = maxAngle * 2f;
 
         while (true)
         {
-            switch (state)
+            if (state == State.Searching)
             {
-                case State.Searching:
-                    HandleSearchingRotation(ref time, doubleRotationDegree);
-                    break;
-
-                case State.Targeting:
-                    HandleTargetingRotation();
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException();
+                sweepTime += Time.deltaTime * rotationSpeed;
+                float z = Mathf.PingPong(sweepTime, twoAngle) - maxAngle;
+                weaponTf.rotation = Quaternion.Euler(0, 0, z);
             }
-
+            else // targeting
+            {
+                Vector3 dir = (currentTarget.transform.position - weaponTf.position).normalized;
+                float z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                z = Mathf.Clamp(z, -maxAngle, +maxAngle);
+                weaponTf.rotation = Quaternion.Lerp(
+                    weaponTf.rotation,
+                    Quaternion.Euler(0, 0, z),
+                    Time.deltaTime * rotationSpeed
+                );
+            }
             yield return null;
         }
     }
 
-    private void HandleSearchingRotation(ref float time, float doubleRotationDegree) {
-        time += Time.deltaTime * _turretWeapon.RotationSpeed;
-        float targetRotation = Mathf.PingPong(time, doubleRotationDegree) - rotationDegree;
-        targetRotation = Mathf.Clamp(targetRotation, -rotationDegree, rotationDegree);
-        Quaternion targetQuaternion = Quaternion.Euler(0, 0, targetRotation);
-
-        WeaponObject.transform.rotation = Quaternion.Lerp(
-            WeaponObject.transform.rotation,
-            targetQuaternion,
-            Time.deltaTime * _turretWeapon.RotationSpeed
-        );
-    }
-
-    private void HandleTargetingRotation() {
-        Vector3 targetPosition = Target!.transform.position;
-        Vector3 direction = targetPosition - WeaponObject.transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // Clamp the angle within the range of -rotationDegree and rotationDegree
-        angle = Mathf.Clamp(angle, -rotationDegree, rotationDegree);
-
-        // If the target is outside the range, set _target to null
-        if (Mathf.Abs(angle) > rotationDegree) {
-            Target = null;
-        }else{
-            Quaternion targetQuaternion = Quaternion.Euler(0, 0, angle);
-            WeaponObject.transform.rotation = Quaternion.Lerp(
-                WeaponObject.transform.rotation,
-                targetQuaternion,
-                Time.deltaTime * _turretWeapon.RotationSpeed
-            );
-        }
-    }
-    
-   private IEnumerator FireAtTarget() {
-        while (true)
+    private IEnumerator FireLoop()
+    {
+        while (currentTarget != null)
         {
-            if (_isFiring && Target is not null)
+            yield return new WaitWhile(() => GameManager.GamePaused);
+            audioSrc.PlayOneShot(fireSound);
+
+            if (BulletPool.SharedInstance.GetPooledObject()
+                .TryGetComponent(out Bullet b))
             {
-                yield return new WaitWhile(() => GameManager.GamePaused);
-
-                Projectile(WeaponObject.transform);
-                
-                yield return new WaitWhile(() => GameManager.GamePaused);
-                yield return new WaitForSeconds(_turretWeapon.FireRate);
-            }else{
-                yield return null;
+                b.transform.SetPositionAndRotation(
+                    weaponTf.position, weaponTf.rotation
+                );
+                b.gameObject.SetActive(true);
+                b.StartBullet(weaponTf.right, 50, 1);
             }
-        }
-        // ReSharper disable once IteratorNeverReturns
-    }
 
-    private bool IsTargetActive() {
-        return Target is not null && Target.gameObject.activeInHierarchy;
-    }
-    
-    private enum State {
-        Searching,
-        Targeting
+            yield return new WaitWhile(() => GameManager.GamePaused);
+            yield return new WaitForSeconds(fireRate);
+        }
     }
 }

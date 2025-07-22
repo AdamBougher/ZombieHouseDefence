@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9404e657563eec14da31f2b7149c0b26
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187016
+  packageName: Procedural Circular Health and Progress Bars Pro
+  packageVersion: 8.9.7
+  assetPath: Assets/UltimateCircularHealthBar/Prefabs/CompoundHealthBar.prefab
+  uploadId: 634015

@@ -15,7 +15,7 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : Component
         {
             if (_sharedInstance == null)
             {
-                _sharedInstance = FindObjectOfType<ObjectPool<T>>();
+                _sharedInstance = FindFirstObjectByType<ObjectPool<T>>();
                 if (_sharedInstance == null)
                 {
                     Debug.LogError("No instance of ObjectPool found.");

@@ -16,9 +16,8 @@ public class Door : MonoBehaviour, IHittable
 
     private void OnEnable()
     {
-        _surface2D = FindObjectOfType<NavMeshSurface>();
+        _surface2D = FindFirstObjectByType<NavMeshSurface>();
     }
-
     public void Enter()
     {
         if (isOpen)

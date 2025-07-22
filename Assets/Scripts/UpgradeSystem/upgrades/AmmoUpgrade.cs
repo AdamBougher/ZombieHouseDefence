@@ -12,7 +12,7 @@ public class AmmoUpgrade : Upgrade
 
     public override void ApplyUpgrade(Player player)
     {
-        player.weaponHandler.MagSizeUp(AmmoUpAmt);
+        player.weaponHandler.magazineSize += AmmoUpAmt;
         base.ApplyUpgrade(player);
     }
 }

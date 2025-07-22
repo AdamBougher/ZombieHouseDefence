@@ -52,9 +52,16 @@
         "Temp/": true
     },
     "cSpell.words": [
+        "Behaviour",
+        "Cooldown",
         "Enemys",
+        "experance",
         "Raycast",
-        "Scriptable"
+        "Regen",
+        "Rigidbody",
+        "Scriptable",
+        "Sirenix",
+        "Updatelevel"
     ],
     "dotnet.defaultSolution": "ZombieHouseDefence.sln"
 }

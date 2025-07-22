@@ -27,12 +27,10 @@ public abstract class Character : MonoBehaviour , IHittable
     {
         Hp.DecreaseCurrent(amt);
     }
-    
-    protected IEnumerator PlaySound(AudioClip clip) 
+
+    protected IEnumerator PlaySound(AudioClip clip)
     {
-        AudioSource.clip = clip;
-        AudioSource.Play();
-         
+        AudioSource.PlaySound(clip);
         yield return new WaitWhile(() => AudioSource.isPlaying);
         
     }

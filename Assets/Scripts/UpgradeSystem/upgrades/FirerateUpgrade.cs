@@ -12,7 +12,7 @@ public class FirerateUpgrade : Upgrade
 
     public override void ApplyUpgrade(Player player)
     {
-        player.weaponHandler.fireCooldown -= RateOfFireUp;
+        player.weaponHandler.fireCooldownTime -= (float)RateOfFireUp;
         base.ApplyUpgrade(player);
     }
 }
