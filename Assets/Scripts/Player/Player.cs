@@ -1,171 +1,175 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class Player : Character
 {
+    public event Action<bool> OnBuildModeChanged;
+
     private const int StartingHp = 10;
 
-    public int hpRegenAmt = 0,
-        luck = 0,
-        armor = 0;
+    [Header("Player Stats")]
+    public int hpRegenAmt = 0, luck = 0, armor = 0;
+    public float hpRegenCooldown = 3f;
+
+    [Header("Experience")]
+    [SerializeField] private int experance, nextLevel;
+    private float ExpPercentage => experance / (float)nextLevel;
+
+    [Header("Mode")]
+    [SerializeField] private bool buildMode = false;
+
+    [SerializeField] private InputActionAsset actions;
+    private Rigidbody2D _rb;
+    private AudioClip _hurtSfx;
+
+    [HideInInspector] public PlayerWeaponHandler weaponHandler;
+    [HideInInspector] public PlayerBuilding buildingHandler;
     [SerializeField]
-    private bool buildMode = false;
-    
+    private PlayerArmsManager armsManager
+    {
+        get
+        {
+            if (_armsManager == null)
+            {
+                _armsManager = FindFirstObjectByType<PlayerArmsManager>();
+            }
+            return _armsManager;
+        }
+    }
+
+    private PlayerArmsManager _armsManager;
+
     private bool _interactionCheck = false, _isDead = false;
     public bool levelingUp = false;
-    public float hpRegenCooldown = 3f;
-    [BoxGroup("experance")]
-    private float ExpPercentage => experance / (float)nextLevel;
-        
-    private Rigidbody2D _rb;
-    
-    [HideInInspector]
-    public PlayerWeaponHandler weaponHandler;
-    public PlayerBuilding buildingHandler;
 
-    public InputActionAsset actions;
-
-    private AudioClip _hurtSfx;
     private Vector2 _lastInput;
-    
     private System.Random random = new();
-    
-    [BoxGroup("experance"),SerializeField]
-    protected int experance, nextLevel;
-    
-    [SerializeField]
-    private SpriteRenderer arms;
-    
+
     private void OnEnable()
     {
+        // Enable input actions
         actions.FindActionMap("Player").Enable();
-        
-        //subscribe pause to the action
+
+        // Subscribe to events
         GameManager.Pause += OnPaused;
-
-        Hp = new CharacterResource(StartingHp, StartingHp);
-        
-        Hp.SetCurrent(Hp.GetMax());
-
-        StartCoroutine(HpRegen());
-        
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
         UserInterface.OnLoaded += OnUILoad;
 
+        // Initialize HP
+        Hp = new CharacterResource(StartingHp, StartingHp);
+        Hp.SetCurrent(Hp.GetMax());
+
+        // Start HP regeneration
+        StartCoroutine(HpRegen());
     }
 
     private void OnDisable()
     {
+        // Unsubscribe from events
+        GameManager.Pause -= OnPaused;
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        UserInterface.OnLoaded -= OnUILoad;
     }
-    
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Initialize references
         _rb = GetComponent<Rigidbody2D>();
         weaponHandler = GetComponentInChildren<PlayerWeaponHandler>();
         buildingHandler = GetComponentInChildren<PlayerBuilding>();
         AudioSource = GetComponent<AudioSource>();
     }
-    
+
     private void OnUILoad()
     {
+        // Update UI with current HP
         UserInterface.UI.UpdateHp(Hp.GetCurrent());
     }
-    
+
     private void OnMove(InputValue value)
     {
-        //if game is not paused or over
-        if (!GameManager.GamePaused && !GameManager.GameOver && !_isDead)
-        {
-            _rb.linearVelocity = value.Get<Vector2>() * (GetSpeed());
-        }
+        if (GameManager.GamePaused || GameManager.GameOver || _isDead) return;
+
+        // Move the player
+        _rb.linearVelocity = value.Get<Vector2>() * GetSpeed();
     }
-    
-    private void OnInteract(InputValue value)
-    {
-        if (_isDead) return;
-        
-        _interactionCheck = true;
-    }
-    
+
     private void OnFacing(InputValue value)
     {
-        if(GameManager.GamePaused) return;
+        if (GameManager.GamePaused) return;
 
         var position = value.Get<Vector2>();
 
-        switch (position.magnitude)
+        // Handle mouse or joystick input
+        if (position.magnitude > 1)
         {
-            // Check if the input is likely a mouse position
-            case > 1:
-            {
-                // Convert from screen space to world space
-                var worldPos = Camera.main!.ScreenToWorldPoint(position);
-                worldPos.z = 0f;
-                position = (worldPos - transform.position).normalized;
-                break;
-            }
-            case > 0:
-                // If the joystick is being moved, store the input
-                _lastInput = position;
-                break;
-            default:
-                // If the joystick is released, use the last non-zero input
-                position = _lastInput;
-                break;
+            var worldPos = Camera.main!.ScreenToWorldPoint(position);
+            worldPos.z = 0f;
+            position = (worldPos - transform.position).normalized;
+        }
+        else if (position.magnitude > 0)
+        {
+            _lastInput = position;
+        }
+        else
+        {
+            position = _lastInput;
         }
 
-        var direction = position;
-        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
+        // Rotate the player
+        var angle = Mathf.Atan2(position.y, position.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void OnFire(InputValue value)
     {
         if (GameManager.GamePaused) return;
-        switch (buildMode) {
-            case false : weaponHandler.Primary();
-                break;
-            case true : buildingHandler.Place();
-                break;
+
+        if (buildMode)
+        {
+            buildingHandler.Place();
+        }
+        else
+        {
+            weaponHandler.Primary();
         }
     }
-    
+
     public void OnReload(InputValue value)
     {
-        // don’t reload while in build mode
         if (buildMode) return;
-    
+
         weaponHandler.StartReload();
     }
-    
+
     private void OnSwitchHeld(InputValue value)
     {
-        var dir = value.Get<float>();
         buildMode = !buildMode;
+        OnBuildModeChanged?.Invoke(buildMode);
 
-        switch (buildMode) {
-            case true : 
-                buildingHandler.SetToolSprite();
-                buildingHandler.currentPlacement.gameObject.SetActive(true);
-                break;
-            case false : 
-                weaponHandler.SetArms();
-                buildingHandler.currentPlacement.gameObject.SetActive(false);
-                break;
+        if (buildMode)
+        {
+            buildingHandler.SetArms();
+            buildingHandler.currentPlacement.gameObject.SetActive(true);
         }
+        else
+        {
+            weaponHandler.SetArms();
+            buildingHandler.currentPlacement.gameObject.SetActive(false);
+        }
+
+        // Delegate arms sprite update to PlayerArmsManager
+        armsManager.SetArmsSprite(buildMode ? buildingHandler.toolSprite : weaponHandler.weaponSprite);
     }
-    
-    private void OnSwapBuild(InputValue value) {
+
+    private void OnSwapBuild(InputValue value)
+    {
         buildingHandler.ChangeItem(value.Get<float>());
     }
-    
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.TryGetComponent<Enemy>(out var enemy))
@@ -177,77 +181,70 @@ public class Player : Character
     private void OnTriggerStay2D(Collider2D other)
     {
         if (!_interactionCheck) return;
-        
-        
+
         if (other.TryGetComponent<Door>(out var door))
         {
             door.Enter();
         }
+
         _interactionCheck = false;
     }
-    
+
     public override void Damage(int amt)
     {
         if (_isDead) return;
-        var randomNumber = random.Next(1, 100);
-        
-        if(randomNumber <= luck)
-        {
-            return;
-        }
-        
+
+        if (random.Next(1, 100) <= luck) return;
+
         base.Damage(amt);
 
         if (AudioSource.clip != _hurtSfx) AudioSource.clip = _hurtSfx;
-        
         AudioSource.Play();
-        
-        UserInterface.UI.UpdateHp(Hp.GetCurrent());
-        
-        if (!Hp.IsEmpty) return;
-        StartCoroutine(Die());
 
+        UserInterface.UI.UpdateHp(Hp.GetCurrent());
+
+        if (Hp.IsEmpty)
+        {
+            StartCoroutine(Die());
+        }
     }
 
     private IEnumerator Die()
     {
         _isDead = true;
-        
+
         AudioSource.clip = Resources.Load<AudioClip>("Sound/erl");
-        
         AudioSource.Play();
 
         while (AudioSource.isPlaying)
         {
             yield return null;
         }
-        
+
         GameManager.GameOver = true;
         GameManager.GamePaused = true;
 
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        
         SceneManager.LoadSceneAsync("MainMenu");
     }
 
     private void OnPaused()
     {
-        // Ensure the Player object and Rigidbody2D are valid before accessing
-        if (this == null || _rb == null) return;
+        if (_rb == null) return;
 
         _rb.linearVelocity = Vector2.zero;
     }
 
     public void GetExp(int amt)
     {
-        GainExperance(amt);
+        GainExperience(amt);
     }
 
-    private void GainExperance(int amt)
+    private void GainExperience(int amt)
     {
         experance += amt;
         UserInterface.UI.xpBar.fillAmount = ExpPercentage;
-        
+
         if (experance >= nextLevel)
         {
             StartCoroutine(LevelUp());
@@ -256,33 +253,35 @@ public class Player : Character
 
     private IEnumerator LevelUp()
     {
-        
         Hp.SetCurrentToMax();
+
         while (experance >= nextLevel)
         {
             level++;
             experance -= nextLevel;
             nextLevel += 3;
             levelingUp = true;
-            
+
             FindFirstObjectByType<GameManager>().SetupLevelUp();
-            
-            yield return new WaitWhile( () => levelingUp);
+
+            yield return new WaitWhile(() => levelingUp);
         }
+
         UserInterface.UI.UpdateLevel(level.ToString());
         UserInterface.UI.xpBar.fillAmount = ExpPercentage;
     }
+
     private IEnumerator HpRegen()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(hpRegenCooldown);
-            if (hpRegenAmt <= 0) continue;
-            
-            Hp.IncreaseCurrent(hpRegenAmt);
-            UserInterface.UI.UpdateHp(Hp.GetCurrent());
 
+            if (hpRegenAmt > 0)
+            {
+                Hp.IncreaseCurrent(hpRegenAmt);
+                UserInterface.UI.UpdateHp(Hp.GetCurrent());
+            }
         }
     }
-    
 }

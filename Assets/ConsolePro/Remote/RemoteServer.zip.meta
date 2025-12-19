@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bfddca3b681a343a4a2754ce493c2c44
+guid: 9391797550b0b4375bd5fed9f1a2b231
 DefaultImporter:
   externalObjects: {}
   userData: 
@@ -9,6 +9,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 11889
   packageName: Editor Console Pro
-  packageVersion: 3.977
+  packageVersion: 3.979
   assetPath: Assets/ConsolePro/Remote/RemoteServer.zip
-  uploadId: 708146
+  uploadId: 833240

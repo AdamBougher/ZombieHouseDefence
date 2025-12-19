@@ -3,12 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(PlayerArmsManager))]
 public class PlayerWeaponHandler : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private List<Transform> bulletSpawnLocations = new();
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Sprite weaponSprite;
+    public Sprite weaponSprite; // Made public
+    [SerializeField]
+    private PlayerArmsManager armsManager
+    {
+        get
+        {
+            if (_armsManager == null)
+            {
+                _armsManager = FindFirstObjectByType<PlayerArmsManager>();
+            }
+            return _armsManager;
+        }
+    }
+    private PlayerArmsManager _armsManager;
 
     [Header("Audio Clips")]
     [SerializeField] private AudioClip fireClip;
@@ -16,33 +30,42 @@ public class PlayerWeaponHandler : MonoBehaviour
     [SerializeField] private AudioClip[] reloadClips;
 
     [Header("Stats")]
-    [SerializeField] public int magazineSize       = 9;
-    [SerializeField] public int spareMagazines     = 2;
-    [SerializeField] public int bulletSpeed        = 15;
+    [SerializeField] public int magazineSize = 9;
+    [SerializeField] public int spareMagazines = 2;
+    [SerializeField] public int bulletSpeed = 15;
     [SerializeField] public float fireCooldownTime = 0.5f;
-    [SerializeField] private int damageAmount       = 2;
+    [SerializeField] private int damageAmount = 2;
 
     [Header("Upgrades")]
     [Tooltip("How many bullets to fire per trigger pull")]
     [SerializeField] public int shots = 1;
 
-    private Ammo                ammo;
-    public  Damage              damage;
-    private AudioSource         audioSrc;
-    private ObjectPool<Bullet>  bulletPool;
-    private bool                isReloading;
-    private bool                canFire = true;
+    private Ammo ammo;
+    public Damage damage;
+    private AudioSource audioSrc;
+    private ObjectPool<Bullet> bulletPool;
+    private bool isReloading;
+    private bool canFire = true;
 
     private UserInterface Ui => UserInterface.UI;
 
+    private void Start()
+    {
+        FindFirstObjectByType<Player>().OnBuildModeChanged += HandleBuildModeChanged;
+    }
+
+
     private void Awake()
     {
-        // this will never return null now
-        audioSrc    = GetComponent<AudioSource>();
+        ammo = new Ammo(magazineSize, spareMagazines);
+        damage = new Damage(damageAmount);
+        bulletPool = ObjectPool<Bullet>.SharedInstance;
 
-        ammo        = new Ammo(magazineSize, spareMagazines);
-        damage      = new Damage(damageAmount);
-        bulletPool  = ObjectPool<Bullet>.SharedInstance;
+        // Validate injected dependencies
+        if (armsManager == null)
+        {
+            Debug.LogError("PlayerArmsManager is not assigned in PlayerWeaponHandler.");
+        }
     }
 
     /// <summary>
@@ -67,34 +90,35 @@ public class PlayerWeaponHandler : MonoBehaviour
         canFire = false;
         PlaySound(fireClip);
 
-        // fire `shots` bullets
-        for (int i = 0; i < shots; i++)
-        {
-            // pick a spawn point or default to [0]
-            var spawn = bulletSpawnLocations.Count > 1
-                ? bulletSpawnLocations[i % bulletSpawnLocations.Count]
-                : bulletSpawnLocations[0];
+        float[] spreadAngles = CalculateSpreadAngles(shots, 5f);
 
+        foreach (float angle in spreadAngles)
+        {
+            var spawn = bulletSpawnLocations[0];
             if (bulletPool.GetPooledObject().TryGetComponent<Bullet>(out var b))
             {
-                // optional simple spread:
-                float spreadAngle = (i - (shots-1) * 0.5f) * 5f;
                 b.transform.SetPositionAndRotation(
                     spawn.position,
-                    spawn.rotation * Quaternion.Euler(0,0, spreadAngle)
+                    spawn.rotation * Quaternion.Euler(0, 0, angle)
                 );
-
                 b.gameObject.SetActive(true);
                 b.StartBullet(b.transform.right, bulletSpeed, damage.GetDamage());
             }
         }
 
-        // consume one bullet per shot?
-        for (int i = 0; i < shots; i++)
-            ammo.Use();
-
+        ammo.Use();
         Ui.UpdateAmmoDisplays(ammo.ToString());
         StartCoroutine(FireCooldown());
+    }
+
+    private float[] CalculateSpreadAngles(int shots, float spreadMultiplier)
+    {
+        float[] angles = new float[shots];
+        for (int i = 0; i < shots; i++)
+        {
+            angles[i] = (i - (shots - 1) * 0.5f) * spreadMultiplier;
+        }
+        return angles;
     }
 
     private IEnumerator FireCooldown()
@@ -135,6 +159,17 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public void SetArms()
     {
-        GetComponent<SpriteRenderer>().sprite = weaponSprite;
+        if (armsManager == null)
+        {
+            Debug.LogError("Cannot set arms sprite because PlayerArmsManager is missing.");
+            return;
+        }
+
+        armsManager.SetArmsSprite(weaponSprite);
+    }
+    private void HandleBuildModeChanged(bool isBuildMode)
+    {
+        if (!isBuildMode)
+            SetArms();
     }
 }

@@ -4,96 +4,101 @@ using System;
 using System.Reflection;
 #endif
 
-public static class ConsoleProDebug
+namespace FlyingWormConsole3
 {
-	// Clear the console and the native console
-	public static void Clear()
+
+	public static class ConsoleProDebug
 	{
-		#if UNITY_EDITOR
-		if(ConsoleClearMethod != null)
+		// Clear the console and the native console
+		public static void Clear()
 		{
-			ConsoleClearMethod.Invoke(null, null);
-		}
-		#endif
-	}
-
-	// Send a log to a specific filter regardless of contents
-	// Ex: ConsoleProDebug.LogToFilter("Hi", "CustomFilter");
-	public static void LogToFilter(string inLog, string inFilterName, UnityEngine.Object inContext = null)
-	{
-		Debug.Log(inLog + "\nCPAPI:{\"cmd\":\"Filter\", \"name\":\"" + inFilterName + "\"}", inContext);
-	}
-
-	// Send a log as a regular log but change its type in ConsolePro
-	// Ex: ConsoleProDebug.LogAsType("Hi", "Error");
-	public static void LogAsType(string inLog, string inTypeName, UnityEngine.Object inContext = null)
-	{
-		Debug.Log(inLog + "\nCPAPI:{\"cmd\":\"LogType\", \"name\":\"" + inTypeName + "\"}", inContext);
-	}
-
-	// Watch a variable. This will only produce one log entry regardless of how many times it is logged, allowing you to track variables without spam.
-	// Ex:
-	// void Update() {
-	// ConsoleProDebug.Watch("Player X Position", transform.position.x);
-	// }
-	public static void Watch(string inName, string inValue)
-	{
-		Debug.Log(inName + " : " + inValue + "\nCPAPI:{\"cmd\":\"Watch\", \"name\":\"" + inName + "\"}");
-	}
-
-	public static void Search(string inText)
-	{
-		Debug.Log("\nCPAPI:{\"cmd\":\"Search\", \"text\":\"" + inText + "\"}");
-	}
-
-	#if UNITY_EDITOR
-	// Reflection calls to access Console Pro from runtime
-	private static bool _checkedConsoleClearMethod = false;
-	private static MethodInfo _consoleClearMethod = null;
-	private static MethodInfo ConsoleClearMethod
-	{
-		get
-		{
-			if(_consoleClearMethod == null || !_checkedConsoleClearMethod)
+#if UNITY_EDITOR
+			if (ConsoleClearMethod != null)
 			{
-				_checkedConsoleClearMethod = true;
-				if(ConsoleWindowType == null)
+				ConsoleClearMethod.Invoke(null, null);
+			}
+#endif
+		}
+
+		// Send a log to a specific filter regardless of contents
+		// Ex: ConsoleProDebug.LogToFilter("Hi", "CustomFilter");
+		public static void LogToFilter(string inLog, string inFilterName, UnityEngine.Object inContext = null)
+		{
+			Debug.Log(inLog + "\nCPAPI:{\"cmd\":\"Filter\", \"name\":\"" + inFilterName + "\"}", inContext);
+		}
+
+		// Send a log as a regular log but change its type in ConsolePro
+		// Ex: ConsoleProDebug.LogAsType("Hi", "Error");
+		public static void LogAsType(string inLog, string inTypeName, UnityEngine.Object inContext = null)
+		{
+			Debug.Log(inLog + "\nCPAPI:{\"cmd\":\"LogType\", \"name\":\"" + inTypeName + "\"}", inContext);
+		}
+
+		// Watch a variable. This will only produce one log entry regardless of how many times it is logged, allowing you to track variables without spam.
+		// Ex:
+		// void Update() {
+		// ConsoleProDebug.Watch("Player X Position", transform.position.x);
+		// }
+		public static void Watch(string inName, string inValue)
+		{
+			Debug.Log(inName + " : " + inValue + "\nCPAPI:{\"cmd\":\"Watch\", \"name\":\"" + inName + "\"}");
+		}
+
+		public static void Search(string inText)
+		{
+			Debug.Log("\nCPAPI:{\"cmd\":\"Search\", \"text\":\"" + inText + "\"}");
+		}
+
+#if UNITY_EDITOR
+		// Reflection calls to access Console Pro from runtime
+		private static bool _checkedConsoleClearMethod = false;
+		private static MethodInfo _consoleClearMethod = null;
+		private static MethodInfo ConsoleClearMethod
+		{
+			get
+			{
+				if (_consoleClearMethod == null || !_checkedConsoleClearMethod)
 				{
-					return null;
+					_checkedConsoleClearMethod = true;
+					if (ConsoleWindowType == null)
+					{
+						return null;
+					}
+
+					_consoleClearMethod = ConsoleWindowType.GetMethod("ClearEntries", BindingFlags.Static | BindingFlags.Public);
 				}
 
-				_consoleClearMethod = ConsoleWindowType.GetMethod("ClearEntries", BindingFlags.Static | BindingFlags.Public);
+				return _consoleClearMethod;
 			}
-
-			return _consoleClearMethod;
 		}
-	}
 
-	private static bool _checkedConsoleWindowType = false;
-	private static Type _consoleWindowType = null;
-	private static Type ConsoleWindowType
-	{
-		get
+		private static bool _checkedConsoleWindowType = false;
+		private static Type _consoleWindowType = null;
+		private static Type ConsoleWindowType
 		{
-			if(_consoleWindowType == null || !_checkedConsoleWindowType)
+			get
 			{
-				_checkedConsoleWindowType = true;
-				Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
-				for(int iAssembly = 0; iAssembly < assemblies.Length; iAssembly++)
+				if (_consoleWindowType == null || !_checkedConsoleWindowType)
 				{
-					Type[] types = assemblies[iAssembly].GetTypes();
-					for(int iType = 0; iType < types.Length; iType++)
+					_checkedConsoleWindowType = true;
+					Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
+					for (int iAssembly = 0; iAssembly < assemblies.Length; iAssembly++)
 					{
-						if(types[iType].Name == "ConsolePro3Window")
+						Type[] types = assemblies[iAssembly].GetTypes();
+						for (int iType = 0; iType < types.Length; iType++)
 						{
-							_consoleWindowType = types[iType];
+							if (types[iType].Name == "ConsolePro3Window")
+							{
+								_consoleWindowType = types[iType];
+							}
 						}
 					}
 				}
-			}
 
-			return _consoleWindowType;
+				return _consoleWindowType;
+			}
 		}
+#endif
 	}
-	#endif
+
 }

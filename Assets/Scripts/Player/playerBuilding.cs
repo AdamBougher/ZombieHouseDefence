@@ -20,6 +20,12 @@ public class PlayerBuilding : MonoBehaviour
     private AudioSource audioSource;
     private NavMeshSurface navMeshSurface;
 
+    private enum BuildItem { Fence, Turret }
+    private BuildItem currentItem;
+
+    [SerializeField]
+    private SpriteRenderer armsSpriteRenderer;
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -32,9 +38,16 @@ public class PlayerBuilding : MonoBehaviour
         UpdateGhostPlacement();
     }
 
-    public void SetToolSprite()
+    public void SetArms()
     {
-        GetComponent<SpriteRenderer>().sprite = toolSprite;
+        if (armsSpriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer component is missing on the PlayerBuilding GameObject.");
+            return;
+        }
+
+        // Use FindFirstObjectByType instead of FindObjectOfType
+        FindFirstObjectByType<PlayerArmsManager>()?.SetArmsSprite(toolSprite);
         UpdateGhostSprite(fenceTile.m_DefaultSprite);
     }
 
@@ -50,34 +63,18 @@ public class PlayerBuilding : MonoBehaviour
 
     public void ChangeItem(float direction)
     {
-        currentItemIndex += (int)direction;
-
-        // Wrap around the item index
-        if (currentItemIndex < 0)
-            currentItemIndex = totalItems - 1;
-        else if (currentItemIndex >= totalItems)
-            currentItemIndex = 0;
-
-        // Update the ghost sprite based on the selected item
-        switch (currentItemIndex)
-        {
-            case 0:
-                UpdateGhostSprite(fenceTile.m_DefaultSprite);
-                break;
-            case 1:
-                UpdateGhostSprite(turretPrefab.GetComponent<SpriteRenderer>().sprite);
-                break;
-        }
+        currentItem = (BuildItem)(((int)currentItem + (int)direction + totalItems) % totalItems);
+        UpdateGhostSprite(currentItem == BuildItem.Fence ? fenceTile.m_DefaultSprite : turretPrefab.GetComponent<SpriteRenderer>().sprite);
     }
 
     public void Place()
     {
-        switch (currentItemIndex)
+        switch (currentItem)
         {
-            case 0:
+            case BuildItem.Fence:
                 BuildFence();
                 break;
-            case 1:
+            case BuildItem.Turret:
                 BuildTurret();
                 break;
         }
