@@ -10,19 +10,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     [SerializeField] private List<Transform> bulletSpawnLocations = new();
     [SerializeField] private GameObject bulletPrefab;
     public Sprite weaponSprite; // Made public
-    [SerializeField]
-    private PlayerArmsManager armsManager
-    {
-        get
-        {
-            if (_armsManager == null)
-            {
-                _armsManager = FindFirstObjectByType<PlayerArmsManager>();
-            }
-            return _armsManager;
-        }
-    }
-    private PlayerArmsManager _armsManager;
+    [SerializeField] private PlayerArmsManager armsManager;
 
     [Header("Audio Clips")]
     [SerializeField] private AudioClip fireClip;
@@ -47,11 +35,22 @@ public class PlayerWeaponHandler : MonoBehaviour
     private bool isReloading;
     private bool canFire = true;
 
+    public event System.Action<string> OnAmmoChanged;
+
     private UserInterface Ui => UserInterface.UI;
 
-    private void Start()
+    private void OnEnable()
     {
-        FindFirstObjectByType<Player>().OnBuildModeChanged += HandleBuildModeChanged;
+        var player = GetComponentInParent<Player>();
+        if (player != null)
+            player.OnBuildModeChanged += HandleBuildModeChanged;
+    }
+
+    private void OnDisable()
+    {
+        var player = GetComponentInParent<Player>();
+        if (player != null)
+            player.OnBuildModeChanged -= HandleBuildModeChanged;
     }
 
 
@@ -60,12 +59,16 @@ public class PlayerWeaponHandler : MonoBehaviour
         ammo = new Ammo(magazineSize, spareMagazines);
         damage = new Damage(damageAmount);
         bulletPool = ObjectPool<Bullet>.SharedInstance;
+        audioSrc = GetComponent<AudioSource>();
 
         // Validate injected dependencies
         if (armsManager == null)
         {
             Debug.LogError("PlayerArmsManager is not assigned in PlayerWeaponHandler.");
         }
+
+        // Publish initial ammo state to UI
+        OnAmmoChanged?.Invoke(ammo.ToString());
     }
 
     /// <summary>
@@ -90,12 +93,21 @@ public class PlayerWeaponHandler : MonoBehaviour
         canFire = false;
         PlaySound(fireClip);
 
-        float[] spreadAngles = CalculateSpreadAngles(shots, 5f);
+        // Validate spawns and compute spread
+        if (bulletSpawnLocations == null || bulletSpawnLocations.Count == 0)
+        {
+            canFire = true;
+            return;
+        }
+
+        int clampedShots = Mathf.Max(1, shots);
+        float[] spreadAngles = CalculateSpreadAngles(clampedShots, 5f);
 
         foreach (float angle in spreadAngles)
         {
             var spawn = bulletSpawnLocations[0];
-            if (bulletPool.GetPooledObject().TryGetComponent<Bullet>(out var b))
+            var pooled = bulletPool.GetPooledObject();
+            if (pooled != null && pooled.TryGetComponent<Bullet>(out var b))
             {
                 b.transform.SetPositionAndRotation(
                     spawn.position,
@@ -107,7 +119,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         }
 
         ammo.Use();
-        Ui.UpdateAmmoDisplays(ammo.ToString());
+        OnAmmoChanged?.Invoke(ammo.ToString());
         StartCoroutine(FireCooldown());
     }
 
@@ -147,7 +159,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         }
 
         ammo.Reload();
-        Ui.UpdateAmmoDisplays(ammo.ToString());
+        OnAmmoChanged?.Invoke(ammo.ToString());
         isReloading = false;
     }
 

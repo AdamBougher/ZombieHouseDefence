@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [ShowInInspector]
     public static bool GameOver, GamePaused, CanLevelUp = true;
     public static int Score;
+    public static System.Action OnPauseStateChanged;
 
     //instance variables
     public static UserInterface UserInterface => UserInterface.UI;
@@ -34,6 +35,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //Application.targetFrameRate = 240;
+
+        // Reset static counters for new game
+        Enemy.EnemiesAlive = 0;
+        Enemy.EnemiesKilled = 0;
 
         SceneManager.LoadScene($"Ui", LoadSceneMode.Additive);
 
@@ -69,17 +74,18 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggle weather the game is paused or not
+    /// Toggle pause state; only fires events when state actually changes.
     /// </summary>
-    /// <param upgradeName="context">string of menu to activate</param>
-    /// <param name="context"></param>
     private static void PauseGame(string context = "")
     {
-        if (!GamePaused)
-        {
-            GamePaused = true;
+        bool wasPaused = GamePaused;
+        GamePaused = !GamePaused;
 
-            // Clean up invalid subscriptions before invoking Pause
+        if (wasPaused == GamePaused) return; // State didn't change, exit early
+
+        // Invoke appropriate event
+        if (GamePaused)
+        {
             if (Pause != null)
             {
                 foreach (var d in Pause.GetInvocationList())
@@ -87,15 +93,11 @@ public class GameManager : MonoBehaviour
                     if (d.Target == null)
                         Pause -= (UnityAction)d;
                 }
-
                 Pause.Invoke();
             }
         }
         else
         {
-            GamePaused = false;
-
-            // Clean up invalid subscriptions before invoking Unpause
             if (Unpause != null)
             {
                 foreach (var d in Unpause.GetInvocationList())
@@ -103,11 +105,12 @@ public class GameManager : MonoBehaviour
                     if (d.Target == null)
                         Unpause -= (UnityAction)d;
                 }
-
                 Unpause.Invoke();
             }
         }
 
+        // Fire idempotent state change event
+        OnPauseStateChanged?.Invoke();
         Time.ToggleTimeStopped();
     }
 

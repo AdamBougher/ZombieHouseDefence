@@ -63,6 +63,7 @@ public class Ammo
         magazineSize    = magSize;
         currentMagazine = magSize;
         totalAmmo       = magSize * spareMags;
+        usesAmmo        = true;  // Enable ammo tracking by default
     }
 
     public Ammo() { }

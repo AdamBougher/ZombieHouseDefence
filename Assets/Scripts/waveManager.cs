@@ -29,16 +29,19 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator StartWave() {
         while(true) {
-            yield return new WaitUntil(() => GameManager.GamePaused == false);
+            // Wait for game to be unpaused and ensure we're not paused
+            yield return new WaitWhile(() => GameManager.GamePaused);
 
-            yield return new WaitForSeconds(Random.Range(spawnDelay.x,spawnDelay.y));
+            yield return new WaitForSeconds(Random.Range(spawnDelay.x, spawnDelay.y));
 
-            yield return new WaitUntil(() => GameManager.GamePaused == false);
+            // Double-check game is still unpaused after delay
+            yield return new WaitWhile(() => GameManager.GamePaused);
+            
+            // Wait until enemy count is below max
             yield return new WaitUntil(() => Enemy.EnemiesAlive < maxEnemies);
             
-            //spawn new enemy
+            // spawn new enemy
             SpawnEnemy();
-
         }
         // ReSharper disable once IteratorNeverReturns
     }

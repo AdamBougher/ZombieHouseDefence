@@ -66,7 +66,8 @@ public class GameTime
     public void ToggleTimeStopped()
     {
         _isTimeStopped = !_isTimeStopped;
-        GameManager.GamePaused = _isTimeStopped;
+        // Note: GameManager.GamePaused is now managed by GameManager.PauseGame()
+        // This method only controls time flow; pause logic is centralized in GameManager
     }
 
     public override string ToString()

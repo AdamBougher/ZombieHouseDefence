@@ -5,18 +5,32 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IHittable
 {
+    [SerializeField]
     private NavMeshSurface _surface2D;
     
     [SerializeField] 
     private int hp = 10;
 
-    
     [SerializeField]
     private bool isOpen;
 
+    private bool navmeshUpdateScheduled;
+    private const float NavMeshDebounceDelay = 0.2f;
+
     private void OnEnable()
     {
-        _surface2D = FindFirstObjectByType<NavMeshSurface>();
+        // NavMeshSurface should be assigned in Inspector
+        if (_surface2D == null)
+        {
+            _surface2D = FindFirstObjectByType<NavMeshSurface>();
+            if (_surface2D == null)
+                Debug.LogError("Door: NavMeshSurface not found or assigned.");
+        }
+    }
+
+    private void OnDisable()
+    {
+        // Clean up on destruction
     }
     public void Enter()
     {
@@ -30,8 +44,22 @@ public class Door : MonoBehaviour, IHittable
             gameObject.transform.Rotate(0,0,-90);
         }
         
-        _surface2D.UpdateNavMesh(_surface2D.navMeshData);
+        ScheduleNavMeshUpdate();
+    }
 
+    private void ScheduleNavMeshUpdate()
+    {
+        if (navmeshUpdateScheduled || _surface2D == null) return;
+        navmeshUpdateScheduled = true;
+        StartCoroutine(DebouncedNavMeshUpdate());
+    }
+
+    private IEnumerator DebouncedNavMeshUpdate()
+    {
+        yield return new WaitForSeconds(NavMeshDebounceDelay);
+        if (_surface2D != null)
+            _surface2D.UpdateNavMesh(_surface2D.navMeshData);
+        navmeshUpdateScheduled = false;
     }
 
     public void Damage(int amt)
@@ -47,11 +75,8 @@ public class Door : MonoBehaviour, IHittable
             boxCollider2D.enabled = false;
         }
         
-        _surface2D.UpdateNavMesh(_surface2D.navMeshData);
-
-
+        ScheduleNavMeshUpdate();
         Destroy(gameObject);
-        
     }
 
     public void Fix(int amt)

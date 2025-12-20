@@ -30,9 +30,17 @@ public abstract class Character : MonoBehaviour , IHittable
 
     protected IEnumerator PlaySound(AudioClip clip)
     {
-        AudioSource.PlaySound(clip);
+        if (AudioSource == null)
+        {
+            Debug.LogError("Character.PlaySound: AudioSource is not initialized.");
+            yield break;
+        }
+
+        bool played = AudioSource.PlaySound(clip);
+        if (!played)
+            yield break;
+            
         yield return new WaitWhile(() => AudioSource.isPlaying);
-        
     }
     
 }

@@ -15,6 +15,7 @@ using Random = UnityEngine.Random;
 public class DestructableTiles : MonoBehaviour
 {
     public float HP;
+    public float maxHP;
 
     public int cost;
     
@@ -39,10 +40,15 @@ public class DestructableTiles : MonoBehaviour
     /// <param name="dmg">amount to remove from hp</param>
     public void Damage(int dmg){
         HP -= dmg;
-        GetComponent<AudioSource>().Play();
-        GetComponent<AudioSource>().clip = damaged[Random.Range(0,damaged.Length)];
+        
+        AudioSource audioSrc = GetComponent<AudioSource>();
+        if (audioSrc != null && damaged != null && damaged.Length > 0)
+        {
+            audioSrc.clip = damaged[Random.Range(0, damaged.Length)];
+            audioSrc.Play();
+        }
 
-        //ColorCheck();
+        ColorCheck();
 
         if(HP <= 0){
             Destroy(this.gameObject);
@@ -53,11 +59,13 @@ public class DestructableTiles : MonoBehaviour
     /// this method changes the color of the tile based on the HP
     /// </summary>
     private void ColorCheck(){
-        if(HP <= HP*0.5){
+        if (maxHP <= 0) return;
+
+        if(HP <= maxHP * 0.5f){
             GetComponent<SpriteRenderer>().color = color[0];
         }
 
-        if(HP <= HP*0.25){
+        if(HP <= maxHP * 0.25f){
             GetComponent<SpriteRenderer>().color = color[1];
         }
     }

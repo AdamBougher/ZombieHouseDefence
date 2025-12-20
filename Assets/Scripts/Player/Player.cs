@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class Player : Character
 {
     public event Action<bool> OnBuildModeChanged;
+    public event System.Action<int> OnHpChanged;
+    public event System.Action<float> OnXpPercentageChanged;
 
     private const int StartingHp = 10;
 
@@ -24,23 +26,11 @@ public class Player : Character
     [SerializeField] private InputActionAsset actions;
     private Rigidbody2D _rb;
     private AudioClip _hurtSfx;
+    [SerializeField] private AudioClip deathClip;
 
     [HideInInspector] public PlayerWeaponHandler weaponHandler;
     [HideInInspector] public PlayerBuilding buildingHandler;
-    [SerializeField]
-    private PlayerArmsManager armsManager
-    {
-        get
-        {
-            if (_armsManager == null)
-            {
-                _armsManager = FindFirstObjectByType<PlayerArmsManager>();
-            }
-            return _armsManager;
-        }
-    }
-
-    private PlayerArmsManager _armsManager;
+        [SerializeField] private PlayerArmsManager armsManager;
 
     private bool _interactionCheck = false, _isDead = false;
     public bool levelingUp = false;
@@ -51,7 +41,7 @@ public class Player : Character
     private void OnEnable()
     {
         // Enable input actions
-        actions.FindActionMap("Player").Enable();
+        actions.FindActionMap("Player")?.Enable();
 
         // Subscribe to events
         GameManager.Pause += OnPaused;
@@ -72,6 +62,9 @@ public class Player : Character
         GameManager.Pause -= OnPaused;
         SceneManager.sceneLoaded -= OnSceneLoaded;
         UserInterface.OnLoaded -= OnUILoad;
+
+        // Disable input actions
+        actions.FindActionMap("Player")?.Disable();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -85,8 +78,8 @@ public class Player : Character
 
     private void OnUILoad()
     {
-        // Update UI with current HP
-        UserInterface.UI.UpdateHp(Hp.GetCurrent());
+        // Notify UI of current HP via event
+        OnHpChanged?.Invoke(Hp.GetCurrent());
     }
 
     private void OnMove(InputValue value)
@@ -106,7 +99,8 @@ public class Player : Character
         // Handle mouse or joystick input
         if (position.magnitude > 1)
         {
-            var worldPos = Camera.main!.ScreenToWorldPoint(position);
+            if (Camera.main == null) return;
+            var worldPos = Camera.main.ScreenToWorldPoint(position);
             worldPos.z = 0f;
             position = (worldPos - transform.position).normalized;
         }
@@ -162,7 +156,8 @@ public class Player : Character
         }
 
         // Delegate arms sprite update to PlayerArmsManager
-        armsManager.SetArmsSprite(buildMode ? buildingHandler.toolSprite : weaponHandler.weaponSprite);
+        if (armsManager != null)
+            armsManager.SetArmsSprite(buildMode ? buildingHandler.toolSprite : weaponHandler.weaponSprite);
     }
 
     private void OnSwapBuild(InputValue value)
@@ -201,7 +196,7 @@ public class Player : Character
         if (AudioSource.clip != _hurtSfx) AudioSource.clip = _hurtSfx;
         AudioSource.Play();
 
-        UserInterface.UI.UpdateHp(Hp.GetCurrent());
+        OnHpChanged?.Invoke(Hp.GetCurrent());
 
         if (Hp.IsEmpty)
         {
@@ -213,8 +208,11 @@ public class Player : Character
     {
         _isDead = true;
 
-        AudioSource.clip = Resources.Load<AudioClip>("Sound/erl");
-        AudioSource.Play();
+        if (AudioSource != null && deathClip != null)
+        {
+            AudioSource.clip = deathClip;
+            AudioSource.Play();
+        }
 
         while (AudioSource.isPlaying)
         {
@@ -243,7 +241,7 @@ public class Player : Character
     private void GainExperience(int amt)
     {
         experance += amt;
-        UserInterface.UI.xpBar.fillAmount = ExpPercentage;
+        OnXpPercentageChanged?.Invoke(ExpPercentage);
 
         if (experance >= nextLevel)
         {
@@ -262,13 +260,14 @@ public class Player : Character
             nextLevel += 3;
             levelingUp = true;
 
-            FindFirstObjectByType<GameManager>().SetupLevelUp();
+            var gm = FindFirstObjectByType<GameManager>();
+            if (gm != null)
+                gm.SetupLevelUp();
 
             yield return new WaitWhile(() => levelingUp);
         }
 
-        UserInterface.UI.UpdateLevel(level.ToString());
-        UserInterface.UI.xpBar.fillAmount = ExpPercentage;
+        OnXpPercentageChanged?.Invoke(ExpPercentage);
     }
 
     private IEnumerator HpRegen()
@@ -280,7 +279,7 @@ public class Player : Character
             if (hpRegenAmt > 0)
             {
                 Hp.IncreaseCurrent(hpRegenAmt);
-                UserInterface.UI.UpdateHp(Hp.GetCurrent());
+                OnHpChanged?.Invoke(Hp.GetCurrent());
             }
         }
     }

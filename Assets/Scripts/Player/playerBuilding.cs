@@ -1,6 +1,7 @@
 using UnityEngine;
 using NavMeshPlus.Components;
 using UnityEngine.Tilemaps;
+using System.Collections;
 
 public class PlayerBuilding : MonoBehaviour
 {
@@ -18,36 +19,36 @@ public class PlayerBuilding : MonoBehaviour
 
     private Camera mainCamera;
     private AudioSource audioSource;
-    private NavMeshSurface navMeshSurface;
+    [SerializeField] private NavMeshSurface navMeshSurface;
+    private Tilemap tilemap;
+    private SpriteRenderer turretSpriteRenderer;
+    private bool navmeshUpdateScheduled;
 
     private enum BuildItem { Fence, Turret }
     private BuildItem currentItem;
 
-    [SerializeField]
-    private SpriteRenderer armsSpriteRenderer;
+    [SerializeField] private PlayerArmsManager armsManager;
 
     private void Start()
     {
         mainCamera = Camera.main;
         audioSource = GetComponentInParent<AudioSource>();
-        navMeshSurface = FindFirstObjectByType<NavMeshSurface>();
+        tilemap = grid != null ? grid.GetComponentInChildren<Tilemap>() : null;
+        if (turretPrefab != null)
+            turretSpriteRenderer = turretPrefab.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        UpdateGhostPlacement();
+        if (currentPlacement != null && currentPlacement.gameObject.activeSelf && grid != null && mainCamera != null)
+        {
+            UpdateGhostPlacement();
+        }
     }
 
     public void SetArms()
     {
-        if (armsSpriteRenderer == null)
-        {
-            Debug.LogError("SpriteRenderer component is missing on the PlayerBuilding GameObject.");
-            return;
-        }
-
-        // Use FindFirstObjectByType instead of FindObjectOfType
-        FindFirstObjectByType<PlayerArmsManager>()?.SetArmsSprite(toolSprite);
+        armsManager?.SetArmsSprite(toolSprite);
         UpdateGhostSprite(fenceTile.m_DefaultSprite);
     }
 
@@ -64,7 +65,8 @@ public class PlayerBuilding : MonoBehaviour
     public void ChangeItem(float direction)
     {
         currentItem = (BuildItem)(((int)currentItem + (int)direction + totalItems) % totalItems);
-        UpdateGhostSprite(currentItem == BuildItem.Fence ? fenceTile.m_DefaultSprite : turretPrefab.GetComponent<SpriteRenderer>().sprite);
+        var turretSprite = turretSpriteRenderer != null ? turretSpriteRenderer.sprite : null;
+        UpdateGhostSprite(currentItem == BuildItem.Fence ? fenceTile.m_DefaultSprite : turretSprite);
     }
 
     public void Place()
@@ -80,19 +82,20 @@ public class PlayerBuilding : MonoBehaviour
         }
 
         PlayBuildSound();
-        UpdateNavMesh();
+        ScheduleNavMeshUpdate();
     }
 
     private void BuildFence()
     {
         // Place a fence tile at the current grid position
-        var tilemap = grid.GetComponentInChildren<Tilemap>();
+        if (tilemap == null || fenceTile == null) return;
         tilemap.SetTile(GetGridPosition(), fenceTile);
     }
 
     private void BuildTurret()
     {
         // Instantiate a turret prefab at the current grid position
+        if (turretPrefab == null || grid == null) return;
         Instantiate(turretPrefab, grid.GetCellCenterWorld(GetGridPosition()), Quaternion.identity);
     }
 
@@ -104,8 +107,22 @@ public class PlayerBuilding : MonoBehaviour
 
     private void UpdateNavMesh()
     {
-        if (navMeshSurface != null)
-            navMeshSurface.UpdateNavMesh(navMeshSurface.navMeshData);
+        if (navMeshSurface == null) return;
+        navMeshSurface.UpdateNavMesh(navMeshSurface.navMeshData);
+    }
+
+    private void ScheduleNavMeshUpdate(float delay = 0.25f)
+    {
+        if (navmeshUpdateScheduled || navMeshSurface == null) return;
+        navmeshUpdateScheduled = true;
+        StartCoroutine(DebouncedNavmeshUpdate(delay));
+    }
+
+    private IEnumerator DebouncedNavmeshUpdate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        UpdateNavMesh();
+        navmeshUpdateScheduled = false;
     }
 
     private void UpdateGhostSprite(Sprite sprite)

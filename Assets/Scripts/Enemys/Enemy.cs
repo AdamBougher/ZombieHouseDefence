@@ -23,6 +23,9 @@ public class Enemy : Character
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _collider;
     
+    [SerializeField]
+    private GameManager _gameManager;
+    
     //instance variables
     [ShowInInspector]
     private Transform _target;
@@ -40,6 +43,15 @@ public class Enemy : Character
 
         //setup linkages
         _player = FindFirstObjectByType<Player>();
+        if (_player == null)
+        {
+            Debug.LogError("Enemy: Player not found in scene. Enemy will not function correctly.");
+            return;
+        }
+
+        if (_gameManager == null)
+            _gameManager = FindFirstObjectByType<GameManager>();
+        
         AudioSource = GetComponent<AudioSource>();
         _agent = GetComponent<NavMeshAgent>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -77,15 +89,15 @@ public class Enemy : Character
     {
         GameManager.Pause -= OnPaused;
         GameManager.Unpause -= OnResume;
+        GameTime.OnMinuetTick -= LevelUp;
     }
 
     private void Update() {
-        if (GameManager.GamePaused) 
+        if (GameManager.GamePaused || _player == null)
             return;
         
         _agent.SetDestination(_target.position);
         FacePlayer();
-
     }
     
     private void OnCollisionEnter2D(Collision2D other)
@@ -121,8 +133,8 @@ public class Enemy : Character
     }
     private void OnResume() 
     {
-        if (_agent is not null && _agent.isActiveAndEnabled)
-            _agent.isStopped = false;
+        if (this == null || _agent == null || !_agent.isActiveAndEnabled) return;
+        _agent.isStopped = false;
     }
     
     public override void Damage(int amt)
@@ -136,12 +148,13 @@ public class Enemy : Character
         }
         
         //play damage sound effect
-        StartCoroutine(PlaySound(hurtSfx[0]));
-        
+        if (hurtSfx != null && hurtSfx.Length > 0)
+            StartCoroutine(PlaySound(hurtSfx[0]));
     }
 
     private void FacePlayer()
     {
+        if (_player == null) return;
         var direction = (_player.transform.position - transform.position).normalized;
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new (0, 0, angle);
@@ -149,15 +162,19 @@ public class Enemy : Character
     
     private IEnumerator Die()
     {
-        GameManager.Score += worth;
-        _player.GetExp(worth);
+        if (_player != null)
+        {
+            GameManager.Score += worth;
+            _player.GetExp(worth);
+        }
 
         EnemiesKilled++;
-        GameManager.UserInterface.DisplayKills();
+        GameManager.UserInterface?.DisplayKills();
         
         _collider.enabled = false;
 
-        StartCoroutine(PlaySound(hurtSfx[0]));
+        if (hurtSfx != null && hurtSfx.Length > 0)
+            StartCoroutine(PlaySound(hurtSfx[0]));
         _spriteRenderer.enabled = false;
         //waite while ending shit is happening
         yield return new WaitWhile(() => AudioSource.isPlaying);

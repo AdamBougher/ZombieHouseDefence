@@ -17,6 +17,14 @@ public class UserInterface : MonoBehaviour
     public List<UpgradeChoice> levelUpOption;
     public UIItemDisplay imagePanel;
 
+    [BoxGroup("References")]
+    [SerializeField]
+    private Player _player;
+    
+    [BoxGroup("References")]
+    [SerializeField]
+    private PlayerWeaponHandler _weaponHandler;
+
     public static UserInterface UI { get; private set; }
     public static event Action OnLoaded;
 
@@ -31,6 +39,61 @@ public class UserInterface : MonoBehaviour
         StartCoroutine(UpdateClockLoop());
         OnLoaded?.Invoke();
         StartCoroutine(TutorialRoutine());
+    }
+
+    private void OnEnable()
+    {
+        // Get player reference if not serialized
+        if (_player == null)
+            _player = FindFirstObjectByType<Player>();
+        
+        if (_player != null)
+        {
+            _player.OnHpChanged += UpdateHp;
+            _player.OnXpPercentageChanged += UpdateXpBar;
+        }
+        else
+        {
+            Debug.LogWarning("UserInterface.OnEnable: Player reference not found.");
+        }
+
+        // Get weapon handler reference if not serialized
+        if (_weaponHandler == null)
+            _weaponHandler = FindFirstObjectByType<PlayerWeaponHandler>();
+        
+        if (_weaponHandler != null)
+        {
+            _weaponHandler.OnAmmoChanged += UpdateAmmoDisplays;
+        }
+        else
+        {
+            Debug.LogWarning("UserInterface.OnEnable: PlayerWeaponHandler reference not found.");
+        }
+
+        GameManager.OnPauseStateChanged += HandlePauseStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from gameplay events
+        if (_player != null)
+        {
+            _player.OnHpChanged -= UpdateHp;
+            _player.OnXpPercentageChanged -= UpdateXpBar;
+        }
+
+        if (_weaponHandler != null)
+        {
+            _weaponHandler.OnAmmoChanged -= UpdateAmmoDisplays;
+        }
+
+        GameManager.OnPauseStateChanged -= HandlePauseStateChanged;
+    }
+
+    private void HandlePauseStateChanged()
+    {
+        // Optional: handle pause-state-dependent UI logic here
+        // For now, this is a placeholder for future pause UI updates
     }
 
     private IEnumerator TutorialRoutine()
@@ -51,27 +114,32 @@ public class UserInterface : MonoBehaviour
 
     public void UpdateAmmoDisplays(string str)
     {
-        ammo.SetText(str);
+        if (ammo != null)
+            ammo.SetText(str);
     }
 
     public void UpdateXpBar(float xpAmt)
     {
-        xpBar.fillAmount = xpAmt;
+        if (xpBar != null)
+            xpBar.fillAmount = xpAmt;
     }
 
     public void DisplayKills()
     {
-        kills.SetText(Enemy.EnemiesKilled.ToString());
+        if (kills != null)
+            kills.SetText(Enemy.EnemiesKilled.ToString());
     }
 
     public void UpdateLevel(string lvl)
     {
-        level.SetText($"Lvl: {lvl}");
+        if (level != null)
+            level.SetText($"Lvl: {lvl}");
     }
 
     public void UpdateHp(int amt)
     {
-        hp.SetText(amt.ToString());
+        if (hp != null)
+            hp.SetText(amt.ToString());
     }
 
     public void ReturnToMenu()
@@ -90,11 +158,17 @@ public class UserInterface : MonoBehaviour
 
     public void ShowJumbotron(string text)
     {
-        StartCoroutine(JumbotronRoutine(text));
+        if (jumbotron != null)
+            StartCoroutine(JumbotronRoutine(text));
+        else
+            Debug.LogWarning("UserInterface.ShowJumbotron: Jumbotron TextMeshProUGUI is null.");
     }
 
     private IEnumerator JumbotronRoutine(string text)
     {
+        if (jumbotron == null)
+            yield break;
+            
         jumbotron.SetText(text);
         var col = jumbotron.color;
 
