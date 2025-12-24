@@ -1,201 +1,141 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(NavMeshAgent))]   
-public class Enemy : Character
+namespace ZombieHouseDefense
 {
-    //class variables
-    public  static int EnemiesAlive, EnemiesKilled;
-    private const float DamageCoolDown = 2.00f;
-    
-    [BoxGroup("experance"), SerializeField]
-    private int worth;
-    
-    public  AudioClip[] genericSfx;
-    public  AudioClip[] hurtSfx;
-    public  AudioClip[] damageSfx;
-    
-    private Player _player;
-    private SpriteRenderer _spriteRenderer;
-    private CircleCollider2D _collider;
-    
-    [SerializeField]
-    private GameManager _gameManager;
-    
-    //instance variables
-    [ShowInInspector]
-    private Transform _target;
-    private NavMeshAgent _agent;
-    
-    private bool _canDamage = true;
-    
-    //methods
+    [RequireComponent(typeof(NavMeshAgent))]
+    public class Enemy : Character, IDamageable
+    {   
+        public string enemyType;
+        [SerializeField]
+        private int damageAmount = 1;
 
-    protected void Awake()
-    {
-        //subscribe pause methods to relevant delegates
-        GameManager.Pause += OnPaused;
-        GameManager.Unpause += OnResume;
+        [SerializeField] private Vector2 cryIntervalRange = new Vector2(2f, 15f);
+        [SerializeField] private bool playCryOnEnable = true;
 
-        //setup linkages
-        _player = FindFirstObjectByType<Player>();
-        if (_player == null)
-        {
-            Debug.LogError("Enemy: Player not found in scene. Enemy will not function correctly.");
-            return;
+        public GameObject target;
+
+        private NavMeshAgent agent;
+
+        private Vector2 _lookInput;
+        private Vector2 _lastLookDir = Vector2.right;
+
+        private Coroutine _cryRoutine;
+
+        public AudioClip cry;
+
+        public AudioClip deathSound;
+
+	    void Start()	{
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            agent.speed = Speed;
         }
 
-        if (_gameManager == null)
-            _gameManager = FindFirstObjectByType<GameManager>();
-        
-        AudioSource = GetComponent<AudioSource>();
-        _agent = GetComponent<NavMeshAgent>();
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _collider = GetComponent<CircleCollider2D>();
-
-        //setup instances variables
-        _agent.updateRotation = false;
-        _agent.updateUpAxis = false;
-        _agent.speed = GetSpeed();
-
-        _target = _player.transform;
-        
-        worth += 1;
-
-        Hp = new(1, 1);
-
-        GameTime.OnMinuetTick += LevelUp;
-
-    }
-
-    protected virtual void OnEnable()
-    {
-        _spriteRenderer.enabled = true;
-        _collider.enabled = true;
-
-        //update game stat
-        EnemiesAlive++;
-
-        //play spawn sfx
-        StartCoroutine(PlaySound(genericSfx[0]));
-        Hp.SetCurrent(Random.Range(1, Hp.GetMax()));
-        
-    }
-    protected virtual void OnDisable()
-    {
-        GameManager.Pause -= OnPaused;
-        GameManager.Unpause -= OnResume;
-        GameTime.OnMinuetTick -= LevelUp;
-    }
-
-    private void Update() {
-        if (GameManager.GamePaused || _player == null)
-            return;
-        
-        _agent.SetDestination(_target.position);
-        FacePlayer();
-    }
-    
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (!_canDamage) return;
-
-        if (!other.gameObject.TryGetComponent<IHittable>(out var hit)) return;
-        
-        _canDamage = false;
-        hit.Damage(1);
-        StartCoroutine(HitCoolDown());
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (!_canDamage) return;
-        
-        if (!other.gameObject.CompareTag("Destructible")) return;
-
-        if (!other.TryGetComponent<Door>(out var door)) return;
-        _canDamage = false;
-        door.Damage(1);
-        StartCoroutine(HitCoolDown());
-
-    }
-    
-    private void OnPaused()
-    {
-        // Ensure the Enemy object and NavMeshAgent are valid before accessing
-        if (this == null || _agent == null || !_agent.isActiveAndEnabled) return;
-
-        _agent.isStopped = true;
-    }
-    private void OnResume() 
-    {
-        if (this == null || _agent == null || !_agent.isActiveAndEnabled) return;
-        _agent.isStopped = false;
-    }
-    
-    public override void Damage(int amt)
-    {
-        base.Damage(amt);
-        
-        if (Hp.IsEmpty)
+        void Update()
         {
-            StartCoroutine(Die());
-            return;
-        }
-        
-        //play damage sound effect
-        if (hurtSfx != null && hurtSfx.Length > 0)
-            StartCoroutine(PlaySound(hurtSfx[0]));
-    }
+            if (target == null)
+            {
+                return;
+            }
 
-    private void FacePlayer()
-    {
-        if (_player == null) return;
-        var direction = (_player.transform.position - transform.position).normalized;
-        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.eulerAngles = new (0, 0, angle);
-    }
-    
-    private IEnumerator Die()
-    {
-        if (_player != null)
-        {
-            GameManager.Score += worth;
-            _player.GetExp(worth);
+            Vector3 currentPos = transform.position;
+            Vector3 targetPos = target.transform.position;
+
+            // Keep the agent moving toward the target.
+            agent.SetDestination(targetPos);
+
+            // Face the target using a simple world-space direction to avoid camera lookups.
+            Vector2 dir = (Vector2)(targetPos - currentPos);
+            float dirSqrMag = dir.sqrMagnitude;
+
+            if (dirSqrMag > 0.0001f)
+            {
+                _lastLookDir = dir.normalized;
+            }
+
+            if (_lastLookDir.sqrMagnitude < 0.0001f)
+            {
+                return;
+            }
+
+            float angle = Mathf.Atan2(_lastLookDir.y, _lastLookDir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
-        EnemiesKilled++;
-        GameManager.UserInterface?.DisplayKills();
-        
-        _collider.enabled = false;
 
-        if (hurtSfx != null && hurtSfx.Length > 0)
-            StartCoroutine(PlaySound(hurtSfx[0]));
-        _spriteRenderer.enabled = false;
-        //waite while ending shit is happening
-        yield return new WaitWhile(() => AudioSource.isPlaying);
-        
-        EnemyPool.SharedInstance.ReturnToPool(this);
-    }
+        private void OnEnable()
+        {
+            if (playCryOnEnable)
+            {
+                StartCryLoop();
+            }
+        }
 
-    private void LevelUp(object sender, EventArgs e)
-    {
-        level++;
-        worth += 1;
-        
-        Hp.IncreaseMax(2);
-        
-        speedMod += 0.5f;
-    }
+        private void OnDisable()
+        {
+            if (_cryRoutine != null)
+            {
+                StopCoroutine(_cryRoutine);
+                _cryRoutine = null;
+            }
+        }
 
-    private IEnumerator HitCoolDown()
-    {
-        yield return new WaitForSeconds(DamageCoolDown);
-        _canDamage = true;
+        protected override void Die()
+        {
+            // Enemy-specific die behavior
+            Debug.Log($"{gameObject.name} (Enemy) has died.");
+            gameObject.SetActive(false);
+        }
+
+        public override void Damage(int amt)
+        {
+            base.Damage(amt);
+            if (deathSound != null && AudioSource != null)
+            {
+                AudioSource.PlayOneShot(deathSound);
+            }
+            
+        }
+
+        private void StartCryLoop()
+        {
+            if (_cryRoutine != null)
+            {
+                StopCoroutine(_cryRoutine);
+            }
+            _cryRoutine = StartCoroutine(CryLoop());
+        }
+
+        private IEnumerator CryLoop()
+        {
+            while (enabled && gameObject.activeInHierarchy)
+            {
+                if (cry != null && AudioSource != null)
+                {
+                    AudioSource.PlayOneShot(cry);
+                }
+
+                float min = Mathf.Max(0.01f, Mathf.Min(cryIntervalRange.x, cryIntervalRange.y));
+                float max = Mathf.Max(min, Mathf.Max(cryIntervalRange.x, cryIntervalRange.y));
+                float wait = UnityEngine.Random.Range(min, max);
+                yield return new WaitForSeconds(wait);
+            }
+
+            _cryRoutine = null;
+        }
+
+        void OnTriggerStay2D(Collider2D other)
+        {   
+            Debug.Log("Enemy collided with " + other.gameObject.name);
+            if (other.gameObject.CompareTag("Player"))
+            {
+                IDamageable player = other.gameObject.GetComponent<IDamageable>();
+                player?.Damage(damageAmount);
+            }
+        }
+
     }
-    
 }

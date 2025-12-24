@@ -1,12 +1,15 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="NavMeshPlusEditor.csproj" />
+  <Project Path="ZombieHouseDefense.Player.csproj" />
+  <Project Path="ZombieHouseDefense.Enemy.csproj" />
   <Project Path="Meryel.CodeAssist.Editor.csproj" />
-  <Project Path="NavMeshPlus.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
-  <Project Path="com.flipbookgames.scriptinspector3.csproj" />
   <Project Path="Sirenix.OdinInspector.Modules.Unity.Addressables.csproj" />
+  <Project Path="ZombieHouseDefense.Core.csproj" />
+  <Project Path="Game.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ZombieHouseDefense.World.csproj" />
   <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
+  <Project Path="ZombieHouseDefense.interfaces.csproj" />
   <Project Path="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
 </Solution>

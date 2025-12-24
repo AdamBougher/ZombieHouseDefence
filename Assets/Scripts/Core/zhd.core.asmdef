@@ -1,0 +1,16 @@
+{
+    "name": "ZombieHouseDefense.Core",
+    "rootNamespace": "ZombieHouseDefense",
+    "references": [
+        "GUID:7c2c19ef21d52ff43b24d0a9f71f04d1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
