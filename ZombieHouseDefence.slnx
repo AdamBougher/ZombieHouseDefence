@@ -1,16 +1,16 @@
 ﻿<Solution>
   <Project Path="ZombieHouseDefense.Player.csproj" />
-  <Project Path="ZombieHouseDefense.Enemy.csproj" />
   <Project Path="Meryel.CodeAssist.Editor.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="Sirenix.OdinInspector.Modules.Unity.Addressables.csproj" />
   <Project Path="ZombieHouseDefense.Core.csproj" />
+  <Project Path="ZombieHouseDefense.Interfaces.csproj" />
   <Project Path="Game.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="ZombieHouseDefense.Enemy.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="ZombieHouseDefense.World.csproj" />
   <Project Path="ZombieHouseDefense.Weapon.csproj" />
   <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
-  <Project Path="ZombieHouseDefense.Interfaces.csproj" />
   <Project Path="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
 </Solution>

@@ -1,47 +1,51 @@
 using UnityEngine;
-using ZombieHouseDefense.core;
+using ZombieHouseDefense.Core;
+using ZombieHouseDefense.Weapon;
 
-[RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(PlayerArmsManager))]
-public class PlayerWeaponHandler : MonoBehaviour
+namespace ZombieHouseDefense.Player
 {
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private AudioClip fireClip;
-
-    private BulletPool bulletPool;
-
-    private void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(PlayerArmsManager))]
+    public class PlayerWeaponHandler : MonoBehaviour
     {
-        bulletPool = BulletPool.Instance;
-    }
-    private void OnFire()
-    {
-        // Ensure pool reference
-        if (bulletPool == null)
+        [SerializeField] private Transform firePoint;
+        [SerializeField] private AudioClip fireClip;
+
+        private BulletPool bulletPool;
+
+        private void Awake()
         {
             bulletPool = BulletPool.Instance;
         }
-
-        if (bulletPool == null)
+        private void OnFire()
         {
-            Debug.LogError("PlayerWeaponHandler: BulletPool instance is missing in the scene.");
-            return;
-        }
+            // Ensure pool reference
+            if (bulletPool == null)
+            {
+                bulletPool = BulletPool.Instance;
+            }
 
-        var spawnPos = firePoint ? firePoint.position : transform.position;
-        var spawnRot = firePoint ? firePoint.rotation : transform.rotation;
+            if (bulletPool == null)
+            {
+                Debug.LogError("PlayerWeaponHandler: BulletPool instance is missing in the scene.");
+                return;
+            }
 
-        var bullet = bulletPool.GetBullet(null, spawnPos, spawnRot);
-        if (bullet == null)
-        {
-            Debug.LogError("PlayerWeaponHandler: Failed to retrieve a bullet from the pool.");
-            return;
-        }
+            var spawnPos = firePoint ? firePoint.position : transform.position;
+            var spawnRot = firePoint ? firePoint.rotation : transform.rotation;
 
-        var audio = GetComponent<AudioSource>();
-        if (audio && fireClip)
-        {
-            audio.PlayOneShot(fireClip);
+            var bullet = bulletPool.GetBullet(null, spawnPos, spawnRot);
+            if (bullet == null)
+            {
+                Debug.LogError("PlayerWeaponHandler: Failed to retrieve a bullet from the pool.");
+                return;
+            }
+
+            var audio = GetComponent<AudioSource>();
+            if (audio && fireClip)
+            {
+                audio.PlayOneShot(fireClip);
+            }
         }
     }
 }

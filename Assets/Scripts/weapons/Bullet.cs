@@ -1,4 +1,5 @@
 using UnityEngine;
+using ZombieHouseDefense.Core;
 
 namespace ZombieHouseDefense.Weapon
 {
@@ -71,7 +72,7 @@ namespace ZombieHouseDefense.Weapon
 
             Debug.Log("Bullet collided with " + go.name);
 
-                if (go.TryGetComponent<IDamageable>(out var damageable))
+                if (go.TryGetComponent<ZombieHouseDefense.Interfaces.IDamageable>(out var damageable))
             {
                 damageable.Damage(1);
             }

@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 687ae9b965704830942fccaa3b015097
+guid: 7694d4a336344b48a9ba6b985faf7bcb
 AssetOrigin:
   serializedVersion: 1
   productId: 11889
   packageName: Editor Console Pro
-  packageVersion: 3.979
+  packageVersion: 3.980
   assetPath: Assets/ConsolePro/Editor/2021_3_Plus/ConsolePro.Editor.dll
-  uploadId: 833240
+  uploadId: 837254
 PluginImporter:
   externalObjects: {}
   serializedVersion: 3

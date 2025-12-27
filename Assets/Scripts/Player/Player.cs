@@ -2,10 +2,13 @@ using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ZombieHouseDefense.Interfaces;
+using ZombieHouseDefense.Core; // <-- add this
 
-namespace ZombieHouseDefense
+
+namespace ZombieHouseDefense.Player
 {
-    public class Player : Character, IDamageable
+    public class Player : ZombieHouseDefense.Core.Character, IDamageable
     {
         private Vector2 _lookInput;
         private Vector2 _lastLookDir = Vector2.right;
@@ -57,14 +60,14 @@ namespace ZombieHouseDefense
 
         public void Interact()
         {
-            // Find all intractable objects in range
+            // Find all interactable objects in range
             Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, _interactionRange);
-            
+
             foreach (Collider2D collider in collidersInRange)
             {
-                if (collider.TryGetComponent(out IIntractable intractable))
+                if (collider.TryGetComponent(out IInteractable interactable))
                 {
-                    intractable.Interact();
+                    interactable.Interact(); // <-- fix typo (was intractable)
                 }
             }
         }

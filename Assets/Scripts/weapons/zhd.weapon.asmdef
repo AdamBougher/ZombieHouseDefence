@@ -2,8 +2,8 @@
     "name": "ZombieHouseDefense.Weapon",
     "rootNamespace": "ZombieHouseDefense",
     "references": [
-        "GUID:7c2c19ef21d52ff43b24d0a9f71f04d1",
-        "GUID:50df147fb8450574abd45fd81afb7f41"
+        "ZombieHouseDefense.Core",
+        "ZombieHouseDefense.Interfaces"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

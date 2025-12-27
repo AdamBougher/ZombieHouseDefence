@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ZombieHouseDefense
+namespace ZombieHouseDefense.Player
 {
     [RequireComponent(typeof(Player))]
     [RequireComponent(typeof(Collider2D))]

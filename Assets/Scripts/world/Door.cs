@@ -1,10 +1,10 @@
-using System.Collections;
 using UnityEngine;
+using ZombieHouseDefense.Interfaces;
 
-namespace ZombieHouseDefense
+namespace ZombieHouseDefense.World
 {
     [RequireComponent(typeof(BoxCollider2D))]
-    public class Door : MonoBehaviour, IDamageable, IIntractable
+    public class Door : MonoBehaviour, IDamageable, IInteractable
     {
         
         [SerializeField] 
