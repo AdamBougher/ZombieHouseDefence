@@ -1,31 +1,30 @@
 using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
-
-namespace ZombieHouseDefense
+using ZombieHouseDefense.Core;
+using ZombieHouseDefense.Interfaces;
+namespace ZombieHouseDefense.Enemy
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Enemy : Character, IDamageable
+    public class Enemy : Character,  IDamageable
     {   
-        public string enemyType;
-        [SerializeField]
-        private int damageAmount = 1;
-
-        [SerializeField] private Vector2 cryIntervalRange = new Vector2(2f, 15f);
+        [SerializeField, BoxGroup("Character")] private string enemyType;
+        [SerializeField] private int damageAmount = 1;
+        [SerializeField] private Vector2 cryIntervalRange = new(2f, 15f);
         [SerializeField] private bool playCryOnEnable = true;
 
-        public GameObject target;
+        [SerializeField] private GameObject target;
+        
+        [SerializeField, BoxGroup("components")] private SpriteRenderer sprite;
+        [SerializeField, BoxGroup("components")] private Collider2D Hitbox, TriggerBox;
 
         private NavMeshAgent agent;
-
-        private Vector2 _lookInput;
         private Vector2 _lastLookDir = Vector2.right;
 
         private Coroutine _cryRoutine;
 
-        public AudioClip cry;
-
-        public AudioClip deathSound;
+        public AudioClip cry, deathSound;
 
 	    void Start()	{
             agent = GetComponent<NavMeshAgent>();
@@ -87,7 +86,7 @@ namespace ZombieHouseDefense
         {
             // Enemy-specific die behavior
             Debug.Log($"{gameObject.name} (Enemy) has died.");
-            gameObject.SetActive(false);
+            StartCoroutine(Death());
         }
 
         public override void Damage(int amt)
@@ -127,7 +126,19 @@ namespace ZombieHouseDefense
             _cryRoutine = null;
         }
 
-        void OnTriggerStay2D(Collider2D other)
+        private IEnumerator Death()
+        {
+            sprite.enabled = false;
+            Hitbox.enabled = false;
+            TriggerBox.enabled = false;
+
+            AudioSource.Stop();
+            AudioSource.PlayOneShot(deathSound);
+            yield return new WaitForSeconds(deathSound.length);
+            this.gameObject.SetActive(false);
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
         {   
             Debug.Log("Enemy collided with " + other.gameObject.name);
             if (other.gameObject.CompareTag("Player"))
@@ -137,5 +148,6 @@ namespace ZombieHouseDefense
             }
         }
 
+        
     }
 }

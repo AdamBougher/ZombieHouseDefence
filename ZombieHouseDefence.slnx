@@ -9,7 +9,8 @@
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="ZombieHouseDefense.World.csproj" />
+  <Project Path="ZombieHouseDefense.Weapon.csproj" />
   <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
-  <Project Path="ZombieHouseDefense.interfaces.csproj" />
+  <Project Path="ZombieHouseDefense.Interfaces.csproj" />
   <Project Path="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
 </Solution>

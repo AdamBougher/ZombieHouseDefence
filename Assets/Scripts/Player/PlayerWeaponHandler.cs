@@ -1,5 +1,5 @@
 using UnityEngine;
-using ZombieHouseDefense;
+using ZombieHouseDefense.core;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(PlayerArmsManager))]

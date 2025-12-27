@@ -438,6 +438,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Extensions.AgentOverride2d
+--- !u!58 &277998113 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2886933532567383882, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+  m_PrefabInstance: {fileID: 1172442134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &277998114 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1605299012557922842, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+  m_PrefabInstance: {fileID: 1172442134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &285861004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1395,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: 9c999a39c8a6d2a43ac3eed12cefe669, type: 3}
   m_ActionId: fd28a130-cf39-4e21-9962-09ead4c4e573
+--- !u!212 &896548689 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7784450967793199698, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+  m_PrefabInstance: {fileID: 1172442134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &905253081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1601,6 +1616,26 @@ PrefabInstance:
       propertyPath: cry
       value: 
       objectReference: {fileID: 8300000, guid: ee056f9c494cf534999d574b8f83819d, type: 3}
+    - target: {fileID: 6077504990786335067, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+      propertyPath: Hitbox
+      value: 
+      objectReference: {fileID: 277998113}
+    - target: {fileID: 6077504990786335067, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 896548689}
+    - target: {fileID: 6077504990786335067, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1586604177}
+    - target: {fileID: 6077504990786335067, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+      propertyPath: baseSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077504990786335067, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
+      propertyPath: TriggerBox
+      value: 
+      objectReference: {fileID: 277998114}
     - target: {fileID: 6077504990786335067, guid: 2c1a80ae5aff7804ea31280355006000, type: 3}
       propertyPath: deathSound
       value: 

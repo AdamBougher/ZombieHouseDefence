@@ -1,5 +1,5 @@
 {
-    "name": "ZombieHouseDefense.interfaces",
+    "name": "ZombieHouseDefense.Interfaces",
     "rootNamespace": "ZombieHouseDefense",
     "references": [],
     "includePlatforms": [],
