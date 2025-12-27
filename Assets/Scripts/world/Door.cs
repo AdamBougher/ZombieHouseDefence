@@ -16,20 +16,6 @@ namespace ZombieHouseDefense.World
         private bool navmeshUpdateScheduled;
         private const float NavMeshDebounceDelay = 0.2f;
 
-        public void Enter()
-        {
-            if (isOpen)
-            {
-                isOpen = false;
-                gameObject.transform.Rotate(0,0,90);
-            }else{
-                
-                isOpen = true;
-                gameObject.transform.Rotate(0,0,-90);
-            }
-            
-        }
-
         public void Damage(int amt)
         {
             hp -= amt;
@@ -49,7 +35,16 @@ namespace ZombieHouseDefense.World
 
         public void Interact()
         {
-            Enter();
+            if (isOpen)
+            {
+                Debug.Log("Closing Door");
+                isOpen = false;
+                this.gameObject.transform.Rotate(0,0,-90);
+            }else{
+                Debug.Log("Opening Door");
+                isOpen = true;
+                this.gameObject.transform.Rotate(0,0,90);
+            }
         }
     }
 }
