@@ -1,18 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ZombieHouseDefense.Interfaces;
-using ZombieHouseDefense.Core; // <-- add this
 
 
 namespace ZombieHouseDefense.Player
 {
-    public class Player : ZombieHouseDefense.Core.Character, IDamageable
+    public class Player : Core.Character, IDamageable
     {
         private Vector2 _lookInput;
         private Vector2 _lastLookDir = Vector2.right;
-        
+
         [SerializeField] private float _interactionRange = 2f;
         [SerializeField] private int IFrameTime = 1;
         [SerializeField] private float _flashFrequency = 0.1f;
@@ -20,9 +20,12 @@ namespace ZombieHouseDefense.Player
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private SpriteRenderer armsRenderer;
 
+        [SerializeField] private bool _canInteract = true;
+        [SerializeField] private float _interactionCooldown = 0.5f;
+
         private void Start()
         {
-            Hp = new CharacterResource(10,10,false);
+            Hp = new CharacterResource(10, 10, false);
         }
 
         // Called by PlayerInput
@@ -58,22 +61,53 @@ namespace ZombieHouseDefense.Player
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
-        public void Interact()
+        private void OnInteract(InputValue value)
         {
+            if(!_canInteract) return;
+            _canInteract = false;
+            Debug.Log("Player Interact pressed");
             // Find all interactable objects in range
             Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, _interactionRange);
 
+            var interactables = new HashSet<IInteractable>();
             foreach (Collider2D collider in collidersInRange)
             {
+                if (collider == null) continue;
+
                 if (collider.TryGetComponent(out IInteractable interactable))
                 {
-                    interactable.Interact(); // <-- fix typo (was intractable)
+                    interactables.Add(interactable);
+                    continue;
+                }
+
+                // If the collider is on a child object, prefer the parent interactable.
+                interactable = collider.GetComponentInParent<IInteractable>();
+                if (interactable != null)
+                {
+                    interactables.Add(interactable);
                 }
             }
+
+            foreach (IInteractable interactable in interactables)
+            {
+                interactable.Interact();
+            }
+
+            StartCoroutine(InteractCooldown());
         }
 
-        protected override void Die()
+        private IEnumerator InteractCooldown()
         {
+            yield return new WaitForSeconds(_interactionCooldown);
+            _canInteract = true;
+        }
+
+        void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log("Player collided with " + collision.gameObject.name);
+        }
+
+        protected override void Die(){
             Debug.Log($"{gameObject.name} (Player) has died.");
         }
 
@@ -83,9 +117,12 @@ namespace ZombieHouseDefense.Player
 
             Hp.Current -= amt;
 
-            if (Hp.IsEmpty){
+            if (Hp.IsEmpty)
+            {
                 Die();
-            }else{
+            }
+            else
+            {
                 StartCoroutine(InvincibilityFrames());
             }
         }
@@ -94,7 +131,7 @@ namespace ZombieHouseDefense.Player
         {
             _isInvincible = true;
             float elapsedTime = 0f;
-            
+
             while (elapsedTime < IFrameTime)
             {
                 if (spriteRenderer != null)
@@ -110,7 +147,7 @@ namespace ZombieHouseDefense.Player
                 yield return new WaitForSeconds(_flashFrequency);
                 elapsedTime += _flashFrequency;
             }
-            
+
             // Ensure sprite is visible at the end
             if (spriteRenderer != null)
             {
