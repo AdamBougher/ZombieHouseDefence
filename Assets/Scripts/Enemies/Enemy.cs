@@ -1,67 +1,85 @@
-using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.AI;
 using ZombieHouseDefense.Core;
-using ZombieHouseDefense.Interfaces;
+
 namespace ZombieHouseDefense.Enemy
 {
-    [RequireComponent(typeof(NavMeshAgent))]
-    public class Enemy : Character,  IDamageable
-    {   
+    [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class Enemy : Character, ZombieHouseDefense.Interfaces.IDamageable
+    {
         [SerializeField, BoxGroup("Character")] private string enemyType;
         [SerializeField] private int damageAmount = 1;
         [SerializeField] private Vector2 cryIntervalRange = new(2f, 15f);
         [SerializeField] private bool playCryOnEnable = true;
 
         [SerializeField] private GameObject target;
-        
+
         [SerializeField, BoxGroup("components")] private SpriteRenderer sprite;
         [SerializeField, BoxGroup("components")] private Collider2D Hitbox, TriggerBox;
 
-        private NavMeshAgent agent;
+        private UnityEngine.AI.NavMeshAgent agent;
+        private Rigidbody2D _rb;
+
         private Vector2 _lastLookDir = Vector2.right;
+        private Vector2 _desiredVelocity;
 
         private Coroutine _cryRoutine;
 
         public AudioClip cry, deathSound;
 
-	    void Start()	{
-            agent = GetComponent<NavMeshAgent>();
+        void Start()
+        {
+            agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
+
+            // IMPORTANT: Agent is pathfinding only; Rigidbody2D does the actual movement/collisions.
+            agent.updatePosition = false;
+
             agent.speed = Speed;
+
+            _rb = GetComponent<Rigidbody2D>();
+            _rb.gravityScale = 0f;
+            _rb.freezeRotation = true;
+            _rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+            _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         }
 
         void Update()
         {
             if (target == null)
-            {
                 return;
-            }
 
             Vector3 currentPos = transform.position;
             Vector3 targetPos = target.transform.position;
 
-            // Keep the agent moving toward the target.
             agent.SetDestination(targetPos);
 
-            // Face the target using a simple world-space direction to avoid camera lookups.
+            // Cache desired velocity for physics step.
+            _desiredVelocity = Vector2.ClampMagnitude((Vector2)agent.desiredVelocity, agent.speed);
+
+            // Face target
             Vector2 dir = (Vector2)(targetPos - currentPos);
             float dirSqrMag = dir.sqrMagnitude;
 
             if (dirSqrMag > 0.0001f)
-            {
                 _lastLookDir = dir.normalized;
-            }
 
             if (_lastLookDir.sqrMagnitude < 0.0001f)
-            {
                 return;
-            }
 
             float angle = Mathf.Atan2(_lastLookDir.y, _lastLookDir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+
+        private void FixedUpdate()
+        {
+            // Move using physics so Door BoxCollider2D can block the enemy.
+            _rb.linearVelocity = _desiredVelocity;
+
+            // Keep the agent synced to the physics position.
+            agent.nextPosition = _rb.position;
         }
 
 
@@ -108,7 +126,7 @@ namespace ZombieHouseDefense.Enemy
             _cryRoutine = StartCoroutine(CryLoop());
         }
 
-        private IEnumerator CryLoop()
+        private System.Collections.IEnumerator CryLoop()
         {
             while (enabled && gameObject.activeInHierarchy)
             {
@@ -126,7 +144,7 @@ namespace ZombieHouseDefense.Enemy
             _cryRoutine = null;
         }
 
-        private IEnumerator Death()
+        private System.Collections.IEnumerator Death()
         {
             sprite.enabled = false;
             Hitbox.enabled = false;
@@ -143,7 +161,7 @@ namespace ZombieHouseDefense.Enemy
             Debug.Log("Enemy collided with " + other.gameObject.name);
             if (other.gameObject.CompareTag("Player"))
             {
-                IDamageable player = other.gameObject.GetComponent<IDamageable>();
+                ZombieHouseDefense.Interfaces.IDamageable player = other.gameObject.GetComponent<ZombieHouseDefense.Interfaces.IDamageable>();
                 player?.Damage(damageAmount);
             }
         }
