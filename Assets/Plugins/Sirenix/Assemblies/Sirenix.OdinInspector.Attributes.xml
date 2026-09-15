@@ -166,7 +166,7 @@
             <summary>
             <para>
             Specify which folders to search in. Specifying no folders will make it search in your entire project.
-            You can decalir multiple paths using '|' as the seperator.
+            You can declare multiple paths using '|' as the separator.
             Example: <code>[AssetList(Paths = "Assets/Textures|Assets/Other/Textures")]</code>
             </para>
             <para>
@@ -703,7 +703,7 @@
         </member>
         <member name="F:Sirenix.OdinInspector.CustomContextMenuAttribute.MenuItem">
             <summary>
-            The name of the menu item.
+            A resolved string defining the name of the menu item.
             </summary>
         </member>
         <member name="P:Sirenix.OdinInspector.CustomContextMenuAttribute.MethodName">
@@ -720,7 +720,7 @@
             <summary>
             Adds a custom option to the context menu of the property.
             </summary>
-            <param name="menuItem">The name of the menu item.</param>
+            <param name="menuItem">A resolved string defining the name of the menu item.</param>
             <param name="action">A resolved string defining the action to take when the context menu is clicked.</param>
         </member>
         <member name="T:Sirenix.OdinInspector.CustomValueDrawerAttribute">
@@ -1093,6 +1093,11 @@
         <member name="F:Sirenix.OdinInspector.DisplayAsStringAttribute.EnableRichText">
             <summary>
             If <c>true</c> the string will support rich text.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.DisplayAsStringAttribute.Format">
+            <summary>
+            String for formatting the value. Type must implement the <c>IFormattable</c> interface.
             </summary>
         </member>
         <member name="M:Sirenix.OdinInspector.DisplayAsStringAttribute.#ctor">
@@ -2118,6 +2123,194 @@
             </summary>
             <param name="other">The other group to combine with.</param>
         </member>
+        <member name="T:Sirenix.OdinInspector.ImageAttribute">
+             <summary>
+             Draws an image directly in the inspector.
+             </summary>
+             <example>
+             <para>The following example shows how Image is applied to draw images directly in the inspector.</para>
+             <code>
+             [Image("Banner", 96)]
+             public class MyComponent : MonoBehaviour
+             {
+                 [Image(128, DrawProperty = false)]
+                 public Texture2D Banner;
+            
+                 [Image("Icon", 64)]
+                 public string Text;
+            
+                 public Sprite Icon;
+             }
+             </code>
+             </example>
+             <seealso cref="T:Sirenix.OdinInspector.PreviewFieldAttribute"/>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.Width">
+            <summary>
+            The width of the image. Set to 0 to use the image's natural width.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.Height">
+            <summary>
+            The height of the image. Set to 0 to use the image's natural height.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.FitToAvailableWidth">
+            <summary>
+            Whether the image should fit to the normal inspector layout width when Width and Height are both 0.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.Alignment">
+            <summary>
+            Horizontal alignment of the image inside the available preview area. 0 is left, 0.5 is center, and 1 is right.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.ScaleMode">
+            <summary>
+            The scale mode used when drawing the image.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.FilterMode">
+            <summary>
+            The filter mode to use while drawing the image.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.AlphaBlend">
+            <summary>
+            Whether the image should be drawn with alpha blending.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.DrawProperty">
+            <summary>
+            Whether the property itself should be drawn after the image.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.DrawPosition">
+            <summary>
+            Whether the image should be drawn before or after the original property.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageAttribute.IgnorePadding">
+            <summary>
+            Whether the image should ignore the current layout padding and indentation.
+            </summary>
+        </member>
+        <member name="P:Sirenix.OdinInspector.ImageAttribute.ImageSource">
+            <summary>
+            A resolved value that should resolve to the image object to draw.
+            </summary>
+        </member>
+        <member name="P:Sirenix.OdinInspector.ImageAttribute.ImageSourceHasValue">
+            <summary>
+            Whether an image source value is specified.
+            </summary>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor">
+            <summary>
+            Draws the property's value as an image.
+            </summary>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.Single)">
+            <summary>
+            Draws the property's value as an image.
+            </summary>
+            <param name="height">The height of the image.</param>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.Single,Sirenix.OdinInspector.ImageScaleMode)">
+            <summary>
+            Draws the property's value as an image.
+            </summary>
+            <param name="height">The height of the image.</param>
+            <param name="scaleMode">The scale mode used when drawing the image.</param>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.Single,System.Single)">
+            <summary>
+            Draws the property's value as an image.
+            </summary>
+            <param name="width">The width of the image.</param>
+            <param name="height">The height of the image.</param>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.Single,System.Single,Sirenix.OdinInspector.ImageScaleMode)">
+            <summary>
+            Draws the property's value as an image.
+            </summary>
+            <param name="width">The width of the image.</param>
+            <param name="height">The height of the image.</param>
+            <param name="scaleMode">The scale mode used when drawing the image.</param>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.String)">
+            <summary>
+            Draws an image resolved by the specified source.
+            </summary>
+            <param name="imageSource">A resolved value that should resolve to the image object to draw.</param>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.String,System.Single)">
+            <summary>
+            Draws an image resolved by the specified source.
+            </summary>
+            <param name="imageSource">A resolved value that should resolve to the image object to draw.</param>
+            <param name="height">The height of the image.</param>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.String,System.Single,Sirenix.OdinInspector.ImageScaleMode)">
+            <summary>
+            Draws an image resolved by the specified source.
+            </summary>
+            <param name="imageSource">A resolved value that should resolve to the image object to draw.</param>
+            <param name="height">The height of the image.</param>
+            <param name="scaleMode">The scale mode used when drawing the image.</param>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.String,System.Single,System.Single)">
+            <summary>
+            Draws an image resolved by the specified source.
+            </summary>
+            <param name="imageSource">A resolved value that should resolve to the image object to draw.</param>
+            <param name="width">The width of the image.</param>
+            <param name="height">The height of the image.</param>
+        </member>
+        <member name="M:Sirenix.OdinInspector.ImageAttribute.#ctor(System.String,System.Single,System.Single,Sirenix.OdinInspector.ImageScaleMode)">
+            <summary>
+            Draws an image resolved by the specified source.
+            </summary>
+            <param name="imageSource">A resolved value that should resolve to the image object to draw.</param>
+            <param name="width">The width of the image.</param>
+            <param name="height">The height of the image.</param>
+            <param name="scaleMode">The scale mode used when drawing the image.</param>
+        </member>
+        <member name="T:Sirenix.OdinInspector.ImageScaleMode">
+            <summary>
+            The scale mode used by <see cref="T:Sirenix.OdinInspector.ImageAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageScaleMode.StretchToFill">
+            <summary>
+            Stretch the image to fill the whole image rect.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageScaleMode.ScaleToFit">
+            <summary>
+            Scale the image proportionally so it fits inside the image rect.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageScaleMode.ScaleAndCrop">
+            <summary>
+            Scale the image proportionally so it covers the whole image rect, cropping as needed.
+            </summary>
+        </member>
+        <member name="T:Sirenix.OdinInspector.ImageDrawPosition">
+            <summary>
+            Where the image is drawn relative to the original property.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageDrawPosition.BeforeProperty">
+            <summary>
+            Draw the image before the original property.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.ImageDrawPosition.AfterProperty">
+            <summary>
+            Draw the image after the original property.
+            </summary>
+        </member>
         <member name="T:Sirenix.OdinInspector.IndentAttribute">
             <summary>
             <para>Indent is used on any property and moves the property's label to the right.</para>
@@ -2435,14 +2628,14 @@
             such as [<see cref="T:Sirenix.OdinInspector.HideInInlineEditorsAttribute"/>] and [<see cref="T:Sirenix.OdinInspector.DisableInInlineEditorsAttribute"/>].
             </summary>
         </member>
-        <member name="F:Sirenix.OdinInspector.InlineEditorAttribute.ObjectFieldMode">
-            <summary>
-            How the InlineEditor attribute drawer should draw the object field.
-            </summary>
-        </member>
         <member name="F:Sirenix.OdinInspector.InlineEditorAttribute.DisableGUIForVCSLockedAssets">
             <summary>
             Whether to set GUI.enabled = false when drawing an editor for an asset that is locked by source control. Defaults to true.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.InlineEditorAttribute.ObjectFieldMode">
+            <summary>
+            How the InlineEditor attribute drawer should draw the object field.
             </summary>
         </member>
         <member name="F:Sirenix.OdinInspector.InlineEditorAttribute.PreviewAlignment">
@@ -3370,6 +3563,59 @@
             This attribute does not do anything unless you have Odin Validator and the 'Reference Required by Default' rule is enabled.
             </summary>
         </member>
+        <member name="T:Sirenix.OdinInspector.NonDefaultConstructorPreference">
+            <summary>
+            Specifies how non-default constructors are handled.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.NonDefaultConstructorPreference.Exclude">
+            <summary>
+            Excludes types with non default constructors from the Selector.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.NonDefaultConstructorPreference.ConstructIdeal">
+            <summary>
+            Attempts to find the most straightforward constructor to call, prioritizing default values.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.NonDefaultConstructorPreference.PreferUninitialized">
+            <summary>
+            Uses <see cref="M:System.Runtime.Serialization.FormatterServices.GetUninitializedObject(System.Type)"/> if no default constructor is found.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.NonDefaultConstructorPreference.LogWarning">
+            <summary>
+            Logs a warning instead of constructing the object, indicating that an attempt was made to construct an object without a default constructor.
+            </summary>
+        </member>
+        <member name="P:Sirenix.OdinInspector.PolymorphicDrawerSettingsAttribute.ShowBaseType">
+            <summary>
+            Determines whether the base type should be displayed in the drawer.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.PolymorphicDrawerSettingsAttribute.ReadOnlyIfNotNullReference">
+            <summary>
+            Indicates if the drawer should be read-only once a value is assigned.
+            </summary>
+        </member>
+        <member name="P:Sirenix.OdinInspector.PolymorphicDrawerSettingsAttribute.NonDefaultConstructorPreference">
+            <summary>
+            Specifies how non-default constructors are handled.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.PolymorphicDrawerSettingsAttribute.CreateInstanceFunction">
+            <summary>
+            Specifies a custom function for creating an instance of the selected <see cref="T:System.Type"/>.
+            </summary>
+            <remarks>Does not get called for <see cref="T:UnityEngine.Object">UnityEngine.Object</see> types.</remarks>
+            <example>
+            <para>
+            The resolver expects any method that takes a single parameter of <see cref="T:System.Type"/>, where the parameter is named 'type', and which returns an <see cref="T:System.Object"/>.
+            </para>
+            
+            <para>Implementation example: <c>public object Method(Type type)</c>.</para>
+            </example>
+        </member>
         <member name="T:Sirenix.OdinInspector.PreviewFieldAttribute">
              <summary>
              <para>
@@ -3767,14 +4013,14 @@
             Whether to hide the group by default when all its children are not visible. True by default.
             </summary>
         </member>
-        <member name="F:Sirenix.OdinInspector.PropertyGroupAttribute.VisibleIf">
-            <summary>
-            If not null, this resolved string controls the group's visibility. Note that if <see cref="F:Sirenix.OdinInspector.PropertyGroupAttribute.HideWhenChildrenAreInvisible"/> is true, there must be *both* a visible child *and* this condition must be true, before the group is shown.
-            </summary>
-        </member>
         <member name="F:Sirenix.OdinInspector.PropertyGroupAttribute.AnimateVisibility">
             <summary>
             Whether to animate the visibility changes of this group or make the visual transition instantly. True by default.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.PropertyGroupAttribute.VisibleIf">
+            <summary>
+            If not null, this resolved string controls the group's visibility. Note that if <see cref="F:Sirenix.OdinInspector.PropertyGroupAttribute.HideWhenChildrenAreInvisible"/> is true, there must be *both* a visible child *and* this condition must be true, before the group is shown.
             </summary>
         </member>
         <member name="M:Sirenix.OdinInspector.PropertyGroupAttribute.#ctor(System.String,System.Single)">
@@ -4848,6 +5094,9 @@
             Name of all tabs in this group.
             </summary>
         </member>
+        <member name="F:Sirenix.OdinInspector.TabGroupAttribute.TabSubGroupAttribute.TextColor">
+            <summary> Supports a variety of color formats, including named colors (e.g. "red", "orange", "green", "blue"), hex codes (e.g. "#FF0000" and "#FF0000FF"), and RGBA (e.g. "RGBA(1,1,1,1)") or RGB (e.g. "RGB(1,1,1)"), including Odin attribute expressions (e.g "@this.MyColor"). Here are the available named colors: black, blue, clear, cyan, gray, green, grey, magenta, orange, purple, red, transparent, transparentBlack, transparentWhite, white, yellow, lightblue, lightcyan, lightgray, lightgreen, lightgrey, lightmagenta, lightorange, lightpurple, lightred, lightyellow, darkblue, darkcyan, darkgray, darkgreen, darkgrey, darkmagenta, darkorange, darkpurple, darkred, darkyellow. </summary>
+        </member>
         <member name="T:Sirenix.OdinInspector.TableColumnWidthAttribute">
             <summary>
             The TableColumnWidth attribute is used to further customize the width of a column in tables drawn using the <see cref="T:Sirenix.OdinInspector.TableListAttribute"/>.
@@ -5398,6 +5647,16 @@
             </code>
             </example>
         </member>
+        <member name="F:Sirenix.OdinInspector.TypeDrawerSettingsAttribute.BaseType">
+            <summary>
+            Specifies whether a base type should be used instead of all types.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.TypeDrawerSettingsAttribute.Filter">
+            <summary>
+            Filters the result.
+            </summary>
+        </member>
         <member name="P:Sirenix.OdinInspector.TypeFilterAttribute.MemberName">
             <summary>
             Name of any field, property or method member that implements IList. E.g. arrays or Lists. Obsolete; use the FilterGetter member instead.
@@ -5452,6 +5711,29 @@
             Draws an info box at the top of a type in the inspector.
             </summary>
             <param name="message">The message to display in the info box.</param>
+        </member>
+        <member name="P:Sirenix.OdinInspector.TypeSelectorSettingsAttribute.ShowNoneItem">
+            <summary> Specifies if the '&lt;none&gt;' item is shown. </summary>
+        </member>
+        <member name="P:Sirenix.OdinInspector.TypeSelectorSettingsAttribute.ShowCategories">
+            <summary> Specifies if categories are shown. </summary>
+        </member>
+        <member name="P:Sirenix.OdinInspector.TypeSelectorSettingsAttribute.PreferNamespaces">
+            <summary>
+            Specifies if namespaces are preferred over assembly category names for category names.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.TypeSelectorSettingsAttribute.FilterTypesFunction">
+            <summary>
+            Function for filtering types displayed in the Type Selector.
+            </summary>
+            <example>
+            <para>
+            The resolver expects any method that takes a single parameter of <see cref="T:System.Type"/>, with the parameter name 'type', and which returns a <see cref="T:System.Boolean"/> indicating whether the <see cref="T:System.Type"/> is included or not;
+            </para>
+            
+            <para>Implementation example: <c>public bool SomeFilterMethod(Type type)</c>.</para>
+            </example>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Sirenix.OdinInspector.UnitAttribute" -->
         <member name="F:Sirenix.OdinInspector.UnitAttribute.Base">
@@ -6339,6 +6621,12 @@
             <summary>
             Title on the left, subtitle on the right.
             </summary>
+        </member>
+        <member name="T:Sirenix.OdinInspector.TypeInclusionFilter">
+            <summary> Specifies the types to include based on certain criteria. </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.TypeInclusionFilter.IncludeConcreteTypes">
+            <summary> Represents types that are not interfaces, abstracts, or generics. </summary>
         </member>
     </members>
 </doc>

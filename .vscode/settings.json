@@ -56,5 +56,5 @@
         "Raycast",
         "Scriptable"
     ],
-    "dotnet.defaultSolution": "ZombieHouseDefence.sln"
+    "dotnet.defaultSolution": "ZombieHouseDefence.slnx"
 }

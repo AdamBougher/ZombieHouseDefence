@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         Time = new GameTime();
         StartCoroutine(Time.Time());
         
-        upgradeManager = FindObjectOfType<UpgradeManager>();
+        upgradeManager = FindAnyObjectByType<UpgradeManager>();
         
         GamePaused = false;
         GameOver = false;

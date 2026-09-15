@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public abstract class Character : MonoBehaviour , IHittable
 {
-    [BoxGroup("Character"),]
+    [NonSerialized, ShowInInspector, ReadOnly, BoxGroup("Character")]
     public CharacterResource Hp;
     [BoxGroup("Character")]
     public float speed;

@@ -29,6 +29,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     public Ammo ammo;
 
+    [NonSerialized]
     public Damage Damage;
 
     public int bulletSpeed;
@@ -78,7 +79,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     public void OnReload(InputAction.CallbackContext context)
     {
         // ReSharper disable once InvertIf
-        if (!_isReloading || GameManager.GamePaused)
+        if (!_isReloading && !GameManager.GamePaused)
         {
             _isReloading = true;
             StartCoroutine(Reload());
@@ -119,12 +120,13 @@ public class PlayerWeaponHandler : MonoBehaviour
     {
         _audioSource.PlaySound(fire);
 
-        if (_bulletPool.GetPooledObject().TryGetComponent<Bullet>(out var bullet))
-        {
-            bullet.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
-            bullet.gameObject.SetActive(true);
-        }
+        var pooled = _bulletPool.GetPooledObject();
+        if (pooled == null) return;
 
+        if (!pooled.TryGetComponent<Bullet>(out var bullet)) return;
+
+        bullet.transform.SetPositionAndRotation(spawn.position, spawn.rotation);
+        bullet.gameObject.SetActive(true);
         bullet.StartBullet(spawn.right, bulletSpeed, Damage.GetDamage());
     }
     

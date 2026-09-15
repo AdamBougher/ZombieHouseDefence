@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
     {
         if (_rb is null) return;
         
-        _rb.velocity = Vector2.zero;
+        _rb.linearVelocity = Vector2.zero;
     }
     
     private IEnumerator ResumeAfterOneFrame()

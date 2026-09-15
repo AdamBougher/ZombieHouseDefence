@@ -24,7 +24,7 @@ public class Player : Character
 
     public InputActionAsset actions;
 
-    private AudioClip _hurtSfx;
+    [SerializeField] private AudioClip _hurtSfx;
     private Vector2 _lastInput;
     
     private System.Random random = new();
@@ -75,7 +75,7 @@ public class Player : Character
         //if game is not paused or over
         if (!GameManager.GamePaused && !GameManager.GameOver && !_isDead)
         {
-            _rb.velocity = value.Get<Vector2>() * (GetSpeed());
+            _rb.linearVelocity = value.Get<Vector2>() * (GetSpeed());
         }
     }
     
@@ -185,7 +185,7 @@ public class Player : Character
 
     private void OnPaused()
     {
-        _rb.velocity = new Vector2();
+        _rb.linearVelocity = new Vector2();
     }
     
     public void GetExp(int amt)
@@ -215,7 +215,7 @@ public class Player : Character
             nextLevel += 3;
             levelingUp = true;
             
-            FindFirstObjectByType<GameManager>().SetupLevelUp();
+            FindAnyObjectByType<GameManager>().SetupLevelUp();
             
             yield return new WaitWhile( () => levelingUp);
         }

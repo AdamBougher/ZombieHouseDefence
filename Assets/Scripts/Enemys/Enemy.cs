@@ -39,7 +39,7 @@ public class Enemy : Character
         GameManager.Unpause += OnResume;
 
         //setup linkages
-        _player = FindObjectOfType<Player>();
+        _player = FindAnyObjectByType<Player>();
         AudioSource = GetComponent<AudioSource>();
         _agent = GetComponent<NavMeshAgent>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
